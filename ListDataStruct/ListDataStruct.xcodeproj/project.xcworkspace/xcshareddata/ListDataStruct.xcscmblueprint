@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "FFE24F389406B1F391DB9871335FD2002CC30A72" : 0,
+    "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2990A8F2-E70A-4631-BA78-EB655D0C0C3C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "FFE24F389406B1F391DB9871335FD2002CC30A72" : "",
+    "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : "DataStruct-Swift\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ListDataStruct",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ListDataStruct\/ListDataStruct.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/DataStruct-Swift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/SwiftDelegateDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FFE24F389406B1F391DB9871335FD2002CC30A72"
+    }
+  ]
+}

@@ -27,6 +27,7 @@
 		F4E89D0C1D850593004A360E /* ListDataStruct */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ListDataStruct; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E89D0F1D850593004A360E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4E89D191D85065B004A360E /* SequenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceList.swift; sourceTree = "<group>"; };
+		F4E89D1B1D85ADC9004A360E /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +63,7 @@
 				F4E89D161D8505FD004A360E /* LinkList */,
 				F4E89D171D8505FD004A360E /* SequenceList */,
 				F4E89D0F1D850593004A360E /* main.swift */,
+				F4E89D1B1D85ADC9004A360E /* MyPlayground.playground */,
 			);
 			path = ListDataStruct;
 			sourceTree = "<group>";
@@ -261,6 +263,7 @@
 				F4E89D151D850593004A360E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

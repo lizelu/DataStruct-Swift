@@ -13,6 +13,12 @@ class SequenceList {
     private var count = 0
     private var capacity = 0
     
+    var length: Int {
+        get {
+            return count
+        }
+    }
+    
     init(capacity: Int) {
         self.capacity = capacity
         self.list = NSMutableArray(capacity: capacity)
@@ -20,7 +26,7 @@ class SequenceList {
     
     func displayList() {
         for i in 0..<count {
-            print(list[i])
+            print("\(i) -> \(list[i])")
         }
         print("\n")
     }
@@ -30,10 +36,27 @@ class SequenceList {
         count += 1
     }
     
-    func insert(item: String, index: Int) {
-        if index < 0 || index > count  {
-            print("插入位置非法，请进行检查")
-            return;
+    func fetchItem(index: Int) -> String? {
+        if !checkIndex(index) {
+            return nil
+        }
+        
+        return list[index] as? String
+    }
+    
+    func modify(index: Int, newItem: String) -> String? {
+        if !checkIndex(index) {
+            return nil
+        }
+        
+        let oldItem = list[index]
+        list[index] = newItem
+        return oldItem as? String
+    }
+    
+    func insert(item: String, index: Int) -> Bool {
+        if !checkIndex(index) {
+            return false
         }
         
         var i = count
@@ -43,6 +66,30 @@ class SequenceList {
         }
         list[index] = item;
         count += 1
+        return true
+    }
+    
+    func removeItme(index: Int) -> Bool {
+        if !checkIndex(index) {
+            return false
+        }
+        
+        for i in index..<count-1 {
+            list[i] = list[i+1]
+        }
+        
+        count -= 1
+        list.removeLastObject()
+        
+        return true
+    }
+    
+    func checkIndex(index: Int) -> Bool {
+        if index < 0 || index > count  {
+            print("index非法，请进行检查")
+            return false
+        }
+        return true
     }
     
     //waiting……

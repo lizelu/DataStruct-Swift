@@ -18,5 +18,7 @@ for item in array {
 sequcenceList.displayList()
 
 sequcenceList.insert("z", index: 0)
+sequcenceList.removeItme(1)
+sequcenceList.modify(3, newItem: "m")
 
 sequcenceList.displayList()
