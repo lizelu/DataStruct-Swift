@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F493DFB31D89201600EE687C /* LinkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493DFB21D89201600EE687C /* LinkList.swift */; };
 		F4E89D101D850593004A360E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E89D0F1D850593004A360E /* main.swift */; };
 		F4E89D1A1D85065B004A360E /* SequenceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E89D191D85065B004A360E /* SequenceList.swift */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F493DFB21D89201600EE687C /* LinkList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkList.swift; sourceTree = "<group>"; };
 		F4E89D0C1D850593004A360E /* ListDataStruct */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ListDataStruct; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4E89D0F1D850593004A360E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4E89D191D85065B004A360E /* SequenceList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceList.swift; sourceTree = "<group>"; };
@@ -41,6 +43,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F493DFB11D89200100EE687C /* LinkList */ = {
+			isa = PBXGroup;
+			children = (
+				F493DFB21D89201600EE687C /* LinkList.swift */,
+			);
+			path = LinkList;
+			sourceTree = "<group>";
+		};
 		F4E89D031D850593004A360E = {
 			isa = PBXGroup;
 			children = (
@@ -60,19 +70,12 @@
 		F4E89D0E1D850593004A360E /* ListDataStruct */ = {
 			isa = PBXGroup;
 			children = (
-				F4E89D161D8505FD004A360E /* LinkList */,
+				F493DFB11D89200100EE687C /* LinkList */,
 				F4E89D171D8505FD004A360E /* SequenceList */,
 				F4E89D0F1D850593004A360E /* main.swift */,
 				F4E89D1B1D85ADC9004A360E /* MyPlayground.playground */,
 			);
 			path = ListDataStruct;
-			sourceTree = "<group>";
-		};
-		F4E89D161D8505FD004A360E /* LinkList */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = LinkList;
 			sourceTree = "<group>";
 		};
 		F4E89D171D8505FD004A360E /* SequenceList */ = {
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4E89D1A1D85065B004A360E /* SequenceList.swift in Sources */,
+				F493DFB31D89201600EE687C /* LinkList.swift in Sources */,
 				F4E89D101D850593004A360E /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
