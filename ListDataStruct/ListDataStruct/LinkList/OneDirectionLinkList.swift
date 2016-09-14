@@ -18,7 +18,7 @@ class OneDirectionLinkListNote {
     }
     
     deinit{
-        print("\(self.data)释放", separator: "", terminator: "->")
+        print("\(self.data)释放", separator: "", terminator: ",")
     }
 }
 
