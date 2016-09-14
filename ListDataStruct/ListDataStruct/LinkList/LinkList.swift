@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+/// 单向链表的节点
 class OneDirectionLinkListNote {
     var data: String
     var next: OneDirectionLinkListNote?
@@ -16,7 +18,7 @@ class OneDirectionLinkListNote {
     }
     
     deinit{
-        print("\(self.data)-节点释放")
+        print("\(self.data)释放", separator: "", terminator: "->")
     }
 }
 
@@ -31,6 +33,13 @@ class OneDirectionLinkList {
         self.length = 0
     }
     
+    /**
+     根据数组正向创建链表
+     
+     - parameter items: 数组
+     
+     - returns: true-创建成功， false-创建失败
+     */
     func forwardDirectionCreateList(items: Array<String>) -> Bool {
         for item in items {
             let newLinkListNote = OneDirectionLinkListNote(data: item)
@@ -44,6 +53,13 @@ class OneDirectionLinkList {
         return true
     }
     
+    /**
+     
+     根据数组逆向创建数组
+     - parameter items: 数组
+     
+     - returns: true-创建成功， false-创建失败
+     */
     func reverseDirectionCreateList(items: Array<String>) -> Bool {
         for item in items {
             let newLinkListNote = OneDirectionLinkListNote(data: item)
@@ -60,13 +76,19 @@ class OneDirectionLinkList {
         return true
     }
     
+    /**
+     移除链表中所有的数据
+     */
     func removeAllItem() {
-        guard var removeItem: OneDirectionLinkListNote = self.headNote?.next else {
+        var removeItem: OneDirectionLinkListNote? = self.headNote?.next
+        
+        if removeItem == nil {
             return
         }
+        
         while self.length != 0 {
-            self.headNote?.next = removeItem.next
-            removeItem.next = nil
+            self.headNote?.next = removeItem?.next
+            removeItem?.next = nil
             self.length -= 1
             if self.headNote?.next != nil {
                 removeItem = (self.headNote?.next)!
@@ -75,8 +97,13 @@ class OneDirectionLinkList {
                 break
             }
         }
+        removeItem = nil
+        print("Over")
     }
     
+    /**
+     单向链表的遍历
+     */
     func display() {
         var currentNote = self.headNote?.next
         for _ in 0..<self.length {
@@ -86,9 +113,10 @@ class OneDirectionLinkList {
             guard let item = currentNote?.data else {
                 return
             }
-            print(item)
+            print(item, separator: "", terminator: " -> ")
             currentNote = currentNote?.next
         }
+        print("nil")
     }
     
 }

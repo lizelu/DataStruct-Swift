@@ -13,6 +13,7 @@ class SequenceList {
     private var count = 0
     private var capacity = 0
     
+    //元素个数
     var length: Int {
         get {
             return count
@@ -24,6 +25,9 @@ class SequenceList {
         self.list = NSMutableArray(capacity: capacity)
     }
     
+    /**
+     顺序输出
+     */
     func displayList() {
         for i in 0..<count {
             print("\(i) -> \(list[i])")
@@ -31,11 +35,23 @@ class SequenceList {
         print("\n")
     }
     
+    /**
+     往末尾追加元素
+     
+     - parameter item:
+     */
     func addItem(item: String) {
         list[count] = item;
         count += 1
     }
     
+    /**
+     根据下标索引元素
+     
+     - parameter index: 下标
+     
+     - returns: 该下标对应的值
+     */
     func fetchItem(index: Int) -> String? {
         if !checkIndex(index) {
             return nil
@@ -44,6 +60,14 @@ class SequenceList {
         return list[index] as? String
     }
     
+    /**
+     根据下标修改元素
+     
+     - parameter index:   下标
+     - parameter newItem: 新的元素
+     
+     - returns: 之前的值
+     */
     func modify(index: Int, newItem: String) -> String? {
         if !checkIndex(index) {
             return nil
@@ -54,6 +78,14 @@ class SequenceList {
         return oldItem as? String
     }
     
+    /**
+     根据下标插入值
+     
+     - parameter item:  要插入的值
+     - parameter index: 下标
+     
+     - returns: 返回插入结果，true or false
+     */
     func insert(item: String, index: Int) -> Bool {
         if !checkIndex(index) {
             return false
@@ -69,6 +101,13 @@ class SequenceList {
         return true
     }
     
+    /**
+     根据下标移除元素
+     
+     - parameter index: 下标
+     
+     - returns: 是否移除成
+     */
     func removeItme(index: Int) -> Bool {
         if !checkIndex(index) {
             return false
@@ -84,6 +123,13 @@ class SequenceList {
         return true
     }
     
+    /**
+     检查index是否合法
+     
+     - parameter index: 索引
+     
+     - returns: true合法，false不合法
+     */
     func checkIndex(index: Int) -> Bool {
         if index < 0 || index > count  {
             print("index非法，请进行检查")

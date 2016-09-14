@@ -24,9 +24,14 @@ let array = "a,b,c,d,e,f,g".componentsSeparatedByString(",")
 //sequcenceList.displayList()
 
 let oneDirectionLinkList = OneDirectionLinkList()
+print("正向创建链表")
 oneDirectionLinkList.forwardDirectionCreateList(array)
 oneDirectionLinkList.display()
+
+print("\n链表元素清空")
 oneDirectionLinkList.removeAllItem()
+
+print("\n逆向创建链表")
 oneDirectionLinkList.reverseDirectionCreateList(array)
 oneDirectionLinkList.display()
         
