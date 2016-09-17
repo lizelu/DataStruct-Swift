@@ -28,14 +28,9 @@ class LinkStack: StackType {
     
     func push(item: AnyObject) {
         let note = LinkStackNote(data: item)
-        count += 1
-        if top == nil {
-            top = note
-            return
-        }
-        
         note.next = top
         top = note
+        count += 1
     }
     
     func pop() -> AnyObject? {
@@ -45,7 +40,6 @@ class LinkStack: StackType {
             count -= 1
             return note?.data
         }
-        
         return nil
     }
     
