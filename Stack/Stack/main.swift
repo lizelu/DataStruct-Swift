@@ -7,12 +7,38 @@
 //
 
 import Foundation
-let items = "a,b,c,d,e,f,g,h,i".componentsSeparatedByString(",")
-print(items)
+
+let items = "a,b,c,d,e".componentsSeparatedByString(",")
+
 func testStack(stack: StackType) {
     for item in items {
         stack.push(item)
     }
+    print("栈的初始值如下：")
+    stack.display()
+    
+    print("将e, d出栈后")
+    print(stack.pop())
+    print(stack.pop())
+    stack.display()
+    
+    print("将x,y,z入栈")
+    stack.push("x")
+    stack.push("y")
+    stack.push("z")
+    stack.display()
+    
+    if let topItem = stack.getTop() {
+        print("顶部元素: \(topItem)")
+    }
+    
+    print("栈的长度为：\(stack.stackLength())")
+    
+    //将栈清空
+    if !stack.stackIsEmpty() {
+        stack.clearStack()
+    }
+    
     stack.display()
 }
 

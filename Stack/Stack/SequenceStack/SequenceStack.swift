@@ -40,9 +40,14 @@ class SequenceStack: StackType  {
     }
     
     func display() {
+        if stackIsEmpty() {
+            print("栈为空")
+            return
+        }
+        
         var i = items.count - 1
         while i >= 0 {
-            print(items[i], separator: "", terminator: ", ")
+            print("[_\(items[i])_]")
             i -= 1
         }
         print("")
