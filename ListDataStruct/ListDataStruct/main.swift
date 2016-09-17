@@ -49,9 +49,9 @@ func testOneDirectionLinkList() {
     oneDirectionLinkList.display()
     
     print("\n移除元素，并返回值")
-    print(oneDirectionLinkList.removeLastNote()!)
-    print(oneDirectionLinkList.removeFirstNote()!)
-    print(oneDirectionLinkList.removeItme(0)!)
+    oneDirectionLinkList.removeLastNote()
+    oneDirectionLinkList.removeFirstNote()
+    oneDirectionLinkList.removeItme(0)
     
     oneDirectionLinkList.display()
 }
