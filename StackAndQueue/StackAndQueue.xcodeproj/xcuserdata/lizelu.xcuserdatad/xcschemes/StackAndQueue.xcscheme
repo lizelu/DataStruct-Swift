@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4585BE41D8CE089008CB6B1"
-               BuildableName = "Stack"
-               BlueprintName = "Stack"
-               ReferencedContainer = "container:Stack.xcodeproj">
+               BlueprintIdentifier = "F4585C051D8D8ACF008CB6B1"
+               BuildableName = "StackAndQueue"
+               BlueprintName = "StackAndQueue"
+               ReferencedContainer = "container:StackAndQueue.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4585BE41D8CE089008CB6B1"
-            BuildableName = "Stack"
-            BlueprintName = "Stack"
-            ReferencedContainer = "container:Stack.xcodeproj">
+            BlueprintIdentifier = "F4585C051D8D8ACF008CB6B1"
+            BuildableName = "StackAndQueue"
+            BlueprintName = "StackAndQueue"
+            ReferencedContainer = "container:StackAndQueue.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4585BE41D8CE089008CB6B1"
-            BuildableName = "Stack"
-            BlueprintName = "Stack"
-            ReferencedContainer = "container:Stack.xcodeproj">
+            BlueprintIdentifier = "F4585C051D8D8ACF008CB6B1"
+            BuildableName = "StackAndQueue"
+            BlueprintName = "StackAndQueue"
+            ReferencedContainer = "container:StackAndQueue.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4585BE41D8CE089008CB6B1"
-            BuildableName = "Stack"
-            BlueprintName = "Stack"
-            ReferencedContainer = "container:Stack.xcodeproj">
+            BlueprintIdentifier = "F4585C051D8D8ACF008CB6B1"
+            BuildableName = "StackAndQueue"
+            BlueprintName = "StackAndQueue"
+            ReferencedContainer = "container:StackAndQueue.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

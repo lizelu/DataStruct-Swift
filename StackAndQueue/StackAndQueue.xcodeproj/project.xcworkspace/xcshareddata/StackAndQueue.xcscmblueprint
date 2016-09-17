@@ -7,14 +7,14 @@
     "FFE24F389406B1F391DB9871335FD2002CC30A72" : 0,
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : 0
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9E891323-0B35-47C4-9272-FD44741F317F",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E4C678B9-6594-48F2-A570-48F0A3FE85C5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "FFE24F389406B1F391DB9871335FD2002CC30A72" : "",
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : "DataStruct-Swift\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "Stack",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "StackAndQueue",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Stack\/Stack.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "StackAndQueue\/StackAndQueue.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/DataStruct-Swift.git",
