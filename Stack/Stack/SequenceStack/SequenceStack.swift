@@ -11,11 +11,11 @@ import Foundation
 class SequenceStack: StackType  {
     private var items: Array<AnyObject> = []
     
-    func push(imte: AnyObject) {
-        items.append(items)
+    func push(item: AnyObject) {
+        items.append(item)
     }
     
-    func pop() -> AnyObject {
+    func pop() -> AnyObject? {
         return items.removeLast()
     }
     
@@ -37,5 +37,14 @@ class SequenceStack: StackType  {
     
     func clearStack() {
         items.removeAll()
+    }
+    
+    func display() {
+        var i = items.count - 1
+        while i >= 0 {
+            print(items[i], separator: "", terminator: ", ")
+            i -= 1
+        }
+        print("")
     }
 }

@@ -10,9 +10,10 @@ import Foundation
 
 protocol StackType {
     func push(imte: AnyObject)
-    func pop() -> AnyObject
+    func pop() -> AnyObject?
     func getTop() -> AnyObject?
     func stackLength() -> Int
     func stackIsEmpty() -> Bool
     func clearStack()
+    func display()
 }

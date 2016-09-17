@@ -7,6 +7,14 @@
 //
 
 import Foundation
+let items = "a,b,c,d,e,f,g,h,i".componentsSeparatedByString(",")
+print(items)
+func testStack(stack: StackType) {
+    for item in items {
+        stack.push(item)
+    }
+    stack.display()
+}
 
-print("Hello, World!")
+testStack(SequenceStack())
 
