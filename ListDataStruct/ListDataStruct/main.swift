@@ -56,8 +56,41 @@ func testOneDirectionLinkList() {
     oneDirectionLinkList.display()
 }
 
+func testDoublyLinkedList() {
+    let doublyLinkedList = DoublyLinkedList()
+    print("正向创建链表")
+    doublyLinkedList.forwardDirectionCreateList(array)
+    doublyLinkedList.display()
+    
+    print("\n链表正向清空")
+    doublyLinkedList.removeAllItemFromHead()
+    
+    print("\n逆向创建链表")
+    doublyLinkedList.reverseDirectionCreateList(array)
+    doublyLinkedList.display()
+    
+    print("\n链表逆向清空")
+    doublyLinkedList.removeAllItemFromLast()
+    
+//    print("\n插入元素")
+//    oneDirectionLinkList.insertItem("非法", index: 100)
+//    oneDirectionLinkList.insertItem("header", index: 0)
+//    oneDirectionLinkList.insertItem("mid", index: oneDirectionLinkList.length/2 + 1)
+//    oneDirectionLinkList.insertItem("tail", index: oneDirectionLinkList.length)
+//    oneDirectionLinkList.display()
+//    
+//    print("\n移除元素，并返回值")
+//    print(oneDirectionLinkList.removeLastNote()!)
+//    print(oneDirectionLinkList.removeFirstNote()!)
+//    print(oneDirectionLinkList.removeItme(0)!)
+//    
+//    oneDirectionLinkList.display()
+}
+
+
 
 //testSqueueList()
 //testOneDirectionLinkList()
+testDoublyLinkedList()
 
         
