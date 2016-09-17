@@ -9,7 +9,7 @@
 import Foundation
 
 protocol StackType {
-    func push(imte: AnyObject)
+    func push(item: AnyObject)
     func pop() -> AnyObject?
     func getTop() -> AnyObject?
     func stackLength() -> Int

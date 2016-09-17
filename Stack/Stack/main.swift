@@ -42,5 +42,6 @@ func testStack(stack: StackType) {
     stack.display()
 }
 
-testStack(SequenceStack())
+//testStack(SequenceStack())
+testStack(LinkStack())
 
