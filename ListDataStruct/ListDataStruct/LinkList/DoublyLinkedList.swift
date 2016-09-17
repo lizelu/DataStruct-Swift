@@ -21,14 +21,12 @@ class DoublyLinkedListNote {
     deinit{
         print("\(self.data)释放", separator: "", terminator: ",")
     }
-
-    
 }
 
-class DoublyLinkedList {
+class DoublyLinkedList: ListProtocalType {
     var headNote: DoublyLinkedListNote?
     var tailNote: DoublyLinkedListNote?
-    var length: Int = 0
+    var length: UInt = 0
     
     init() {
         self.initHeadAndTailNote()
@@ -37,6 +35,10 @@ class DoublyLinkedList {
     func initHeadAndTailNote() {
         self.headNote = DoublyLinkedListNote()
         self.tailNote = self.headNote
+    }
+    
+    func count() -> UInt {
+        return length
     }
     
     // MARK: - 链表的创建
@@ -133,7 +135,7 @@ class DoublyLinkedList {
      
      - returns: true-插入成功，false-插入失败
      */
-    func insertItem(item: AnyObject, index: Int) -> Bool {
+    func insertItem(item: AnyObject, index: UInt) -> Bool {
         if !checkIndex(index) {
             return false
         }
@@ -242,7 +244,7 @@ class DoublyLinkedList {
      
      - returns: 被移除的节点值
      */
-    func removeItme(index: Int) -> AnyObject? {
+    func removeItme(index: UInt) -> AnyObject? {
         if self.headNote?.next == nil {
             print("链表为空")
             return nil                    //链表为空
@@ -307,7 +309,7 @@ class DoublyLinkedList {
      
      - returns: true合法，false不合法
      */
-    func checkIndex(index: Int) -> Bool {
+    func checkIndex(index: UInt) -> Bool {
         if  index > self.length  {
             print("index非法，请进行检查")
             return false
@@ -315,6 +317,7 @@ class DoublyLinkedList {
         return true
     }
 
+    
 
     
 }

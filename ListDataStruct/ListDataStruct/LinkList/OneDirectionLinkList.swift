@@ -22,7 +22,7 @@ class OneDirectionLinkListNote {
     }
 }
 
-class OneDirectionLinkList {
+class OneDirectionLinkList: ListProtocalType {
     var headNote: OneDirectionLinkListNote?
     var tailNote: OneDirectionLinkListNote?
     var length: UInt
@@ -33,6 +33,9 @@ class OneDirectionLinkList {
         self.length = 0
     }
     
+    func count() -> UInt {
+        return length
+    }
     
     // MARK: - 链表的创建
     /**
