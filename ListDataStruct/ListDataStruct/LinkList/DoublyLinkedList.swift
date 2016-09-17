@@ -125,41 +125,46 @@ class DoublyLinkedList {
         return true
     }
     
-//    /**
-//     根据指定索引来插入item
-//     
-//     - parameter item:  插入链表中的元素
-//     - parameter index: 要插入的位置（0-length）
-//     
-//     - returns: true-插入成功，false-插入失败
-//     */
-//    func insertItem(item: AnyObject, index: UInt) -> Bool {
-//        if !checkIndex(index) {
-//            return false
-//        }
-//        
-//        if index == 0 {
-//            self.addItemToHead(item)
-//            return true
-//        }
-//        
-//        if index == self.length {
-//            self.addItemToTail(item)
-//            return true
-//        }
-//        
-//        var cursor = self.headNote
-//        for _ in 0..<index {
-//            cursor = cursor?.next
-//        }
-//        
-//        let newItme = OneDirectionLinkListNote(data: item)
-//        newItme.next = cursor?.next
-//        cursor?.next = newItme
-//        self.length += 1
-//        
-//        return true
-//    }
+    /**
+     根据指定索引来插入item
+     
+     - parameter item:  插入链表中的元素
+     - parameter index: 要插入的位置（0-length）
+     
+     - returns: true-插入成功，false-插入失败
+     */
+    func insertItem(item: AnyObject, index: Int) -> Bool {
+        if !checkIndex(index) {
+            return false
+        }
+        
+        if index == 0 {
+            return self.addItemToHead(item)
+        }
+        
+        if index == self.length {
+            return self.addItemToTail(item)
+        }
+        
+        var cursor = self.headNote
+        for _ in 0..<index {
+            cursor = cursor?.next
+        }
+        
+        let newItme = DoublyLinkedListNote(data: item)
+        
+        newItme.next = cursor?.next
+        if cursor?.next != nil{
+            cursor?.next?.pre = newItme
+        }
+        
+        cursor?.next = newItme
+        newItme.pre = cursor
+        
+        self.length += 1
+        
+        return true
+    }
     
     
     //MARK: - 链表元素的移除
@@ -225,6 +230,7 @@ class DoublyLinkedList {
         preNote?.next = nil
         
         self.tailNote = preNote
+        self.length -= 1
         
         return removeItem?.data
     }
@@ -309,8 +315,7 @@ class DoublyLinkedList {
         return true
     }
 
-    
-    
+
     
 }
 

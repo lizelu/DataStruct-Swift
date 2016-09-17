@@ -72,19 +72,19 @@ func testDoublyLinkedList() {
     print("\n链表逆向清空")
     doublyLinkedList.removeAllItemFromLast()
     
-//    print("\n插入元素")
-//    oneDirectionLinkList.insertItem("非法", index: 100)
-//    oneDirectionLinkList.insertItem("header", index: 0)
-//    oneDirectionLinkList.insertItem("mid", index: oneDirectionLinkList.length/2 + 1)
-//    oneDirectionLinkList.insertItem("tail", index: oneDirectionLinkList.length)
-//    oneDirectionLinkList.display()
-//    
-//    print("\n移除元素，并返回值")
-//    print(oneDirectionLinkList.removeLastNote()!)
-//    print(oneDirectionLinkList.removeFirstNote()!)
-//    print(oneDirectionLinkList.removeItme(0)!)
-//    
-//    oneDirectionLinkList.display()
+    print("\n插入元素")
+    doublyLinkedList.insertItem("非法", index: 100)
+    doublyLinkedList.insertItem("header", index: 0)
+    doublyLinkedList.insertItem("mid", index: doublyLinkedList.length/2 + 1)
+    doublyLinkedList.insertItem("tail", index: doublyLinkedList.length)
+    doublyLinkedList.display()
+    
+    print("\n移除元素，并返回值")
+    doublyLinkedList.removeLastNote()
+    doublyLinkedList.removeFirstNote()
+    doublyLinkedList.removeItme(0)
+    
+    doublyLinkedList.display()
 }
 
 
