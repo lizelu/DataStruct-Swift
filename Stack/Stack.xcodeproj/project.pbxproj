@@ -10,7 +10,7 @@
 		F4585BE91D8CE089008CB6B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585BE81D8CE089008CB6B1 /* main.swift */; };
 		F4585BF21D8CE35F008CB6B1 /* SequenceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585BF11D8CE35F008CB6B1 /* SequenceStack.swift */; };
 		F4585BF41D8CE5FA008CB6B1 /* StackProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585BF31D8CE5FA008CB6B1 /* StackProtocal.swift */; };
-		F4585BFA1D8D76AB008CB6B1 /* LinkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585BF91D8D76AB008CB6B1 /* LinkStack.swift */; };
+		F4585BFC1D8D8664008CB6B1 /* LinkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585BFB1D8D8664008CB6B1 /* LinkStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,7 +30,7 @@
 		F4585BE81D8CE089008CB6B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4585BF11D8CE35F008CB6B1 /* SequenceStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceStack.swift; sourceTree = "<group>"; };
 		F4585BF31D8CE5FA008CB6B1 /* StackProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackProtocal.swift; sourceTree = "<group>"; };
-		F4585BF91D8D76AB008CB6B1 /* LinkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStack.swift; sourceTree = "<group>"; };
+		F4585BFB1D8D8664008CB6B1 /* LinkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +74,7 @@
 		F4585BEF1D8CE0BE008CB6B1 /* LinkStack */ = {
 			isa = PBXGroup;
 			children = (
+				F4585BFB1D8D8664008CB6B1 /* LinkStack.swift */,
 			);
 			path = LinkStack;
 			sourceTree = "<group>";
@@ -82,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				F4585BF11D8CE35F008CB6B1 /* SequenceStack.swift */,
-				F4585BF91D8D76AB008CB6B1 /* LinkStack.swift */,
 			);
 			path = SequenceStack;
 			sourceTree = "<group>";
@@ -146,7 +146,7 @@
 			files = (
 				F4585BE91D8CE089008CB6B1 /* main.swift in Sources */,
 				F4585BF41D8CE5FA008CB6B1 /* StackProtocal.swift in Sources */,
-				F4585BFA1D8D76AB008CB6B1 /* LinkStack.swift in Sources */,
+				F4585BFC1D8D8664008CB6B1 /* LinkStack.swift in Sources */,
 				F4585BF21D8CE35F008CB6B1 /* SequenceStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
