@@ -8,6 +8,8 @@
 
 import Foundation
 
+ /// 栈的顺序存储
+
 class SequenceStack: StackType  {
     private var items: Array<AnyObject> = []
     

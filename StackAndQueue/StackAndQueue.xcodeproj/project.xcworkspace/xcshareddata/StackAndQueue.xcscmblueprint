@@ -4,12 +4,12 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "FFE24F389406B1F391DB9871335FD2002CC30A72" : 0,
+    "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : 0,
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E4C678B9-6594-48F2-A570-48F0A3FE85C5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "FFE24F389406B1F391DB9871335FD2002CC30A72" : "",
+    "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : "",
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : "DataStruct-Swift\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "StackAndQueue",
@@ -17,14 +17,14 @@
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "StackAndQueue\/StackAndQueue.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/SwiftDelegateDemo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614"
+    },
+    {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/DataStruct-Swift.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE"
-    },
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/SwiftDelegateDemo.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FFE24F389406B1F391DB9871335FD2002CC30A72"
     }
   ]
 }

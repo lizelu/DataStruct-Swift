@@ -8,6 +8,8 @@
 
 import Foundation
 
+ /// 栈的链式存储
+
 class LinkStackNote {
     var data: AnyObject
     var next: LinkStackNote?

@@ -11,6 +11,7 @@
 		F4585C161D8D8C0E008CB6B1 /* LinkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C111D8D8C0E008CB6B1 /* LinkStack.swift */; };
 		F4585C171D8D8C0E008CB6B1 /* StackProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */; };
 		F4585C181D8D8C0E008CB6B1 /* SequenceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C151D8D8C0E008CB6B1 /* SequenceStack.swift */; };
+		F493DFB51D8E2A8B00EE687C /* QueueProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		F4585C111D8D8C0E008CB6B1 /* LinkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStack.swift; sourceTree = "<group>"; };
 		F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackProtocal.swift; sourceTree = "<group>"; };
 		F4585C151D8D8C0E008CB6B1 /* SequenceStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceStack.swift; sourceTree = "<group>"; };
+		F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueProtocal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */,
+				F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */,
 			);
 			path = Protoacl;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F493DFB51D8E2A8B00EE687C /* QueueProtocal.swift in Sources */,
 				F4585C161D8D8C0E008CB6B1 /* LinkStack.swift in Sources */,
 				F4585C181D8D8C0E008CB6B1 /* SequenceStack.swift in Sources */,
 				F4585C171D8D8C0E008CB6B1 /* StackProtocal.swift in Sources */,
