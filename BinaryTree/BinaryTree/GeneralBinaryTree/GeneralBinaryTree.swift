@@ -8,6 +8,17 @@
 
 import Foundation
 
+class GeneralBinaryTreeNote {
+    var data: String
+    
+    var leftChild: GeneralBinaryTreeNote!    //左节点
+    var rightChild: GeneralBinaryTreeNote!   //右节点
+    
+    init(data: String) {
+        self.data = data
+    }
+}
+
 class GeneralBinaryTree {
     var rootNote: GeneralBinaryTreeNote!
     
@@ -48,13 +59,15 @@ class GeneralBinaryTree {
     func preOrderTraverse() {
         print("先序遍历：")
         self.preOrderTraverse(rootNote)
+        print("\n")
     }
     
     private func preOrderTraverse (note: GeneralBinaryTreeNote!) {
         guard let note = note else {
+            print("空", separator: "", terminator: " ")
             return
         }
-        print(note.data)
+        print(note.data, separator: "", terminator: " ")
         preOrderTraverse(note.leftChild)
         preOrderTraverse(note.rightChild)
     }
@@ -66,14 +79,16 @@ class GeneralBinaryTree {
     func inOrderTraverse() {
         print("中序遍历：")
         self.inOrderTraverse(rootNote)
+        print("\n")
     }
     
     private func inOrderTraverse (note: GeneralBinaryTreeNote!) {
         guard let note = note else {
+            print("空", separator: "", terminator: " ")
             return
         }
         inOrderTraverse(note.leftChild)
-        print(note.data)
+        print(note.data, separator: "", terminator: " ")
         inOrderTraverse(note.rightChild)
     }
     
@@ -83,15 +98,17 @@ class GeneralBinaryTree {
     func afterOrderTraverse() {
         print("后序遍历：")
         self.afterOrderTraverse(rootNote)
+        print("\n")
     }
     
     private func afterOrderTraverse (note: GeneralBinaryTreeNote!) {
         guard let note = note else {
+            print("空", separator: "", terminator: " ")
             return
         }
         afterOrderTraverse(note.leftChild)
         afterOrderTraverse(note.rightChild)
-        print(note.data)
+        print(note.data, separator: "", terminator: " ")
     }
 
 }
