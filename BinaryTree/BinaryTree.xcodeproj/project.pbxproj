@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F485E46D1D7D77CF00C31D13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485E46C1D7D77CF00C31D13 /* main.swift */; };
-		F485E4741D7D781700C31D13 /* GeneralBinaryTreeNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485E4731D7D781700C31D13 /* GeneralBinaryTreeNote.swift */; };
-		F485E4761D7D791300C31D13 /* GeneralBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F485E4751D7D791300C31D13 /* GeneralBinaryTree.swift */; };
+		F45A47F01D8E449900125E08 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A47EF1D8E449900125E08 /* main.swift */; };
+		F45A47F91D8E44C900125E08 /* GeneralBinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A47F71D8E44C900125E08 /* GeneralBinaryTree.swift */; };
+		F45A47FA1D8E44C900125E08 /* GeneralBinaryTreeNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A47F81D8E44C900125E08 /* GeneralBinaryTreeNote.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F485E4671D7D77CF00C31D13 /* CopyFiles */ = {
+		F45A47EA1D8E449900125E08 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -25,14 +25,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F485E4691D7D77CF00C31D13 /* DataStructDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DataStructDemo; sourceTree = BUILT_PRODUCTS_DIR; };
-		F485E46C1D7D77CF00C31D13 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F485E4731D7D781700C31D13 /* GeneralBinaryTreeNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBinaryTreeNote.swift; sourceTree = "<group>"; };
-		F485E4751D7D791300C31D13 /* GeneralBinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBinaryTree.swift; sourceTree = "<group>"; };
+		F45A47EC1D8E449900125E08 /* BinaryTree */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BinaryTree; sourceTree = BUILT_PRODUCTS_DIR; };
+		F45A47EF1D8E449900125E08 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F45A47F71D8E44C900125E08 /* GeneralBinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBinaryTree.swift; sourceTree = "<group>"; };
+		F45A47F81D8E44C900125E08 /* GeneralBinaryTreeNote.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBinaryTreeNote.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F485E4661D7D77CF00C31D13 /* Frameworks */ = {
+		F45A47E91D8E449900125E08 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,107 +42,107 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F44B59A71D7E71D400F1DCE0 /* GeneralBinaryTree */ = {
+		F45A47E31D8E449900125E08 = {
 			isa = PBXGroup;
 			children = (
-				F485E4731D7D781700C31D13 /* GeneralBinaryTreeNote.swift */,
-				F485E4751D7D791300C31D13 /* GeneralBinaryTree.swift */,
-			);
-			name = GeneralBinaryTree;
-			sourceTree = "<group>";
-		};
-		F485E4601D7D77CF00C31D13 = {
-			isa = PBXGroup;
-			children = (
-				F485E46B1D7D77CF00C31D13 /* DataStructDemo */,
-				F485E46A1D7D77CF00C31D13 /* Products */,
+				F45A47EE1D8E449900125E08 /* BinaryTree */,
+				F45A47ED1D8E449900125E08 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F485E46A1D7D77CF00C31D13 /* Products */ = {
+		F45A47ED1D8E449900125E08 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F485E4691D7D77CF00C31D13 /* DataStructDemo */,
+				F45A47EC1D8E449900125E08 /* BinaryTree */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F485E46B1D7D77CF00C31D13 /* DataStructDemo */ = {
+		F45A47EE1D8E449900125E08 /* BinaryTree */ = {
 			isa = PBXGroup;
 			children = (
-				F485E46C1D7D77CF00C31D13 /* main.swift */,
-				F44B59A71D7E71D400F1DCE0 /* GeneralBinaryTree */,
+				F45A47F61D8E44C900125E08 /* GeneralBinaryTree */,
+				F45A47EF1D8E449900125E08 /* main.swift */,
 			);
-			path = DataStructDemo;
+			path = BinaryTree;
+			sourceTree = "<group>";
+		};
+		F45A47F61D8E44C900125E08 /* GeneralBinaryTree */ = {
+			isa = PBXGroup;
+			children = (
+				F45A47F71D8E44C900125E08 /* GeneralBinaryTree.swift */,
+				F45A47F81D8E44C900125E08 /* GeneralBinaryTreeNote.swift */,
+			);
+			path = GeneralBinaryTree;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F485E4681D7D77CF00C31D13 /* DataStructDemo */ = {
+		F45A47EB1D8E449900125E08 /* BinaryTree */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F485E4701D7D77CF00C31D13 /* Build configuration list for PBXNativeTarget "DataStructDemo" */;
+			buildConfigurationList = F45A47F31D8E449900125E08 /* Build configuration list for PBXNativeTarget "BinaryTree" */;
 			buildPhases = (
-				F485E4651D7D77CF00C31D13 /* Sources */,
-				F485E4661D7D77CF00C31D13 /* Frameworks */,
-				F485E4671D7D77CF00C31D13 /* CopyFiles */,
+				F45A47E81D8E449900125E08 /* Sources */,
+				F45A47E91D8E449900125E08 /* Frameworks */,
+				F45A47EA1D8E449900125E08 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = DataStructDemo;
-			productName = DataStructDemo;
-			productReference = F485E4691D7D77CF00C31D13 /* DataStructDemo */;
+			name = BinaryTree;
+			productName = BinaryTree;
+			productReference = F45A47EC1D8E449900125E08 /* BinaryTree */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F485E4611D7D77CF00C31D13 /* Project object */ = {
+		F45A47E41D8E449900125E08 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = ZeluLi;
 				TargetAttributes = {
-					F485E4681D7D77CF00C31D13 = {
+					F45A47EB1D8E449900125E08 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
 			};
-			buildConfigurationList = F485E4641D7D77CF00C31D13 /* Build configuration list for PBXProject "DataStructDemo" */;
+			buildConfigurationList = F45A47E71D8E449900125E08 /* Build configuration list for PBXProject "BinaryTree" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = F485E4601D7D77CF00C31D13;
-			productRefGroup = F485E46A1D7D77CF00C31D13 /* Products */;
+			mainGroup = F45A47E31D8E449900125E08;
+			productRefGroup = F45A47ED1D8E449900125E08 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F485E4681D7D77CF00C31D13 /* DataStructDemo */,
+				F45A47EB1D8E449900125E08 /* BinaryTree */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F485E4651D7D77CF00C31D13 /* Sources */ = {
+		F45A47E81D8E449900125E08 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F485E4761D7D791300C31D13 /* GeneralBinaryTree.swift in Sources */,
-				F485E46D1D7D77CF00C31D13 /* main.swift in Sources */,
-				F485E4741D7D781700C31D13 /* GeneralBinaryTreeNote.swift in Sources */,
+				F45A47F01D8E449900125E08 /* main.swift in Sources */,
+				F45A47F91D8E44C900125E08 /* GeneralBinaryTree.swift in Sources */,
+				F45A47FA1D8E44C900125E08 /* GeneralBinaryTreeNote.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F485E46E1D7D77CF00C31D13 /* Debug */ = {
+		F45A47F11D8E449900125E08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -187,7 +187,7 @@
 			};
 			name = Debug;
 		};
-		F485E46F1D7D77CF00C31D13 /* Release */ = {
+		F45A47F21D8E449900125E08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -224,14 +224,14 @@
 			};
 			name = Release;
 		};
-		F485E4711D7D77CF00C31D13 /* Debug */ = {
+		F45A47F41D8E449900125E08 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
-		F485E4721D7D77CF00C31D13 /* Release */ = {
+		F45A47F51D8E449900125E08 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -241,25 +241,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F485E4641D7D77CF00C31D13 /* Build configuration list for PBXProject "DataStructDemo" */ = {
+		F45A47E71D8E449900125E08 /* Build configuration list for PBXProject "BinaryTree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F485E46E1D7D77CF00C31D13 /* Debug */,
-				F485E46F1D7D77CF00C31D13 /* Release */,
+				F45A47F11D8E449900125E08 /* Debug */,
+				F45A47F21D8E449900125E08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F485E4701D7D77CF00C31D13 /* Build configuration list for PBXNativeTarget "DataStructDemo" */ = {
+		F45A47F31D8E449900125E08 /* Build configuration list for PBXNativeTarget "BinaryTree" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F485E4711D7D77CF00C31D13 /* Debug */,
-				F485E4721D7D77CF00C31D13 /* Release */,
+				F45A47F41D8E449900125E08 /* Debug */,
+				F45A47F51D8E449900125E08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F485E4611D7D77CF00C31D13 /* Project object */;
+	rootObject = F45A47E41D8E449900125E08 /* Project object */;
 }
