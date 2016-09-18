@@ -26,7 +26,7 @@ class LinkQueue: QueueType {
      
      - returns: 空
      */
-    func enQueue() -> Void {
+    func enQueue(item: AnyObject) -> Void {
         
     }
     
@@ -64,6 +64,13 @@ class LinkQueue: QueueType {
      */
     func queueIsEmpty() -> Bool {
         return true
+    }
+    
+    /**
+     清空队列中的值
+     */
+    func clearQueue() {
+    
     }
     
     /**

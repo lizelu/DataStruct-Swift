@@ -43,5 +43,44 @@ func testStack(stack: StackType) {
 }
 
 //testStack(SequenceStack())
-testStack(LinkStack())
+//testStack(LinkStack())
 
+func testQueue(queue: QueueType) {
+    for item in items {
+        queue.enQueue(item)
+    }
+    
+    print("队列中的原始值如下：")
+    queue.display()
+    
+    print("将a, b出队列")
+    queue.deQueue()
+    queue.deQueue()
+    queue.display()
+    
+    print("将x, y, z入队列")
+    queue.enQueue("x")
+    queue.enQueue("y")
+    queue.enQueue("z")
+    queue.display()
+    
+    if let topItem = queue.getHead() {
+        print("队首元素: \(topItem)")
+    }
+    
+    if let tailItem = queue.getTail() {
+        print("队首元素: \(tailItem)")
+    }
+    
+    print("队列的长度为：\(queue.queueLength())")
+    
+    //将栈清空
+    if !queue.queueIsEmpty() {
+        queue.clearQueue()
+    }
+    
+    queue.display()
+
+}
+
+testQueue(SequenceQueue())

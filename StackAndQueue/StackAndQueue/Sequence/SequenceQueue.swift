@@ -10,6 +10,12 @@ import Foundation
 
 class SequenceQueue: QueueType {
     
+    private var queueItems: Array<AnyObject>
+    
+    init() {
+        queueItems = []
+    }
+    
     // MARK: - QueueType
     
     /**
@@ -18,7 +24,11 @@ class SequenceQueue: QueueType {
      - returns: 头结点
      */
     func getHead() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        return queueItems[0]
     }
     
     /**
@@ -26,8 +36,8 @@ class SequenceQueue: QueueType {
      
      - returns: 空
      */
-    func enQueue() -> Void {
-    
+    func enQueue(item: AnyObject) -> Void {
+        queueItems.append(item)
     }
     
     /**
@@ -36,7 +46,11 @@ class SequenceQueue: QueueType {
      - returns: 返回队尾的结点值
      */
     func getTail() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        return queueItems[queueLength() - 1]
     }
     
     /**
@@ -45,7 +59,12 @@ class SequenceQueue: QueueType {
      - returns: 出队列的值
      */
     func deQueue() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        
+        return queueItems.removeFirst()
     }
     
     /**
@@ -54,7 +73,7 @@ class SequenceQueue: QueueType {
      - returns: 队列中元素的个数
      */
     func queueLength() -> Int {
-        return 0
+        return queueItems.count
     }
     
     /**
@@ -63,7 +82,14 @@ class SequenceQueue: QueueType {
      - returns: true - 空，  false - 不为空
      */
     func queueIsEmpty() -> Bool {
-        return true
+        return queueItems.isEmpty
+    }
+    
+    /**
+     清空队列中的值
+     */
+    func clearQueue() {
+        queueItems.removeAll()
     }
     
     /**
@@ -72,7 +98,10 @@ class SequenceQueue: QueueType {
      - returns:
      */
     func display() -> Void {
-    
+        for item in queueItems {
+            print(item, separator: "", terminator: "<-")
+        }
+        print("end\n")
     }
 
 }

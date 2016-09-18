@@ -21,7 +21,6 @@ class LinkStackNote {
     deinit{
         print("\(self.data)释放", separator: "", terminator: ",")
     }
-
 }
 
 class LinkStack: StackType {

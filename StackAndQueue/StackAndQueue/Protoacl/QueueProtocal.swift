@@ -21,7 +21,7 @@ protocol QueueType {
      
      - returns: 空
      */
-    func enQueue() -> Void
+    func enQueue(item: AnyObject) -> Void
     
     /**
      获取尾结点值
@@ -50,6 +50,13 @@ protocol QueueType {
      - returns: true - 空，  false - 不为空
      */
     func queueIsEmpty() -> Bool
+    
+    /**
+     清空队列中的值
+     
+     - returns:
+     */
+    func clearQueue() -> Void;
     
     /**
      遍历输出队列中的值
