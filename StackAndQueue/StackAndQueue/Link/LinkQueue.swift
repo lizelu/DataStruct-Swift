@@ -8,7 +8,31 @@
 
 import Foundation
 
+class LinkQueueNote {
+    var data: AnyObject
+    var next: LinkQueueNote?
+    
+    init(data: AnyObject = "") {
+        self.data = data
+    }
+    
+    deinit{
+        print("\(self.data)释放", separator: "", terminator: ",")
+    }
+}
+
 class LinkQueue: QueueType {
+    
+    private var queueHead: LinkQueueNote?
+    private var queueTail: LinkQueueNote?
+    private var count: Int
+    
+    init() {
+        queueHead = LinkQueueNote()
+        queueTail = queueHead
+        count = 0
+    }
+    
     
     // MARK: - QueueType
     
@@ -18,7 +42,11 @@ class LinkQueue: QueueType {
      - returns: 头结点
      */
     func getHead() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        return queueHead?.next?.data
     }
     
     /**
@@ -27,7 +55,10 @@ class LinkQueue: QueueType {
      - returns: 空
      */
     func enQueue(item: AnyObject) -> Void {
-        
+        let note = LinkQueueNote(data: item)
+        queueTail?.next = note
+        queueTail = note
+        count += 1
     }
     
     /**
@@ -36,7 +67,11 @@ class LinkQueue: QueueType {
      - returns: 返回队尾的结点值
      */
     func getTail() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        return queueTail?.data
     }
     
     /**
@@ -45,7 +80,18 @@ class LinkQueue: QueueType {
      - returns: 出队列的值
      */
     func deQueue() -> AnyObject? {
-        return nil
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        let deNote = queueHead?.next
+        queueHead?.next = deNote?.next
+        deNote?.next = nil
+        count -= 1
+        if queueHead?.next == nil {
+            queueTail = queueHead
+        }
+        return deNote?.data
     }
     
     /**
@@ -54,7 +100,7 @@ class LinkQueue: QueueType {
      - returns: 队列中元素的个数
      */
     func queueLength() -> Int {
-        return 0
+        return count
     }
     
     /**
@@ -63,14 +109,14 @@ class LinkQueue: QueueType {
      - returns: true - 空，  false - 不为空
      */
     func queueIsEmpty() -> Bool {
-        return true
+        return queueHead?.next == nil
     }
     
     /**
      清空队列中的值
      */
     func clearQueue() {
-    
+        while deQueue() != nil {}
     }
     
     /**
@@ -79,7 +125,12 @@ class LinkQueue: QueueType {
      - returns:
      */
     func display() -> Void {
-        
+        var cursor = queueHead?.next
+        while cursor != nil {
+            print((cursor?.data)!, separator: "", terminator: "<-")
+            cursor = cursor?.next
+        }
+        print("end\n")
     }
-
 }
+

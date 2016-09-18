@@ -83,4 +83,5 @@ func testQueue(queue: QueueType) {
 
 }
 
-testQueue(SequenceQueue())
+//testQueue(SequenceQueue())
+testQueue(LinkQueue())
