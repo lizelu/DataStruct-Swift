@@ -11,8 +11,11 @@ import Foundation
 let allGraphNote = ["A", "B", "C", "D", "E"];
 let relation: Array<(AnyObject, AnyObject)> = [("A","B"), ("A","C"), ("B","D"), ("B","E"), ("D","E"), ("C","E")];
 
+func testGraph(graph: GraphType) {
+    graph.createGraph(allGraphNote, relation: relation)
+    graph.displayGraph()
+}
 
-let adjacencyMatrix = GraphAdjacencyMatrix()
-adjacencyMatrix.createGraph(allGraphNote, relation: relation)
-adjacencyMatrix.displayGraph()
-        
+testGraph(GraphAdjacencyMatrix())
+
+testGraph(GraphAdjacencyList())

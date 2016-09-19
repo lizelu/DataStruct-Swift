@@ -8,5 +8,6 @@
 
 import Foundation
 protocol GraphType {
-    
+    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>)
+    func displayGraph()
 }

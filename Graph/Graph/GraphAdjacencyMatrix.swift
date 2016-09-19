@@ -10,7 +10,7 @@ import Foundation
 let NO_RELATION = 0
 let HAVE_RELATION = 1
 
-class GraphAdjacencyMatrix {
+class GraphAdjacencyMatrix: GraphType {
     private var relationDic: Dictionary<String,Int>
     private var graph:Array<Array<Int>>
     
@@ -25,7 +25,7 @@ class GraphAdjacencyMatrix {
         //根据关系创建图
         for item in relation {
             guard let i = relationDic[item.0 as! String],
-                let j = relationDic[item.1 as! String] else {
+                      j = relationDic[item.1 as! String] else {
                     continue
             }
             graph[i][j] = HAVE_RELATION

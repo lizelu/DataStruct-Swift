@@ -10,6 +10,7 @@
 		F4F89DED1D8FDF9C001FC8DC /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F89DEC1D8FDF9C001FC8DC /* main.swift */; };
 		F4F89DF41D8FE09A001FC8DC /* GraphType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F89DF31D8FE09A001FC8DC /* GraphType.swift */; };
 		F4F89DF61D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F89DF51D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift */; };
+		F4F89DF81D8FF028001FC8DC /* GraphAdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F89DF71D8FF028001FC8DC /* GraphAdjacencyList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		F4F89DEC1D8FDF9C001FC8DC /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4F89DF31D8FE09A001FC8DC /* GraphType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphType.swift; sourceTree = "<group>"; };
 		F4F89DF51D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAdjacencyMatrix.swift; sourceTree = "<group>"; };
+		F4F89DF71D8FF028001FC8DC /* GraphAdjacencyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAdjacencyList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +63,10 @@
 		F4F89DEB1D8FDF9C001FC8DC /* Graph */ = {
 			isa = PBXGroup;
 			children = (
-				F4F89DEC1D8FDF9C001FC8DC /* main.swift */,
-				F4F89DF51D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift */,
 				F4F89DF31D8FE09A001FC8DC /* GraphType.swift */,
+				F4F89DF51D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift */,
+				F4F89DF71D8FF028001FC8DC /* GraphAdjacencyList.swift */,
+				F4F89DEC1D8FDF9C001FC8DC /* main.swift */,
 			);
 			path = Graph;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				F4F89DF61D8FE8E9001FC8DC /* GraphAdjacencyMatrix.swift in Sources */,
 				F4F89DF41D8FE09A001FC8DC /* GraphType.swift in Sources */,
 				F4F89DED1D8FDF9C001FC8DC /* main.swift in Sources */,
+				F4F89DF81D8FF028001FC8DC /* GraphAdjacencyList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
