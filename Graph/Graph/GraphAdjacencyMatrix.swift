@@ -30,12 +30,14 @@ class BFSQueue {
 class GraphAdjacencyMatrix: GraphType {
     private var relationDic: Dictionary<String,Int>
     private var graph: MGraph
+    private var miniTree: MGraph
     private var visited: Array<Bool>
     private var graphData: Array<AnyObject>
     private var bfsQueue: BFSQueue
     init() {
         relationDic = [:]
         graph = []
+        miniTree = []
         visited = []
         graphData = []
         bfsQueue = BFSQueue()
@@ -45,14 +47,19 @@ class GraphAdjacencyMatrix: GraphType {
         for i in 0..<notes.count {
             relationDic[notes[i] as! String] = i
         }
-        
-        for _ in 0..<notes.count {
+        graph = initGraph(notes.count)
+    }
+    
+    private func initGraph(count: Int) -> MGraph{
+        var graph: MGraph = MGraph()
+        for _ in 0..<count {
             var temp:Array<Int> = []
-            for _ in 0..<notes.count {
+            for _ in 0..<count {
                 temp.append(NO_RELATION)
             }
             graph.append(temp)
         }
+        return graph
     }
     
     func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>) {
@@ -95,6 +102,40 @@ class GraphAdjacencyMatrix: GraphType {
         initVisited()
         depthFirstSearch(0)
         print(" --> end\n")
+    }
+    
+    func miniSpanTreePrim() {
+        miniTree = initGraph(graph.count)       //用来存放prim-miniTree的图结构
+        
+        var lowcost: Array<Int> = []   //用来存放发展最小生成树要比较的路径
+        
+        //将图中与第一个节点所连的所有权值添加到lowconst
+        for i in 0..<graph.count {
+            lowcost.append(graph[0][i])
+        }
+        
+        for i in 0..<graph.count {
+            var min: Int = LONG_MAX
+            var minNumberIndex = 0
+            
+            //循环找到lowcost中的最小值，并记录下其下标
+            for i in 0..<lowcost.count {
+                if lowcost[i] != 0 && lowcost[i] < min {
+                    min = lowcost[i]
+                    minNumberIndex = i
+                }
+            }
+            
+            //将该下标和权值，存入新的树中, 并将已经进入树中的最小值进行移除
+            miniTree[i][minNumberIndex] = lowcost.removeAtIndex(minNumberIndex)
+            
+            //将这个进入miniTree的节点的所有权值加入到lowcost中
+            for item in graph[minNumberIndex] {
+                if item != 0 {
+                    lowcost.append(item)
+                }
+            }
+        }
     }
     
     private func breadthFirstSearch(index: Int) {
