@@ -9,29 +9,17 @@
 import Foundation
 let NO_RELATION = 0
 let HAVE_RELATION = 1
-
+typealias MGraph = Array<Array<Int>>
 class GraphAdjacencyMatrix: GraphType {
     private var relationDic: Dictionary<String,Int>
-    private var graph:Array<Array<Int>>
-    
+    private var graph: MGraph
+    private var visited: Array<Bool>
+    private var graphData: Array<AnyObject>
     init() {
         relationDic = [:]
         graph = []
-    }
-    
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>) {
-        configData(notes)
-        
-        //根据关系创建图
-        for item in relation {
-            guard let i = relationDic[item.0 as! String],
-                      j = relationDic[item.1 as! String] else {
-                    continue
-            }
-            graph[i][j] = HAVE_RELATION
-            graph[j][i] = HAVE_RELATION
-        }
-        
+        visited = []
+        graphData = []
     }
     
     private func configData(notes: Array<AnyObject>) {
@@ -48,6 +36,23 @@ class GraphAdjacencyMatrix: GraphType {
         }
     }
     
+    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>) {
+        self.graphData = notes
+        
+        configData(notes)
+        
+        //根据关系创建图
+        for item in relation {
+            guard let i = relationDic[item.0 as! String],
+                j = relationDic[item.1 as! String] else {
+                    continue
+            }
+            graph[i][j] = HAVE_RELATION
+            graph[j][i] = HAVE_RELATION
+        }
+        
+    }
+    
     func displayGraph() {
         for i in 0..<graph.count {
             for j in 0..<graph[i].count {
@@ -57,7 +62,31 @@ class GraphAdjacencyMatrix: GraphType {
         }
         print("")
     }
+
+    func depthFirstSearch() {
+        print("邻接矩阵：图的深度搜索（DFS）:")
+        initVisited()
+        depthFirstSearch(0)
+        print("end")
+    }
     
+    private func depthFirstSearch(index: Int) {
+        visited[index] = true
+        print(graphData[index], separator: "", terminator: " -> ")
+        for subIndex in 0..<graphData.count {
+            if graph[index][subIndex] == 1 && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
+                depthFirstSearch(subIndex)
+            }
+        }
+    }
+    
+    private func initVisited() {
+        visited.removeAll()
+        for _ in 0..<graph.count {
+            visited.append(false)
+        }
+    }
+
 }
 
 

@@ -11,12 +11,11 @@ import Foundation
 class GraphAdjacencyListNote {
     var data: AnyObject
     var next: GraphAdjacencyListNote?
+    var visited: Bool = false
     
     init(data: AnyObject = "") {
         self.data = data
     }
-    
-    
 }
 
 class GraphAdjacencyList: GraphType {
@@ -42,16 +41,45 @@ class GraphAdjacencyList: GraphType {
                     continue
             }
             
-            let note1 = GraphAdjacencyListNote(data: i)
-            note1.next = graph[j].next
-            graph[j].next = note1
-            
             let note2 = GraphAdjacencyListNote(data: j)
             note2.next = graph[i].next
             graph[i].next = note2
+            
+            let note1 = GraphAdjacencyListNote(data: i)
+            note1.next = graph[j].next
+            graph[j].next = note1
         }
     
     }
+    
+    func depthFirstSearch() {
+        print("邻接链表：图的深度搜索（DFS）:")
+        initVisited()
+        depthFirstSearch(0)
+        print("end")
+    }
+    
+    private func depthFirstSearch(index: Int) {
+        
+        print(graph[index].data, separator: "", terminator: " -> ")
+        graph[index].visited = true
+        var cousor = graph[index].next
+        while cousor != nil {
+            let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
+            if graph[nextIndex].visited == false {
+                depthFirstSearch(Int((cousor?.data)! as! NSNumber))
+            }
+            cousor = cousor?.next
+        }
+    }
+    
+    private func initVisited() {
+        for item in graph {
+            item.visited = false
+        }
+    }
+
+    
     
     func displayGraph() {
         for i in 0..<graph.count {
@@ -59,12 +87,11 @@ class GraphAdjacencyList: GraphType {
             print("(\(i))", separator: "", terminator: "")
             var cursor: GraphAdjacencyListNote? = graph[i]
             while cursor != nil {
-                print(cursor!.data, separator: "", terminator: "->")
+                print(cursor!.data, separator: "", terminator: " -> ")
                 cursor = cursor?.next
             }
             print("nil")
         }
         print()
-    
     }
 }
