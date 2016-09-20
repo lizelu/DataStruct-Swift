@@ -14,7 +14,7 @@ protocol GraphType {
      - parameter notes:    节点数据
      - parameter relation: 节点关系
      */
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>)
+    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>)
     
     /**
      BFS: 广度优先搜索

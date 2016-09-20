@@ -10,11 +10,14 @@ import Foundation
 
 class GraphAdjacencyListNote {
     var data: AnyObject
+    var weightNumber: Int
+    
     var next: GraphAdjacencyListNote?
     var visited: Bool = false
     
-    init(data: AnyObject = "") {
+    init(data: AnyObject = "", weightNumber: Int = 0) {
         self.data = data
+        self.weightNumber = weightNumber
     }
 }
 
@@ -30,7 +33,7 @@ class GraphAdjacencyList: GraphType {
     }
     
     // MARK: - GraphType
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>){
+    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>){
         for i in 0..<notes.count {
             let note = GraphAdjacencyListNote(data: notes[i])
             graph.append(note)
@@ -43,29 +46,43 @@ class GraphAdjacencyList: GraphType {
                     continue
             }
             
-            let note2 = GraphAdjacencyListNote(data: j)
+            let weightNumber: Int = Int(item.2 as! NSNumber)
+            let note2 = GraphAdjacencyListNote(data: j, weightNumber: weightNumber)
             note2.next = graph[i].next
             graph[i].next = note2
             
-            let note1 = GraphAdjacencyListNote(data: i)
+            let note1 = GraphAdjacencyListNote(data: i, weightNumber: weightNumber)
             note1.next = graph[j].next
             graph[j].next = note1
         }
-    
     }
+    
+    func displayGraph() {
+        for i in 0..<graph.count {
+            print("(\(i))", separator: "", terminator: "")
+            var cursor: GraphAdjacencyListNote? = graph[i]
+            while cursor != nil {
+                print("\(cursor!.data)(\(cursor!.weightNumber))", separator: "", terminator: "\t->  ")
+                cursor = cursor?.next
+            }
+            print("nil")
+        }
+        print()
+    }
+
     
     func breadthFirstSearch() {
         print("邻接链表：图的广度搜索（BFS）:")
         initVisited()
         breadthFirstSearch(0)
-        print("end")
+        print(" --> end\n")
     }
     
     func depthFirstSearch() {
         print("邻接链表：图的深度搜索（DFS）:")
         initVisited()
         depthFirstSearch(0)
-        print("end")
+        print(" --> end\n")
     }
     
     private func breadthFirstSearch(index: Int) {
@@ -73,7 +90,7 @@ class GraphAdjacencyList: GraphType {
         //如果该节点未遍历，则输出该节点的值
         if graph[index].visited == false {
             graph[index].visited = true
-            print(graph[index].data, separator: "", terminator: " -> ")
+            print(graph[index].data, separator: "", terminator: "")
         }
 
         //遍历该节点所连的所有节点，并把遍历的节点入队列
@@ -81,8 +98,11 @@ class GraphAdjacencyList: GraphType {
         while cousor != nil {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
+                
+                print(" --\(cousor!.weightNumber)", separator: "", terminator: "--> ")
+                
                 graph[nextIndex].visited = true
-                print(graph[nextIndex].data, separator: "", terminator: " -> ")
+                print(graph[nextIndex].data, separator: "", terminator: "")
                 bfsQueue.push(nextIndex)
             }
             cousor = cousor?.next
@@ -97,13 +117,14 @@ class GraphAdjacencyList: GraphType {
     
     private func depthFirstSearch(index: Int) {
         
-        print(graph[index].data, separator: "", terminator: " -> ")
+        print(graph[index].data, separator: "", terminator: "")
         graph[index].visited = true
         
         var cousor = graph[index].next
         while cousor != nil {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
+                print(" --\(cousor!.weightNumber)", separator: "", terminator: "--> ")
                 depthFirstSearch(Int((cousor?.data)! as! NSNumber))
             }
             cousor = cousor?.next
@@ -115,20 +136,5 @@ class GraphAdjacencyList: GraphType {
             item.visited = false
         }
     }
-
-    
-    
-    func displayGraph() {
-        for i in 0..<graph.count {
-            
-            print("(\(i))", separator: "", terminator: "")
-            var cursor: GraphAdjacencyListNote? = graph[i]
-            while cursor != nil {
-                print(cursor!.data, separator: "", terminator: " -> ")
-                cursor = cursor?.next
-            }
-            print("nil")
-        }
-        print()
-    }
 }
+

@@ -9,9 +9,10 @@
 import Foundation
 
 let allGraphNote = ["A", "B", "C", "D", "E", "F", "G", "H", "I"];
-let relation: Array<(AnyObject, AnyObject)> = [("A","B"), ("A","F"), ("B","C"), ("B","I"), ("B","G"),
-                                               ("F","G"), ("F","E"), ("C","I"), ("C","D"), ("I","D"),
-                                               ("G","H"), ("G","D"), ("H","D"), ("H","E"), ("D","E")];
+let relation: Array<(AnyObject, AnyObject, AnyObject)> =
+    [("A", "B", 10), ("A", "F", 11), ("B", "C", 18), ("B", "I", 12), ("B", "G", 16),
+     ("F", "G", 17), ("F", "E", 26), ("C", "I", 8), ("C", "D", 22), ("I", "D", 21),
+     ("G", "H", 19), ("G", "D", 24), ("H", "D", 16), ("H", "E", 7), ("D", "E", 20)];
 
 func testGraph(graph: GraphType) {
     

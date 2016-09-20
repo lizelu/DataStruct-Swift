@@ -55,7 +55,7 @@ class GraphAdjacencyMatrix: GraphType {
         }
     }
     
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>) {
+    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>) {
         self.graphData = notes
         
         configData(notes)
@@ -66,8 +66,9 @@ class GraphAdjacencyMatrix: GraphType {
                 j = relationDic[item.1 as! String] else {
                     continue
             }
-            graph[i][j] = HAVE_RELATION
-            graph[j][i] = HAVE_RELATION
+            let weightNumber: Int = Int(item.2 as! NSNumber)
+            graph[i][j] = weightNumber
+            graph[j][i] = weightNumber
         }
         
     }
@@ -75,7 +76,7 @@ class GraphAdjacencyMatrix: GraphType {
     func displayGraph() {
         for i in 0..<graph.count {
             for j in 0..<graph[i].count {
-                print(graph[i][j], separator: "", terminator: " ")
+                print(graph[i][j], separator: "", terminator: "\t")
             }
             print("")
         }
@@ -86,14 +87,14 @@ class GraphAdjacencyMatrix: GraphType {
         print("邻接矩阵：图的广度搜索（BFS）:")
         initVisited()
         breadthFirstSearch(0)
-        print("end")
+        print(" --> end\n")
     }
     
     func depthFirstSearch() {
         print("邻接矩阵：图的深度搜索（DFS）:")
         initVisited()
         depthFirstSearch(0)
-        print("end")
+        print(" --> end\n")
     }
     
     private func breadthFirstSearch(index: Int) {
@@ -101,14 +102,15 @@ class GraphAdjacencyMatrix: GraphType {
         //如果该节点未遍历，则输出该节点的值
         if visited[index] == false {
             visited[index] = true
-            print(graphData[index], separator: "", terminator: " -> ")
+            print(graphData[index], separator: "", terminator: "")
         }
         
         //遍历该节点所连的所有节点，并把遍历的节点入队列
         let items = graph[index]
         for i in 0..<items.count {
-            if items[i] == 1 && visited[i] == false {
-                print(graphData[i], separator: "", terminator: " -> ")
+            if items[i] != NO_RELATION && visited[i] == false {
+                print(" --\(items[i])", separator: "", terminator: "--> ")
+                print(graphData[i], separator: "", terminator: "")
                 visited[i] = true
                 bfsQueue.push(i)
             }
@@ -123,9 +125,10 @@ class GraphAdjacencyMatrix: GraphType {
     
     private func depthFirstSearch(index: Int) {
         visited[index] = true
-        print(graphData[index], separator: "", terminator: " -> ")
+        print(graphData[index], separator: "", terminator: "")
         for subIndex in 0..<graphData.count {
-            if graph[index][subIndex] == 1 && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
+            if graph[index][subIndex] != NO_RELATION && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
+                print(" --\(graph[index][subIndex])", separator: "", terminator: "--> ")
                 depthFirstSearch(subIndex)
             }
         }
