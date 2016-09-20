@@ -21,10 +21,12 @@ class GraphAdjacencyListNote {
 class GraphAdjacencyList: GraphType {
     private var graph: Array<GraphAdjacencyListNote>
     private var relationDic: Dictionary<String,Int>
+    private var bfsQueue: BFSQueue
     
     init() {
         graph = []
         relationDic = [:]
+        bfsQueue = BFSQueue()
     }
     
     // MARK: - GraphType
@@ -52,7 +54,12 @@ class GraphAdjacencyList: GraphType {
     
     }
     
-    func breadthFirstSearch() {}
+    func breadthFirstSearch() {
+        print("邻接链表：图的广度搜索（BFS）:")
+        initVisited()
+        breadthFirstSearch(0)
+        print("end")
+    }
     
     func depthFirstSearch() {
         print("邻接链表：图的深度搜索（DFS）:")
@@ -61,10 +68,38 @@ class GraphAdjacencyList: GraphType {
         print("end")
     }
     
+    private func breadthFirstSearch(index: Int) {
+        
+        //如果该节点未遍历，则输出该节点的值
+        if graph[index].visited == false {
+            graph[index].visited = true
+            print(graph[index].data, separator: "", terminator: " -> ")
+        }
+
+        //遍历该节点所连的所有节点，并把遍历的节点入队列
+        var cousor = graph[index].next
+        while cousor != nil {
+            let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
+            if graph[nextIndex].visited == false {
+                graph[nextIndex].visited = true
+                print(graph[nextIndex].data, separator: "", terminator: " -> ")
+                bfsQueue.push(nextIndex)
+            }
+            cousor = cousor?.next
+        }
+        
+        //递归遍历队列中的子图
+        while !bfsQueue.queueIsEmpty() {
+            breadthFirstSearch(bfsQueue.pop())
+        }
+    }
+
+    
     private func depthFirstSearch(index: Int) {
         
         print(graph[index].data, separator: "", terminator: " -> ")
         graph[index].visited = true
+        
         var cousor = graph[index].next
         while cousor != nil {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
