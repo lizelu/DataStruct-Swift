@@ -18,6 +18,7 @@ func testGraph(graph: GraphType) {
     graph.createGraph(allGraphNote, relation: relation)
     graph.displayGraph()
     graph.depthFirstSearch()
+    graph.breadthFirstSearch()
     print()
 }
 

@@ -17,6 +17,12 @@ protocol GraphType {
     func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject)>)
     
     /**
+     BFS: 广度优先搜索
+     */
+
+    func breadthFirstSearch()
+    
+    /**
      DFS: 深度优先搜索
      */
     func depthFirstSearch()

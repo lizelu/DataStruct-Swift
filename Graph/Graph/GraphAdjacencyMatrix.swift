@@ -10,16 +10,35 @@ import Foundation
 let NO_RELATION = 0
 let HAVE_RELATION = 1
 typealias MGraph = Array<Array<Int>>
+
+class BFSQueue {
+    private var queue: Array<Int> = []
+    
+    func pop() -> Int {
+        return queue.removeFirst()
+    }
+    
+    func push(item: Int) {
+        queue.append(item)
+    }
+    
+    func queueIsEmpty() -> Bool {
+        return queue.isEmpty
+    }
+}
+
 class GraphAdjacencyMatrix: GraphType {
     private var relationDic: Dictionary<String,Int>
     private var graph: MGraph
     private var visited: Array<Bool>
     private var graphData: Array<AnyObject>
+    private var bfsQueue: BFSQueue
     init() {
         relationDic = [:]
         graph = []
         visited = []
         graphData = []
+        bfsQueue = BFSQueue()
     }
     
     private func configData(notes: Array<AnyObject>) {
@@ -62,13 +81,45 @@ class GraphAdjacencyMatrix: GraphType {
         }
         print("")
     }
-
+    
+    func breadthFirstSearch() {
+        print("邻接矩阵：图的广度搜索（BFS）:")
+        initVisited()
+        breadthFirstSearch(0)
+        print("end")
+    }
+    
     func depthFirstSearch() {
         print("邻接矩阵：图的深度搜索（DFS）:")
         initVisited()
         depthFirstSearch(0)
         print("end")
     }
+    
+    private func breadthFirstSearch(index: Int) {
+        
+        //如果该节点未遍历，则输出该节点的值
+        if visited[index] == false {
+            visited[index] = true
+            print(graphData[index], separator: "", terminator: " -> ")
+        }
+        
+        //遍历该节点所连的所有节点，并把遍历的节点入队列
+        let items = graph[index]
+        for i in 0..<items.count {
+            if items[i] == 1 && visited[i] == false {
+                print(graphData[i], separator: "", terminator: " -> ")
+                visited[i] = true
+                bfsQueue.push(i)
+            }
+        }
+        
+        //递归遍历队列中的子图
+        while !bfsQueue.queueIsEmpty() {
+            breadthFirstSearch(bfsQueue.pop())
+        }
+    }
+
     
     private func depthFirstSearch(index: Int) {
         visited[index] = true
@@ -86,7 +137,6 @@ class GraphAdjacencyMatrix: GraphType {
             visited.append(false)
         }
     }
-
 }
 
 

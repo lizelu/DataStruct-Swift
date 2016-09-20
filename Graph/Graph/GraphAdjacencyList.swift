@@ -52,6 +52,8 @@ class GraphAdjacencyList: GraphType {
     
     }
     
+    func breadthFirstSearch() {}
+    
     func depthFirstSearch() {
         print("邻接链表：图的深度搜索（DFS）:")
         initVisited()
