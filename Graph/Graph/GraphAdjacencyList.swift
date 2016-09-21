@@ -75,22 +75,27 @@ class GraphAdjacencyList: GraphType {
         print("邻接链表：图的广度搜索（BFS）:")
         initVisited()
         breadthFirstSearch(0)
-        print(" --> end\n")
+        print("\n")
     }
     
     func depthFirstSearch() {
         print("邻接链表：图的深度搜索（DFS）:")
         initVisited()
         depthFirstSearch(0)
-        print(" --> end\n")
+        print("\n")
     }
+    
+    func breadthFirstSearchTree() {}
+    
+    
+    func miniSpanTreePrim() {}
     
     private func breadthFirstSearch(index: Int) {
         
         //如果该节点未遍历，则输出该节点的值
         if graph[index].visited == false {
             graph[index].visited = true
-            print(graph[index].data, separator: "", terminator: "")
+            print(graph[index].data, separator: "", terminator: " ")
         }
 
         //遍历该节点所连的所有节点，并把遍历的节点入队列
@@ -99,10 +104,8 @@ class GraphAdjacencyList: GraphType {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
                 
-                print(" --\(cousor!.weightNumber)", separator: "", terminator: "--> ")
-                
                 graph[nextIndex].visited = true
-                print(graph[nextIndex].data, separator: "", terminator: "")
+                print(graph[nextIndex].data, separator: "", terminator: " ")
                 bfsQueue.push(nextIndex)
             }
             cousor = cousor?.next
@@ -117,14 +120,14 @@ class GraphAdjacencyList: GraphType {
     
     private func depthFirstSearch(index: Int) {
         
-        print(graph[index].data, separator: "", terminator: "")
+        print(graph[index].data, separator: "", terminator: " ")
         graph[index].visited = true
         
         var cousor = graph[index].next
         while cousor != nil {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
-                print(" --\(cousor!.weightNumber)", separator: "", terminator: "--> ")
+                
                 depthFirstSearch(Int((cousor?.data)! as! NSNumber))
             }
             cousor = cousor?.next

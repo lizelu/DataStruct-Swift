@@ -31,4 +31,9 @@ protocol GraphType {
      输出图的物理存储结构
      */
     func displayGraph()
+    
+    func breadthFirstSearchTree()
+    
+    
+    func miniSpanTreePrim()
 }

@@ -81,6 +81,91 @@ class GraphAdjacencyMatrix: GraphType {
     }
     
     func displayGraph() {
+        displayGraph(graph)
+    }
+    
+    func breadthFirstSearch() {
+        print("邻接矩阵：图的广度搜索（BFS）:")
+        initVisited()
+        breadthFirstSearch(0)
+        print("\n")
+    }
+    
+    func depthFirstSearch() {
+        print("邻接矩阵：图的深度搜索（DFS）:")
+        initVisited()
+        depthFirstSearch(0)
+        print("\n")
+    }
+    
+    func depthFirstSearchTree() {
+//        print("最小生成树：深度搜索（DFS）:")
+//        initVisited()
+//        depthFirstSearch(0, graph: miniTree)
+//        print(" --> end\n")
+    }
+    
+    func breadthFirstSearchTree() {
+        print("邻接矩阵：树的广度搜索（BFS）:")
+        initVisited()
+        breadthFirstSearchTree(0)
+        print("\n")
+    }
+
+    
+    func createMiniSpanTreePrim(index: Int, leafNote: Array<(Int,Int,Int)>, adjvex: Array<Int>) {
+        if !adjvex.contains(index) {
+            
+            var newLeafNote = leafNote
+            
+            //去除已经入树，但与当前节点有弧度的点
+            for i in 0..<newLeafNote.count {
+                if newLeafNote[i].2 == index {
+                    newLeafNote[i].1 = 0
+                }
+            }
+
+            //将未入树，并且与当前节点有关联的弧添加到lowconst数组中
+            for i in 1..<graph[index].count {
+                if graph[index][i] != 0 && !adjvex.contains(i) {
+                    newLeafNote.append((index, graph[index][i], i))
+                }
+            }
+            
+            var min: Int = LONG_MAX
+            var minIndex = 0
+            
+            //循环找到lowcost中的最小值，并记录下其下标
+            for i in 0..<newLeafNote.count {
+                if newLeafNote[i].1 != 0 && newLeafNote[i].1 < min {
+                    min = newLeafNote[i].1
+                    minIndex = i
+                }
+            }
+        
+            
+            //0 --1--> 2
+            let currentIndex = newLeafNote[minIndex].0
+            let minWeight = newLeafNote[minIndex].1
+            let nextIndex = newLeafNote[minIndex].2
+            
+            miniTree[currentIndex][nextIndex] = minWeight
+            newLeafNote.removeAtIndex(minIndex)
+            
+            var tempAdjvex = adjvex
+            tempAdjvex.append(index)
+            createMiniSpanTreePrim(nextIndex, leafNote: newLeafNote, adjvex: tempAdjvex)
+        }
+    }
+
+    
+    func miniSpanTreePrim() {
+        miniTree = initGraph(graph.count)       //用来存放prim-miniTree的图结构
+        createMiniSpanTreePrim(0, leafNote: [], adjvex: [])
+        displayGraph(miniTree)
+    }
+    
+    private func displayGraph(graph: MGraph) {
         for i in 0..<graph.count {
             for j in 0..<graph[i].count {
                 print(graph[i][j], separator: "", terminator: "\t")
@@ -90,68 +175,19 @@ class GraphAdjacencyMatrix: GraphType {
         print("")
     }
     
-    func breadthFirstSearch() {
-        print("邻接矩阵：图的广度搜索（BFS）:")
-        initVisited()
-        breadthFirstSearch(0)
-        print(" --> end\n")
-    }
-    
-    func depthFirstSearch() {
-        print("邻接矩阵：图的深度搜索（DFS）:")
-        initVisited()
-        depthFirstSearch(0)
-        print(" --> end\n")
-    }
-    
-    func miniSpanTreePrim() {
-        miniTree = initGraph(graph.count)       //用来存放prim-miniTree的图结构
-        
-        var lowcost: Array<Int> = []   //用来存放发展最小生成树要比较的路径
-        
-        //将图中与第一个节点所连的所有权值添加到lowconst
-        for i in 0..<graph.count {
-            lowcost.append(graph[0][i])
-        }
-        
-        for i in 0..<graph.count {
-            var min: Int = LONG_MAX
-            var minNumberIndex = 0
-            
-            //循环找到lowcost中的最小值，并记录下其下标
-            for i in 0..<lowcost.count {
-                if lowcost[i] != 0 && lowcost[i] < min {
-                    min = lowcost[i]
-                    minNumberIndex = i
-                }
-            }
-            
-            //将该下标和权值，存入新的树中, 并将已经进入树中的最小值进行移除
-            miniTree[i][minNumberIndex] = lowcost.removeAtIndex(minNumberIndex)
-            
-            //将这个进入miniTree的节点的所有权值加入到lowcost中
-            for item in graph[minNumberIndex] {
-                if item != 0 {
-                    lowcost.append(item)
-                }
-            }
-        }
-    }
-    
     private func breadthFirstSearch(index: Int) {
         
         //如果该节点未遍历，则输出该节点的值
         if visited[index] == false {
             visited[index] = true
-            print(graphData[index], separator: "", terminator: "")
+            print(graphData[index], separator: "", terminator: " ")
         }
         
         //遍历该节点所连的所有节点，并把遍历的节点入队列
         let items = graph[index]
         for i in 0..<items.count {
             if items[i] != NO_RELATION && visited[i] == false {
-                print(" --\(items[i])", separator: "", terminator: "--> ")
-                print(graphData[i], separator: "", terminator: "")
+                print(graphData[i], separator: "", terminator: " ")
                 visited[i] = true
                 bfsQueue.push(i)
             }
@@ -162,14 +198,34 @@ class GraphAdjacencyMatrix: GraphType {
             breadthFirstSearch(bfsQueue.pop())
         }
     }
+    
+    
+    private func breadthFirstSearchTree(index: Int) {
+        
+        //遍历该节点所连的所有节点，并把遍历的节点入队列
+        let items = miniTree[index]
+        
+        for i in 0..<items.count {
+            if items[i] != NO_RELATION && visited[i] == false {
+                print("\(graphData[index]) --\(miniTree[index][i])-->\(graphData[i])")
+                visited[i] = true
+                bfsQueue.push(i)
+            }
+        }
+        
+        //递归遍历队列中的子树
+        while !bfsQueue.queueIsEmpty() {
+            breadthFirstSearchTree(bfsQueue.pop())
+        }
+    }
+
 
     
     private func depthFirstSearch(index: Int) {
         visited[index] = true
-        print(graphData[index], separator: "", terminator: "")
+        print(graphData[index], separator: "", terminator: " ")
         for subIndex in 0..<graphData.count {
             if graph[index][subIndex] != NO_RELATION && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
-                print(" --\(graph[index][subIndex])", separator: "", terminator: "--> ")
                 depthFirstSearch(subIndex)
             }
         }

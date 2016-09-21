@@ -20,6 +20,8 @@ func testGraph(graph: GraphType) {
     graph.displayGraph()
     graph.depthFirstSearch()
     graph.breadthFirstSearch()
+    graph.miniSpanTreePrim()
+    graph.breadthFirstSearchTree()
     print()
 }
 
