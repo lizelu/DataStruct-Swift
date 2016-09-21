@@ -88,7 +88,13 @@ class GraphAdjacencyList: GraphType {
     func breadthFirstSearchTree() {}
     
     
-    func miniSpanTreePrim() {}
+    func createMiniSpanTreePrim() {
+        
+    }
+    
+    func createMiniSpanTreePrim(index: Int, leafNote: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
+    
+    }
     
     private func breadthFirstSearch(index: Int) {
         

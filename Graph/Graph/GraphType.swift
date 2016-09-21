@@ -34,6 +34,5 @@ protocol GraphType {
     
     func breadthFirstSearchTree()
     
-    
-    func miniSpanTreePrim()
+    func createMiniSpanTreePrim()
 }
