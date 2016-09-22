@@ -94,7 +94,10 @@ class GraphAdjacencyList: GraphType {
     }
     
     func breadthFirstSearchTree() {
-        
+        print("邻接链表：树的广度搜索（BFS）:")
+        initVisited()
+        breadthFirstSearchTree(0)
+        print("\n")
     }
     
     
@@ -109,56 +112,49 @@ class GraphAdjacencyList: GraphType {
         displayGraph(miniTree)
     }
     
-    func createMiniSpanTreePrim(index: Int, leafNotes: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
+    private func createMiniSpanTreePrim(index: Int, leafNotes: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
         if adjvex.count != graph.count {
             
             var varLeafNotes = leafNotes
-            
             
             //1、添加候选叶子节点
             var cousor = graph[index].next
 
             while cousor != nil {
                 let cousorData: Int = Int((cousor?.data)! as! NSNumber)
-                if !adjvex.contains(cousorData) && cousorData != 0 {
-                    varLeafNotes.append(cousor)
+                if !adjvex.contains(cousorData) && cousor?.weightNumber != 0 {
+                    varLeafNotes.append(cousor!)
                 }
                 cousor = cousor?.next
             }
             
             //2、寻找候选叶子节点中最小的权值，确定其能转正
-            cousor = leafNotes.next
-            var minLeafNode = cousor
-            
-            while cousor != nil {
-                if minLeafNode?.weightNumber > cousor?.weightNumber {
-                    minLeafNode = cousor
+            var minNoteIndex = 0
+            var min = LONG_MAX
+            for i in 0..<varLeafNotes.count {
+                let weightNumber: Int = varLeafNotes[i].weightNumber
+                if weightNumber != 0 && weightNumber < min {
+                    minNoteIndex = i
+                    min = weightNumber
                 }
-                cousor = cousor?.next
             }
-            print(minLeafNode?.data)
             
             //3、将这个最小的候选叶子节点添加到最小生成树中
-            let preIndex = minLeafNode?.preNoteIndex
-            let newLeafNote = GraphAdjacencyListNote(data: minLeafNode!.data, weightNumber: minLeafNode!.weightNumber, preNoteIndex: preIndex!)
-            newLeafNote.next = miniTree[preIndex!].next
-            miniTree[preIndex!].next = newLeafNote
+            let minLeafNode = varLeafNotes[minNoteIndex]
+            let preIndex = minLeafNode.preNoteIndex
+            
+            let newLeafNote1 = GraphAdjacencyListNote(data: minLeafNode.data, weightNumber: minLeafNode.weightNumber, preNoteIndex: preIndex)
+            newLeafNote1.next = miniTree[preIndex].next
+            miniTree[preIndex].next = newLeafNote1
+            
             
             //4、将已经转正的叶子节点从候选叶子节点中删除
-            let minLeafNoteData: Int = Int((minLeafNode?.data)! as! NSNumber)
-            
-            var preCousor = leafNotes.next!
-            cousor = leafNotes.next
-            while cousor != nil {
-                let cousorData: Int = Int((cousor?.data)! as! NSNumber)
+            let minLeafNoteData: Int = Int(minLeafNode.data as! NSNumber)
+            for i in 0..<varLeafNotes.count {
+                let cousorData: Int = Int(varLeafNotes[i].data as! NSNumber)
                 if cousorData == minLeafNoteData {
-                    let removeNote = cousor
-                    removeNote?.next = nil
-                    preCousor.next = cousor?.next
-    
+                    varLeafNotes[i].weightNumber = 0
                 }
-                preCousor = cousor!
-                cousor = cousor?.next
             }
             
             //5.记录下已转正的节点
@@ -166,9 +162,36 @@ class GraphAdjacencyList: GraphType {
             tempAdjvex.append(minLeafNoteData)
             
             //6.递归下一个节点
-            createMiniSpanTreePrim(minLeafNoteData, leafNotes: leafNotes, adjvex: tempAdjvex)
+            createMiniSpanTreePrim(minLeafNoteData, leafNotes: varLeafNotes, adjvex: tempAdjvex)
         }
     }
+    
+    private func breadthFirstSearchTree(index: Int) {
+        
+//        //如果该节点未遍历，则输出该节点的值
+//        if graph[index].visited == false {
+//            graph[index].visited = true
+//            print(graph[index].data, separator: "", terminator: " ")
+//        }
+        
+        //遍历该节点所连的所有节点，并把遍历的节点入队列
+        var cousor = miniTree[index].next
+        while cousor != nil {
+            let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
+            if miniTree[nextIndex].visited == false {
+                miniTree[nextIndex].visited = true
+                print("\(miniTree[index].data)--\((cousor?.weightNumber)!)-->\(miniTree[nextIndex].data)")
+                bfsQueue.push(nextIndex)
+            }
+            cousor = cousor?.next
+        }
+        
+        //递归遍历队列中的子图
+        while !bfsQueue.queueIsEmpty() {
+            breadthFirstSearchTree(bfsQueue.pop())
+        }
+    }
+
     
     private func breadthFirstSearch(index: Int) {
         
