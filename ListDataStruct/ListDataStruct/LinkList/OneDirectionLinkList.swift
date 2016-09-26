@@ -23,6 +23,7 @@ class OneDirectionLinkListNote {
 }
 
 class OneDirectionLinkList: ListProtocalType {
+    
     var headNote: OneDirectionLinkListNote?
     var tailNote: OneDirectionLinkListNote?
     var length: UInt
@@ -54,23 +55,6 @@ class OneDirectionLinkList: ListProtocalType {
         return true
     }
     
-    /**
-     
-     根据数组逆向创建数组
-     - parameter items: 数组
-     
-     - returns: true-创建成功， false-创建失败
-     */
-    func reverseDirectionCreateList(items: Array<AnyObject>) -> Bool {
-        for item in items {
-            if !self.addItemToHead(item: item) {
-                return false
-            }
-        }
-        return true
-    }
-    
-    
     // MARK: - 链表元素的增加
     /**
      往链表前方追加元素
@@ -89,6 +73,23 @@ class OneDirectionLinkList: ListProtocalType {
         self.length += 1
         return true
     }
+    
+    /**
+     
+     根据数组逆向创建数组
+     - parameter items: 数组
+     
+     - returns: true-创建成功， false-创建失败
+     */
+    func reverseDirectionCreateList(items: Array<AnyObject>) -> Bool {
+        for item in items {
+            if !self.addItemToHead(item: item) {
+                return false
+            }
+        }
+        return true
+    }
+
 
     
     /**
@@ -126,13 +127,11 @@ class OneDirectionLinkList: ListProtocalType {
         }
         
         if index == 0 {
-            self.addItemToHead(item: item)
-            return true
+            return self.addItemToHead(item: item)
         }
         
         if index == self.length {
-            self.addItemToTail(item: item)
-            return true
+            return self.addItemToTail(item: item)
         }
         
         var cursor = self.headNote

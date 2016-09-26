@@ -51,7 +51,7 @@ func testLinkedList(_ list: ListProtocalType) {
     list.removeAllItemFromLast()
     
     
-    if list.insertItem(item: "非法" as AnyObject, index: 100) &&
+    if !list.insertItem(item: "非法" as AnyObject, index: 100) &&
     list.insertItem(item: "header" as AnyObject, index: 0) &&
     list.insertItem(item: "mid" as AnyObject, index: list.count()/2 + 1) &&
     list.insertItem(item: "tail" as AnyObject, index: list.count()) {
@@ -69,8 +69,10 @@ func testLinkedList(_ list: ListProtocalType) {
 
 
 
-testSqueueList()
-//testLinkedList(OneDirectionLinkList())
-//testLinkedList(DoublyLinkedList())
+//testSqueueList()
+testLinkedList(OneDirectionLinkList())
+
+print("\n\n")
+testLinkedList(DoublyLinkedList())
 
         
