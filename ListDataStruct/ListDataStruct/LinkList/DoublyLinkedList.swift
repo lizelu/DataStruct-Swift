@@ -13,7 +13,6 @@ class DoublyLinkedListNote {
     var next: DoublyLinkedListNote?
     var pre: DoublyLinkedListNote?
     
-    
     init(data: AnyObject = "" as AnyObject) {
         self.data = data
     }

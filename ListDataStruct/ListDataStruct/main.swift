@@ -27,9 +27,11 @@ func testSqueueList() {
     }
 }
 
+//testSqueueList()
 
 
-func testLinkedList(_ list: ListProtocalType) {
+
+func testLinkedList(list: ListProtocalType) {
     var callResult =  false
     
     callResult = list.forwardDirectionCreateList(items: array as Array<AnyObject>)
@@ -67,12 +69,7 @@ func testLinkedList(_ list: ListProtocalType) {
     }
 }
 
-
-
-//testSqueueList()
-testLinkedList(OneDirectionLinkList())
-
-print("\n\n")
-testLinkedList(DoublyLinkedList())
+testLinkedList(list: OneDirectionLinkList())
+testLinkedList(list: DoublyLinkedList())
 
         
