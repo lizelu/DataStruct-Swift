@@ -13,7 +13,7 @@ class OneDirectionLinkListNote {
     var data: AnyObject
     var next: OneDirectionLinkListNote?
     
-    init(data: AnyObject = "") {
+    init(data: AnyObject = "" as AnyObject) {
         self.data = data
     }
     
@@ -47,7 +47,7 @@ class OneDirectionLinkList: ListProtocalType {
      */
     func forwardDirectionCreateList(items: Array<AnyObject>) -> Bool {
         for item in items {
-            if !self.addItemToTail(item) {
+            if !self.addItemToTail(item: item) {
                 return false
             }
         }
@@ -63,7 +63,7 @@ class OneDirectionLinkList: ListProtocalType {
      */
     func reverseDirectionCreateList(items: Array<AnyObject>) -> Bool {
         for item in items {
-            if !self.addItemToHead(item) {
+            if !self.addItemToHead(item: item) {
                 return false
             }
         }
@@ -121,17 +121,17 @@ class OneDirectionLinkList: ListProtocalType {
      - returns: true-插入成功，false-插入失败
      */
     func insertItem(item: AnyObject, index: UInt) -> Bool {
-        if !checkIndex(index) {
+        if !checkIndex(index: index) {
             return false
         }
         
         if index == 0 {
-            self.addItemToHead(item)
+            self.addItemToHead(item: item)
             return true
         }
         
         if index == self.length {
-            self.addItemToTail(item)
+            self.addItemToTail(item: item)
             return true
         }
         
@@ -198,7 +198,7 @@ class OneDirectionLinkList: ListProtocalType {
             return nil                    //链表为空
         }
 
-        return self.removeItme(self.length - 1)
+        return self.removeItme(index: self.length - 1)
     }
     
     /**
@@ -214,7 +214,7 @@ class OneDirectionLinkList: ListProtocalType {
             return nil                    //链表为空
         }
         
-        if !self.checkIndex(index) {
+        if !self.checkIndex(index: index) {
             return nil
         }
         

@@ -9,9 +9,10 @@
 import Foundation
 
 class SequenceList {
-    private var list: NSMutableArray
-    private var count = 0
-    private var capacity = 0
+    
+    fileprivate var list: NSMutableArray
+    fileprivate var count = 0
+    fileprivate var capacity = 0
     
     //元素个数
     var length: Int {
@@ -40,7 +41,7 @@ class SequenceList {
      
      - parameter item:
      */
-    func addItem(item: String) {
+    func addItem(_ item: String) {
         list[count] = item;
         count += 1
     }
@@ -52,7 +53,7 @@ class SequenceList {
      
      - returns: 该下标对应的值
      */
-    func fetchItem(index: Int) -> String? {
+    func fetchItem(_ index: Int) -> String? {
         if !checkIndex(index) {
             return nil
         }
@@ -68,7 +69,7 @@ class SequenceList {
      
      - returns: 之前的值
      */
-    func modify(index: Int, newItem: String) -> String? {
+    func modify(_ index: Int, newItem: String) -> String? {
         if !checkIndex(index) {
             return nil
         }
@@ -86,7 +87,7 @@ class SequenceList {
      
      - returns: 返回插入结果，true or false
      */
-    func insert(item: String, index: Int) -> Bool {
+    func insert(_ item: String, index: Int) -> Bool {
         if !checkIndex(index) {
             return false
         }
@@ -108,7 +109,7 @@ class SequenceList {
      
      - returns: 是否移除成
      */
-    func removeItme(index: Int) -> Bool {
+    func removeItme(_ index: Int) -> Bool {
         if !checkIndex(index) {
             return false
         }
@@ -130,7 +131,7 @@ class SequenceList {
      
      - returns: true合法，false不合法
      */
-    func checkIndex(index: Int) -> Bool {
+    func checkIndex(_ index: Int) -> Bool {
         if index < 0 || index > count  {
             print("index非法，请进行检查")
             return false

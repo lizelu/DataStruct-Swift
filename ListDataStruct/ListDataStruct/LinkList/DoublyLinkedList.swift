@@ -14,7 +14,7 @@ class DoublyLinkedListNote {
     var pre: DoublyLinkedListNote?
     
     
-    init(data: AnyObject = "") {
+    init(data: AnyObject = "" as AnyObject) {
         self.data = data
     }
     
@@ -51,7 +51,7 @@ class DoublyLinkedList: ListProtocalType {
      */
     func forwardDirectionCreateList(items: Array<AnyObject>) -> Bool {
         for item in items {
-            if !self.addItemToTail(item) {
+            if !self.addItemToTail(item: item) {
                 return false
             }
         }
@@ -67,7 +67,7 @@ class DoublyLinkedList: ListProtocalType {
      */
     func reverseDirectionCreateList(items: Array<AnyObject>) -> Bool {
         for item in items {
-            if !self.addItemToHead(item) {
+            if !self.addItemToHead(item: item) {
                 return false
             }
         }
@@ -136,16 +136,16 @@ class DoublyLinkedList: ListProtocalType {
      - returns: true-插入成功，false-插入失败
      */
     func insertItem(item: AnyObject, index: UInt) -> Bool {
-        if !checkIndex(index) {
+        if !checkIndex(index: index) {
             return false
         }
         
         if index == 0 {
-            return self.addItemToHead(item)
+            return self.addItemToHead(item: item)
         }
         
         if index == self.length {
-            return self.addItemToTail(item)
+            return self.addItemToTail(item: item)
         }
         
         var cursor = self.headNote
@@ -250,7 +250,7 @@ class DoublyLinkedList: ListProtocalType {
             return nil                    //链表为空
         }
         
-        if !self.checkIndex(index) {
+        if !self.checkIndex(index: index) {
             return nil
         }
         

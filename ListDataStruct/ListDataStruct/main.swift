@@ -8,7 +8,7 @@
 
 import Foundation
 
-let array = "a,b,c,d,e,f,g".componentsSeparatedByString(",")
+let array = "a,b,c,d,e,f,g".components(separatedBy: ",")
 
 func testSqueueList() {
     let sequcenceList: SequenceList = SequenceList(capacity: 10)
@@ -18,49 +18,59 @@ func testSqueueList() {
     }
     sequcenceList.displayList()
     
-    sequcenceList.insert("z", index: 0)
-    sequcenceList.removeItme(1)
-    sequcenceList.modify(3, newItem: "m")
+    let insertResult = sequcenceList.insert("z", index: 0)
+    let removeResult = sequcenceList.removeItme(1)
+    let modifyResult = sequcenceList.modify(3, newItem: "m")
     
-    sequcenceList.displayList()
+    if insertResult && removeResult && (modifyResult != nil) {
+        sequcenceList.displayList()
+    }
 }
 
 
 
-func testLinkedList(list: ListProtocalType) {
-    print("正向创建链表")
-    list.forwardDirectionCreateList(array)
-    list.display()
+func testLinkedList(_ list: ListProtocalType) {
+    var callResult =  false
+    
+    callResult = list.forwardDirectionCreateList(items: array as Array<AnyObject>)
+    if callResult {
+        print("正向创建链表")
+        list.display()
+    }
     
     print("\n链表正向清空")
     list.removeAllItemFromHead()
     
-    print("\n逆向创建链表")
-    list.reverseDirectionCreateList(array)
-    list.display()
+    callResult = list.reverseDirectionCreateList(items: array as Array<AnyObject>)
+    if callResult {
+        print("\n逆向创建链表")
+        list.display()
+    }
     
     print("\n链表逆向清空")
     list.removeAllItemFromLast()
     
-    print("\n插入元素")
-    list.insertItem("非法", index: 100)
-    list.insertItem("header", index: 0)
-    list.insertItem("mid", index: list.count()/2 + 1)
-    list.insertItem("tail", index: list.count())
-    list.display()
     
-    print("\n移除元素，并返回值")
-    list.removeLastNote()
-    list.removeFirstNote()
-    list.removeItme(0)
+    if list.insertItem(item: "非法" as AnyObject, index: 100) &&
+    list.insertItem(item: "header" as AnyObject, index: 0) &&
+    list.insertItem(item: "mid" as AnyObject, index: list.count()/2 + 1) &&
+    list.insertItem(item: "tail" as AnyObject, index: list.count()) {
+        print("\n插入元素")
+        list.display()
+    }
     
-    list.display()
+    if (list.removeLastNote() != nil) &&
+    (list.removeFirstNote() != nil) &&
+    (list.removeItme(index: 0) != nil) {
+        print("\n移除元素，并返回值")
+        list.display()
+    }
 }
 
 
 
-//testSqueueList()
-testLinkedList(OneDirectionLinkList())
+testSqueueList()
+//testLinkedList(OneDirectionLinkList())
 //testLinkedList(DoublyLinkedList())
 
         
