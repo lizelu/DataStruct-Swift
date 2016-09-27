@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		F4585C0A1D8D8ACF008CB6B1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C091D8D8ACF008CB6B1 /* main.swift */; };
 		F4585C161D8D8C0E008CB6B1 /* LinkStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C111D8D8C0E008CB6B1 /* LinkStack.swift */; };
-		F4585C171D8D8C0E008CB6B1 /* StackProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */; };
+		F4585C171D8D8C0E008CB6B1 /* StackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C131D8D8C0E008CB6B1 /* StackProtocol.swift */; };
 		F4585C181D8D8C0E008CB6B1 /* SequenceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4585C151D8D8C0E008CB6B1 /* SequenceStack.swift */; };
 		F45A47E01D8E332D00125E08 /* SequenceQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A47DF1D8E332D00125E08 /* SequenceQueue.swift */; };
 		F45A47E21D8E33A600125E08 /* LinkQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45A47E11D8E33A600125E08 /* LinkQueue.swift */; };
-		F493DFB51D8E2A8B00EE687C /* QueueProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */; };
+		F493DFB51D8E2A8B00EE687C /* QueueProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F493DFB41D8E2A8B00EE687C /* QueueProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,11 +32,11 @@
 		F4585C061D8D8ACF008CB6B1 /* StackAndQueue */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StackAndQueue; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4585C091D8D8ACF008CB6B1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4585C111D8D8C0E008CB6B1 /* LinkStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkStack.swift; sourceTree = "<group>"; };
-		F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackProtocal.swift; sourceTree = "<group>"; };
+		F4585C131D8D8C0E008CB6B1 /* StackProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackProtocol.swift; sourceTree = "<group>"; };
 		F4585C151D8D8C0E008CB6B1 /* SequenceStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceStack.swift; sourceTree = "<group>"; };
 		F45A47DF1D8E332D00125E08 /* SequenceQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceQueue.swift; sourceTree = "<group>"; };
 		F45A47E11D8E33A600125E08 /* LinkQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkQueue.swift; sourceTree = "<group>"; };
-		F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueProtocal.swift; sourceTree = "<group>"; };
+		F493DFB41D8E2A8B00EE687C /* QueueProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +89,8 @@
 		F4585C121D8D8C0E008CB6B1 /* Protoacl */ = {
 			isa = PBXGroup;
 			children = (
-				F4585C131D8D8C0E008CB6B1 /* StackProtocal.swift */,
-				F493DFB41D8E2A8B00EE687C /* QueueProtocal.swift */,
+				F4585C131D8D8C0E008CB6B1 /* StackProtocol.swift */,
+				F493DFB41D8E2A8B00EE687C /* QueueProtocol.swift */,
 			);
 			path = Protoacl;
 			sourceTree = "<group>";
@@ -163,11 +163,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F45A47E01D8E332D00125E08 /* SequenceQueue.swift in Sources */,
-				F493DFB51D8E2A8B00EE687C /* QueueProtocal.swift in Sources */,
+				F493DFB51D8E2A8B00EE687C /* QueueProtocol.swift in Sources */,
 				F4585C161D8D8C0E008CB6B1 /* LinkStack.swift in Sources */,
 				F4585C181D8D8C0E008CB6B1 /* SequenceStack.swift in Sources */,
 				F45A47E21D8E33A600125E08 /* LinkQueue.swift in Sources */,
-				F4585C171D8D8C0E008CB6B1 /* StackProtocal.swift in Sources */,
+				F4585C171D8D8C0E008CB6B1 /* StackProtocol.swift in Sources */,
 				F4585C0A1D8D8ACF008CB6B1 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
