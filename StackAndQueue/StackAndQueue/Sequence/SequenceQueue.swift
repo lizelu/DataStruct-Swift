@@ -10,7 +10,7 @@ import Foundation
 
 class SequenceQueue: QueueType {
     
-    private var queueItems: Array<AnyObject>
+    fileprivate var queueItems: Array<AnyObject>
     
     init() {
         queueItems = []
@@ -36,7 +36,7 @@ class SequenceQueue: QueueType {
      
      - returns: 空
      */
-    func enQueue(item: AnyObject) -> Void {
+    func enQueue(_ item: AnyObject) -> Void {
         queueItems.append(item)
     }
     

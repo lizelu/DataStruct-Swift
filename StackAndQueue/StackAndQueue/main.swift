@@ -8,11 +8,11 @@
 
 import Foundation
 
-let items = "a,b,c,d,e".componentsSeparatedByString(",")
+let items = "a,b,c,d,e".components(separatedBy: ",")
 
-func testStack(stack: StackType) {
+func testStack(_ stack: StackType) {
     for item in items {
-        stack.push(item)
+        stack.push(item as AnyObject)
     }
     print("栈的初始值如下：")
     stack.display()
@@ -23,9 +23,9 @@ func testStack(stack: StackType) {
     stack.display()
     
     print("将x,y,z入栈")
-    stack.push("x")
-    stack.push("y")
-    stack.push("z")
+    stack.push("x" as AnyObject)
+    stack.push("y" as AnyObject)
+    stack.push("z" as AnyObject)
     stack.display()
     
     if let topItem = stack.getTop() {
@@ -45,23 +45,24 @@ func testStack(stack: StackType) {
 //testStack(SequenceStack())
 //testStack(LinkStack())
 
-func testQueue(queue: QueueType) {
+func testQueue(_ queue: QueueType) {
     for item in items {
-        queue.enQueue(item)
+        queue.enQueue(item as AnyObject)
     }
     
     print("队列中的原始值如下：")
     queue.display()
     
     print("将a, b出队列")
-    queue.deQueue()
-    queue.deQueue()
-    queue.display()
+    if (queue.deQueue() != nil) &&
+       (queue.deQueue() != nil) {
+        queue.display()
+    }
     
     print("将x, y, z入队列")
-    queue.enQueue("x")
-    queue.enQueue("y")
-    queue.enQueue("z")
+    queue.enQueue("x" as AnyObject)
+    queue.enQueue("y" as AnyObject)
+    queue.enQueue("z" as AnyObject)
     queue.display()
     
     if let topItem = queue.getHead() {

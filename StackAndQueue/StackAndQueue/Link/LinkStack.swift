@@ -14,7 +14,7 @@ class LinkStackNote {
     var data: AnyObject
     var next: LinkStackNote?
     
-    init(data: AnyObject = "") {
+    init(data: AnyObject = "" as AnyObject) {
         self.data = data
     }
     
@@ -24,10 +24,10 @@ class LinkStackNote {
 }
 
 class LinkStack: StackType {
-    private var top: LinkStackNote? = nil
-    private var count: Int = 0
+    fileprivate var top: LinkStackNote? = nil
+    fileprivate var count: Int = 0
     
-    func push(item: AnyObject) {
+    func push(_ item: AnyObject) {
         let note = LinkStackNote(data: item)
         note.next = top
         top = note

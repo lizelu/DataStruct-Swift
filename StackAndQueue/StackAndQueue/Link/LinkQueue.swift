@@ -12,7 +12,7 @@ class LinkQueueNote {
     var data: AnyObject
     var next: LinkQueueNote?
     
-    init(data: AnyObject = "") {
+    init(data: AnyObject = "" as AnyObject) {
         self.data = data
     }
     
@@ -23,9 +23,9 @@ class LinkQueueNote {
 
 class LinkQueue: QueueType {
     
-    private var queueHead: LinkQueueNote?
-    private var queueTail: LinkQueueNote?
-    private var count: Int
+    fileprivate var queueHead: LinkQueueNote?
+    fileprivate var queueTail: LinkQueueNote?
+    fileprivate var count: Int
     
     init() {
         queueHead = LinkQueueNote()
@@ -54,7 +54,7 @@ class LinkQueue: QueueType {
      
      - returns: 空
      */
-    func enQueue(item: AnyObject) -> Void {
+    func enQueue(_ item: AnyObject) -> Void {
         let note = LinkQueueNote(data: item)
         queueTail?.next = note
         queueTail = note

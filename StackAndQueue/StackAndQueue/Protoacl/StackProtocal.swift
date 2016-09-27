@@ -16,7 +16,7 @@ protocol StackType {
      
      - returns: 无
      */
-    func push(item: AnyObject)
+    func push(_ item: AnyObject)
     
     /**
      出栈

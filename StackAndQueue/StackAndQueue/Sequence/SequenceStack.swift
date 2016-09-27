@@ -11,9 +11,9 @@ import Foundation
  /// 栈的顺序存储
 
 class SequenceStack: StackType  {
-    private var items: Array<AnyObject> = []
+    fileprivate var items: Array<AnyObject> = []
     
-    func push(item: AnyObject) {
+    func push(_ item: AnyObject) {
         items.append(item)
     }
     

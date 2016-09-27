@@ -21,7 +21,7 @@ protocol QueueType {
      
      - returns: 空
      */
-    func enQueue(item: AnyObject) -> Void
+    func enQueue(_ item: AnyObject) -> Void
     
     /**
      获取尾结点值
