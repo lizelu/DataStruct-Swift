@@ -40,18 +40,6 @@ class SequenceQueue: QueueType {
         queueItems.append(item)
     }
     
-    /**
-     获取尾结点值
-     
-     - returns: 返回队尾的结点值
-     */
-    func getTail() -> AnyObject? {
-        if queueIsEmpty() {
-            print("队列为空")
-            return nil
-        }
-        return queueItems[queueLength() - 1]
-    }
     
     /**
      出队列
@@ -66,6 +54,21 @@ class SequenceQueue: QueueType {
         
         return queueItems.removeFirst()
     }
+    
+    
+    /**
+     获取尾结点值
+     
+     - returns: 返回队尾的结点值
+     */
+    func getTail() -> AnyObject? {
+        if queueIsEmpty() {
+            print("队列为空")
+            return nil
+        }
+        return queueItems[queueLength() - 1]
+    }
+
     
     /**
      队列的长度

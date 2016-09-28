@@ -27,6 +27,7 @@ class LinkStack: StackType {
     fileprivate var top: LinkStackNote? = nil
     fileprivate var count: Int = 0
     
+    
     func push(_ item: AnyObject) {
         let note = LinkStackNote(data: item)
         note.next = top

@@ -50,18 +50,6 @@ class LinkQueue: QueueType {
     }
     
     /**
-     进入队列
-     
-     - returns: 空
-     */
-    func enQueue(_ item: AnyObject) -> Void {
-        let note = LinkQueueNote(data: item)
-        queueTail?.next = note
-        queueTail = note
-        count += 1
-    }
-    
-    /**
      获取尾结点值
      
      - returns: 返回队尾的结点值
@@ -72,6 +60,19 @@ class LinkQueue: QueueType {
             return nil
         }
         return queueTail?.data
+    }
+
+    
+    /**
+     进入队列
+     
+     - returns: 空
+     */
+    func enQueue(_ item: AnyObject) -> Void {
+        let note = LinkQueueNote(data: item)
+        queueTail?.next = note
+        queueTail = note
+        count += 1
     }
     
     /**
