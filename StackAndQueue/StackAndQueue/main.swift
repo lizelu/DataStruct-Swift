@@ -42,6 +42,9 @@ func testStack(_ stack: StackType) {
     stack.display()
 }
 
+testStack(SequenceStack())
+testStack(LinkStack())
+
 
 func testQueue(_ queue: QueueType) {
     for item in items {
@@ -82,10 +85,7 @@ func testQueue(_ queue: QueueType) {
 
 }
 
-testQueue(SequenceQueue())
-testQueue(LinkQueue())
-
-testStack(SequenceStack())
-testStack(LinkStack())
-
+//testQueue(SequenceQueue())
+//testQueue(LinkQueue())
+//
 
