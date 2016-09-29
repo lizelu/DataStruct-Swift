@@ -25,10 +25,10 @@ class BinaryThreadTreeNote {
 class BinaryThreadTree {
     var rootNote: BinaryThreadTreeNote!
     
-    private var items: Array<String>
-    private var index = -1
-    private var preNote: BinaryThreadTreeNote?
-    private var headNote: BinaryThreadTreeNote?
+    fileprivate var items: Array<String>
+    fileprivate var index = -1
+    fileprivate var preNote: BinaryThreadTreeNote?
+    fileprivate var headNote: BinaryThreadTreeNote?
     
     init(items: Array<String>) {
         self.items = items
@@ -46,7 +46,7 @@ class BinaryThreadTree {
      
      - parameter dataArray: 创建二叉树所需要的先序遍历的数据
      */
-    private func createTree() -> BinaryThreadTreeNote! {
+    fileprivate func createTree() -> BinaryThreadTreeNote! {
         self.index = self.index + 1
         if index < self.items.count && index >= 0 {
             
@@ -73,7 +73,7 @@ class BinaryThreadTree {
         print("\n")
     }
     
-    private func preOrderTraverse (note: BinaryThreadTreeNote!) {
+    fileprivate func preOrderTraverse (_ note: BinaryThreadTreeNote!) {
         guard let note = note else {
             return
         }
@@ -88,33 +88,33 @@ class BinaryThreadTree {
     }
 
     
-    
-    
-    func inThread() {
-        self.inThreading(self.rootNote)
-    }
-    
     /**
      使用中序遍历将二叉树进行线索化，该线索化，是将中序遍历的结果生成一个双向链表
      
      - parameter note:
      */
+    func inThread() {
+        self.inThreading(note: self.rootNote)
+    }
+    
     private func inThreading(note: BinaryThreadTreeNote?) {
         if note != nil {
-            inThreading(note?.leftChild)
+            inThreading(note: note?.leftChild)
             
+            //如果节点的左节点为nil, 那么将该节点指向其中序遍历的前驱
             if note?.leftChild == nil {
                 note?.leftTag = false
                 note?.leftChild = preNote
             }
             
+            //如果该节点的中序遍历的前驱的右节点为nil, 那么将该前驱节点的右节点指向该节点进行关联
             if preNote?.rightChild == nil {
                 preNote?.rightTag = false
                 preNote?.rightChild = note
             }
             
             preNote = note
-            inThreading(note?.rightChild)
+            inThreading(note: note?.rightChild)
         }
     }
     

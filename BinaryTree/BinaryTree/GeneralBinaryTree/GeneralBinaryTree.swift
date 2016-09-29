@@ -22,8 +22,8 @@ class GeneralBinaryTreeNote {
 class GeneralBinaryTree {
     var rootNote: GeneralBinaryTreeNote!
     
-    private var items: Array<String>
-    private var index = -1
+    fileprivate var items: Array<String>
+    fileprivate var index = -1
     
     init(items: Array<String>) {
         self.items = items
@@ -35,7 +35,7 @@ class GeneralBinaryTree {
      
      - parameter dataArray: 创建二叉树所需要的先序遍历的数据
      */
-    private func createTree() -> GeneralBinaryTreeNote! {
+    fileprivate func createTree() -> GeneralBinaryTreeNote! {
         self.index = self.index + 1
         if index < self.items.count && index >= 0 {
             
@@ -58,7 +58,7 @@ class GeneralBinaryTree {
      */
     func preOrderTraverse() {
         print("先序遍历：")
-        self.preOrderTraverse(rootNote)
+        self.preOrderTraverse(note: rootNote)
         print("\n")
     }
     
@@ -68,8 +68,8 @@ class GeneralBinaryTree {
             return
         }
         print(note.data, separator: "", terminator: " ")
-        preOrderTraverse(note.leftChild)
-        preOrderTraverse(note.rightChild)
+        preOrderTraverse(note: note.leftChild)
+        preOrderTraverse(note: note.rightChild)
     }
     
     
@@ -78,7 +78,7 @@ class GeneralBinaryTree {
      */
     func inOrderTraverse() {
         print("中序遍历：")
-        self.inOrderTraverse(rootNote)
+        self.inOrderTraverse(note: rootNote)
         print("\n")
     }
     
@@ -87,9 +87,9 @@ class GeneralBinaryTree {
             print("空", separator: "", terminator: " ")
             return
         }
-        inOrderTraverse(note.leftChild)
+        inOrderTraverse(note: note.leftChild)
         print(note.data, separator: "", terminator: " ")
-        inOrderTraverse(note.rightChild)
+        inOrderTraverse(note: note.rightChild)
     }
     
     /**
@@ -97,7 +97,7 @@ class GeneralBinaryTree {
      */
     func afterOrderTraverse() {
         print("后序遍历：")
-        self.afterOrderTraverse(rootNote)
+        self.afterOrderTraverse(note: rootNote)
         print("\n")
     }
     
@@ -106,8 +106,8 @@ class GeneralBinaryTree {
             print("空", separator: "", terminator: " ")
             return
         }
-        afterOrderTraverse(note.leftChild)
-        afterOrderTraverse(note.rightChild)
+        afterOrderTraverse(note: note.leftChild)
+        afterOrderTraverse(note: note.rightChild)
         print(note.data, separator: "", terminator: " ")
     }
 
