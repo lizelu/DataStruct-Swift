@@ -110,5 +110,4 @@ class GeneralBinaryTree {
         afterOrderTraverse(note: note.rightChild)
         print(note.data, separator: "", terminator: " ")
     }
-
 }
