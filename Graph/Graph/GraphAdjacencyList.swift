@@ -181,14 +181,14 @@ class GraphAdjacencyList: GraphType {
             if miniTree[nextIndex].visited == false {
                 miniTree[nextIndex].visited = true
                 print("\(miniTree[index].data)--\((cousor?.weightNumber)!)-->\(miniTree[nextIndex].data)")
-                bfsQueue.push(item: nextIndex)
+                bfsQueue.enQueue(item: nextIndex)
             }
             cousor = cousor?.next
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(index: bfsQueue.pop())
+            breadthFirstSearchTree(index: bfsQueue.deQueue())
         }
     }
 
@@ -209,14 +209,14 @@ class GraphAdjacencyList: GraphType {
                 
                 graph[nextIndex].visited = true
                 print(graph[nextIndex].data, separator: "", terminator: " ")
-                bfsQueue.push(item: nextIndex)
+                bfsQueue.enQueue(item: nextIndex)
             }
             cousor = cousor?.next
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearch(index: bfsQueue.pop())
+            breadthFirstSearch(index: bfsQueue.deQueue())
         }
     }
 
