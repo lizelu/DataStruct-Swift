@@ -14,11 +14,11 @@ typealias MGraph = Array<Array<Int>>
 class BFSQueue {
     fileprivate var queue: Array<Int> = []
     
-    func pop() -> Int {
+    func deQueue() -> Int {
         return queue.removeFirst()
     }
     
-    func push(item: Int) {
+    func enQueue(item: Int) {
         queue.append(item)
     }
     
@@ -43,25 +43,6 @@ class GraphAdjacencyMatrix: GraphType {
         bfsQueue = BFSQueue()
     }
     
-    private func configData(notes: Array<AnyObject>) {
-        for i in 0..<notes.count {
-            relationDic[notes[i] as! String] = i
-        }
-        graph = initGraph(count: notes.count)
-    }
-    
-    private func initGraph(count: Int) -> MGraph{
-        var graph: MGraph = MGraph()
-        for _ in 0..<count {
-            var temp:Array<Int> = []
-            for _ in 0..<count {
-                temp.append(NO_RELATION)
-            }
-            graph.append(temp)
-        }
-        return graph
-    }
-    
     func createGraph(notes: Array<Any>, relation: Array<(Any, Any, Any)>) {
         self.graphData = notes as Array<AnyObject>
         
@@ -77,9 +58,27 @@ class GraphAdjacencyMatrix: GraphType {
             graph[i][j] = weightNumber
             graph[j][i] = weightNumber
         }
-        
     }
     
+    private func configData(notes: Array<AnyObject>) {
+        for i in 0..<notes.count {
+            relationDic[notes[i] as! String] = i
+        }
+        graph = initGraph(count: notes.count)
+    }
+    
+    private func initGraph(count: Int) -> MGraph{
+        var graph: MGraph = MGraph()
+        for _ in 0..<count {
+            var temp:Array<Int> = []
+            for _ in 0..<count {
+                temp.append(NO_RELATION)        //NO_RELATION = 0
+            }
+            graph.append(temp)
+        }
+        return graph
+    }
+
     func displayGraph() {
         displayGraph(graph: graph)
     }
@@ -184,19 +183,17 @@ class GraphAdjacencyMatrix: GraphType {
             print(graphData[index], separator: "", terminator: " ")
         }
         
-        //遍历该节点所连的所有节点，并把遍历的节点入队列
+        //把上述已经遍历的结点所连接的但未遍历的结点加入队列
         let items = graph[index]
         for i in 0..<items.count {
             if items[i] != NO_RELATION && visited[i] == false {
-                print(graphData[i], separator: "", terminator: " ")
-                visited[i] = true
-                bfsQueue.push(item: i)
+                bfsQueue.enQueue(item: i)
             }
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearch(index: bfsQueue.pop())
+            breadthFirstSearch(index: bfsQueue.deQueue())
         }
     }
     
@@ -210,13 +207,13 @@ class GraphAdjacencyMatrix: GraphType {
             if items[i] != NO_RELATION && visited[i] == false {
                 print("\(graphData[index]) --\(miniTree[index][i])-->\(graphData[i])")
                 visited[i] = true
-                bfsQueue.push(item: i)
+                bfsQueue.enQueue(item: i)
             }
         }
         
         //递归遍历队列中的子树
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(index: bfsQueue.pop())
+            breadthFirstSearchTree(index: bfsQueue.deQueue())
         }
     }
 
@@ -225,6 +222,7 @@ class GraphAdjacencyMatrix: GraphType {
     private func depthFirstSearch(index: Int) {
         visited[index] = true
         print(graphData[index], separator: "", terminator: " ")
+        
         for subIndex in 0..<graphData.count {
             if graph[index][subIndex] != NO_RELATION && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
                 depthFirstSearch(index: subIndex)
