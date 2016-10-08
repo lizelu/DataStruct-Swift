@@ -12,7 +12,7 @@ let HAVE_RELATION = 1
 typealias MGraph = Array<Array<Int>>
 
 class BFSQueue {
-    private var queue: Array<Int> = []
+    fileprivate var queue: Array<Int> = []
     
     func pop() -> Int {
         return queue.removeFirst()
@@ -28,12 +28,12 @@ class BFSQueue {
 }
 
 class GraphAdjacencyMatrix: GraphType {
-    private var relationDic: Dictionary<String,Int>
-    private var graph: MGraph
-    private var miniTree: MGraph
-    private var visited: Array<Bool>
-    private var graphData: Array<AnyObject>
-    private var bfsQueue: BFSQueue
+    fileprivate var relationDic: Dictionary<String,Int>
+    fileprivate var graph: MGraph
+    fileprivate var miniTree: MGraph
+    fileprivate var visited: Array<Bool>
+    fileprivate var graphData: Array<AnyObject>
+    fileprivate var bfsQueue: BFSQueue
     init() {
         relationDic = [:]
         graph = []
@@ -47,7 +47,7 @@ class GraphAdjacencyMatrix: GraphType {
         for i in 0..<notes.count {
             relationDic[notes[i] as! String] = i
         }
-        graph = initGraph(notes.count)
+        graph = initGraph(count: notes.count)
     }
     
     private func initGraph(count: Int) -> MGraph{
@@ -62,15 +62,15 @@ class GraphAdjacencyMatrix: GraphType {
         return graph
     }
     
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>) {
-        self.graphData = notes
+    func createGraph(notes: Array<Any>, relation: Array<(Any, Any, Any)>) {
+        self.graphData = notes as Array<AnyObject>
         
-        configData(notes)
+        configData(notes: notes as Array<AnyObject>)
         
         //根据关系创建图
         for item in relation {
             guard let i = relationDic[item.0 as! String],
-                j = relationDic[item.1 as! String] else {
+                let j = relationDic[item.1 as! String] else {
                     continue
             }
             let weightNumber: Int = Int(item.2 as! NSNumber)
@@ -81,34 +81,34 @@ class GraphAdjacencyMatrix: GraphType {
     }
     
     func displayGraph() {
-        displayGraph(graph)
+        displayGraph(graph: graph)
     }
     
     func breadthFirstSearch() {
         print("邻接矩阵：图的广度搜索（BFS）:")
         initVisited()
-        breadthFirstSearch(0)
+        breadthFirstSearch(index: 0)
         print("\n")
     }
     
     func depthFirstSearch() {
         print("邻接矩阵：图的深度搜索（DFS）:")
         initVisited()
-        depthFirstSearch(0)
+        depthFirstSearch(index: 0)
         print("\n")
     }
     
     func breadthFirstSearchTree() {
         print("邻接矩阵：树的广度搜索（BFS）:")
         initVisited()
-        breadthFirstSearchTree(0)
+        breadthFirstSearchTree(index: 0)
         print("\n")
     }
 
     func createMiniSpanTreePrim() {
-        miniTree = initGraph(graph.count)       //用来存放prim-miniTree的图结构
-        createMiniSpanTreePrim(0, leafNotes: [], adjvex: [0])
-        displayGraph(miniTree)
+        miniTree = initGraph(count: graph.count)       //用来存放prim-miniTree的图结构
+        createMiniSpanTreePrim(index: 0, leafNotes: [], adjvex: [0])
+        displayGraph(graph: miniTree)
     }
     
     /**
@@ -149,7 +149,7 @@ class GraphAdjacencyMatrix: GraphType {
             miniTree[currentIndex][leafNoteIndex] = minWeight
             
             //转正后从候选节点中剔除转正后的叶子节点
-            newLeafNote.removeAtIndex(minIndex)
+            newLeafNote.remove(at: minIndex)
             for i in 0..<newLeafNote.count {
                 if newLeafNote[i].2 == leafNoteIndex {
                     newLeafNote[i].1 = 0                //将转正的候选节点的权值标记为零等效于将其删除
@@ -161,7 +161,7 @@ class GraphAdjacencyMatrix: GraphType {
             tempAdjvex.append(leafNoteIndex)
             
             //使用转正后的节点进行递归操作
-            createMiniSpanTreePrim(leafNoteIndex, leafNotes: newLeafNote, adjvex: tempAdjvex)
+            createMiniSpanTreePrim(index: leafNoteIndex, leafNotes: newLeafNote, adjvex: tempAdjvex)
         }
     }
 
@@ -190,13 +190,13 @@ class GraphAdjacencyMatrix: GraphType {
             if items[i] != NO_RELATION && visited[i] == false {
                 print(graphData[i], separator: "", terminator: " ")
                 visited[i] = true
-                bfsQueue.push(i)
+                bfsQueue.push(item: i)
             }
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearch(bfsQueue.pop())
+            breadthFirstSearch(index: bfsQueue.pop())
         }
     }
     
@@ -210,13 +210,13 @@ class GraphAdjacencyMatrix: GraphType {
             if items[i] != NO_RELATION && visited[i] == false {
                 print("\(graphData[index]) --\(miniTree[index][i])-->\(graphData[i])")
                 visited[i] = true
-                bfsQueue.push(i)
+                bfsQueue.push(item: i)
             }
         }
         
         //递归遍历队列中的子树
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(bfsQueue.pop())
+            breadthFirstSearchTree(index: bfsQueue.pop())
         }
     }
 
@@ -227,12 +227,12 @@ class GraphAdjacencyMatrix: GraphType {
         print(graphData[index], separator: "", terminator: " ")
         for subIndex in 0..<graphData.count {
             if graph[index][subIndex] != NO_RELATION && !visited[subIndex] {  //有弧，并且该弧连接的节点未被访问
-                depthFirstSearch(subIndex)
+                depthFirstSearch(index: subIndex)
             }
         }
     }
     
-    private func initVisited() {
+    fileprivate func initVisited() {
         visited.removeAll()
         for _ in 0..<graph.count {
             visited.append(false)

@@ -8,15 +8,16 @@
 
 import Foundation
 
-let items: Array<String> =
-    ["A", "B", "D", "", "", "E", "", "", "C", "","F", "", ""]
+let items: Array<String> = ["A", "B", "D", "", "", "E", "", "", "C", "","F", "", ""]
+let generalBinaryTree: GeneralBinaryTree = GeneralBinaryTree(items: items)
+
+generalBinaryTree.preOrderTraverse()
+generalBinaryTree.inOrderTraverse()
+generalBinaryTree.afterOrderTraverse()
 
 func testGeneralBinaryTree() {
-    let generalBinaryTree: GeneralBinaryTree = GeneralBinaryTree(items: items)
     
-    generalBinaryTree.preOrderTraverse()
-    generalBinaryTree.inOrderTraverse()
-    generalBinaryTree.afterOrderTraverse()
+    
 }
 
 

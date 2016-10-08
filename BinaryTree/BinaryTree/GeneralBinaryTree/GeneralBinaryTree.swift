@@ -63,12 +63,17 @@ class GeneralBinaryTree {
     }
     
     private func preOrderTraverse (note: GeneralBinaryTreeNote!) {
+        //遍历根节点
         guard let note = note else {
             print("空", separator: "", terminator: " ")
             return
         }
         print(note.data, separator: "", terminator: " ")
+        
+        //递归遍历左子树
         preOrderTraverse(note: note.leftChild)
+        
+        //递归遍历右子树
         preOrderTraverse(note: note.rightChild)
     }
     

@@ -16,7 +16,7 @@ class GraphAdjacencyListNote {
     var next: GraphAdjacencyListNote?
     var visited: Bool = false
     
-    init(data: AnyObject = "", weightNumber: Int = 0, preNoteIndex: Int = 0) {
+    init(data: AnyObject = "" as AnyObject, weightNumber: Int = 0, preNoteIndex: Int = 0) {
         self.data = data
         self.weightNumber = weightNumber
         self.preNoteIndex = preNoteIndex
@@ -24,10 +24,10 @@ class GraphAdjacencyListNote {
 }
 
 class GraphAdjacencyList: GraphType {
-    private var graph: Array<GraphAdjacencyListNote>
-    private var miniTree: Array<GraphAdjacencyListNote>
-    private var relationDic: Dictionary<String,Int>
-    private var bfsQueue: BFSQueue
+    fileprivate var graph: Array<GraphAdjacencyListNote>
+    fileprivate var miniTree: Array<GraphAdjacencyListNote>
+    fileprivate var relationDic: Dictionary<String,Int>
+    fileprivate var bfsQueue: BFSQueue
     
     init() {
         graph = []
@@ -37,32 +37,32 @@ class GraphAdjacencyList: GraphType {
     }
     
     // MARK: - GraphType
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>){
+    func createGraph(notes: Array<Any>, relation: Array<(Any, Any, Any)>){
         for i in 0..<notes.count {
-            let note = GraphAdjacencyListNote(data: notes[i])
+            let note = GraphAdjacencyListNote(data: notes[i] as AnyObject)
             graph.append(note)
             relationDic[notes[i] as! String] = i
         }
         
         for item in relation {
             guard let i = relationDic[item.0 as! String],
-                j = relationDic[item.1 as! String] else {
+                let j = relationDic[item.1 as! String] else {
                     continue
             }
             
             let weightNumber: Int = Int(item.2 as! NSNumber)
-            let note2 = GraphAdjacencyListNote(data: j, weightNumber: weightNumber,preNoteIndex: i)
+            let note2 = GraphAdjacencyListNote(data: j as AnyObject, weightNumber: weightNumber,preNoteIndex: i)
             note2.next = graph[i].next
             graph[i].next = note2
             
-            let note1 = GraphAdjacencyListNote(data: i, weightNumber: weightNumber, preNoteIndex: j)
+            let note1 = GraphAdjacencyListNote(data: i as AnyObject, weightNumber: weightNumber, preNoteIndex: j)
             note1.next = graph[j].next
             graph[j].next = note1
         }
     }
     
     func displayGraph() {
-        displayGraph(graph)
+        displayGraph(graph: graph)
     }
     
     func displayGraph(graph: Array<GraphAdjacencyListNote>) {
@@ -82,21 +82,21 @@ class GraphAdjacencyList: GraphType {
     func breadthFirstSearch() {
         print("邻接链表：图的广度搜索（BFS）:")
         initVisited()
-        breadthFirstSearch(0)
+        breadthFirstSearch(index: 0)
         print("\n")
     }
     
     func depthFirstSearch() {
         print("邻接链表：图的深度搜索（DFS）:")
         initVisited()
-        depthFirstSearch(0)
+        depthFirstSearch(index: 0)
         print("\n")
     }
     
     func breadthFirstSearchTree() {
         print("邻接链表：树的广度搜索（BFS）:")
         initVisited()
-        breadthFirstSearchTree(0)
+        breadthFirstSearchTree(index: 0)
         print("\n")
     }
     
@@ -107,9 +107,9 @@ class GraphAdjacencyList: GraphType {
             miniTree.append(note)
         }
         
-        createMiniSpanTreePrim(0, leafNotes: [], adjvex: [0])
+        createMiniSpanTreePrim(index: 0, leafNotes: [], adjvex: [0])
         
-        displayGraph(miniTree)
+        displayGraph(graph: miniTree)
     }
     
     private func createMiniSpanTreePrim(index: Int, leafNotes: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
@@ -162,7 +162,7 @@ class GraphAdjacencyList: GraphType {
             tempAdjvex.append(minLeafNoteData)
             
             //6.递归下一个节点
-            createMiniSpanTreePrim(minLeafNoteData, leafNotes: varLeafNotes, adjvex: tempAdjvex)
+            createMiniSpanTreePrim(index: minLeafNoteData, leafNotes: varLeafNotes, adjvex: tempAdjvex)
         }
     }
     
@@ -181,14 +181,14 @@ class GraphAdjacencyList: GraphType {
             if miniTree[nextIndex].visited == false {
                 miniTree[nextIndex].visited = true
                 print("\(miniTree[index].data)--\((cousor?.weightNumber)!)-->\(miniTree[nextIndex].data)")
-                bfsQueue.push(nextIndex)
+                bfsQueue.push(item: nextIndex)
             }
             cousor = cousor?.next
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(bfsQueue.pop())
+            breadthFirstSearchTree(index: bfsQueue.pop())
         }
     }
 
@@ -209,14 +209,14 @@ class GraphAdjacencyList: GraphType {
                 
                 graph[nextIndex].visited = true
                 print(graph[nextIndex].data, separator: "", terminator: " ")
-                bfsQueue.push(nextIndex)
+                bfsQueue.push(item: nextIndex)
             }
             cousor = cousor?.next
         }
         
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearch(bfsQueue.pop())
+            breadthFirstSearch(index: bfsQueue.pop())
         }
     }
 
@@ -231,13 +231,13 @@ class GraphAdjacencyList: GraphType {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
                 
-                depthFirstSearch(Int((cousor?.data)! as! NSNumber))
+                depthFirstSearch(index: Int((cousor?.data)! as! NSNumber))
             }
             cousor = cousor?.next
         }
     }
     
-    private func initVisited() {
+    fileprivate func initVisited() {
         for item in graph {
             item.visited = false
         }

@@ -14,7 +14,7 @@ protocol GraphType {
      - parameter notes:    节点数据
      - parameter relation: 节点关系
      */
-    func createGraph(notes: Array<AnyObject>, relation: Array<(AnyObject,AnyObject,AnyObject)>)
+    func createGraph(notes: Array<Any>, relation: Array<(Any,Any,Any)>)
     
     /**
      BFS: 广度优先搜索
@@ -26,13 +26,19 @@ protocol GraphType {
      DFS: 深度优先搜索
      */
     func depthFirstSearch()
-    
+
     /**
      输出图的物理存储结构
      */
     func displayGraph()
     
-    func breadthFirstSearchTree()
-    
+    /**
+     创建最小生成树
+     */
     func createMiniSpanTreePrim()
+    
+    /**
+     层次遍历最小生成树
+     */
+    func breadthFirstSearchTree()
 }
