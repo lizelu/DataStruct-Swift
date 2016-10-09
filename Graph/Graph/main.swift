@@ -19,7 +19,11 @@ func testGraph(graph: GraphType) {
     graph.displayGraph()
     graph.depthFirstSearch()
     graph.breadthFirstSearch()
+    
     graph.createMiniSpanTreePrim()
+    graph.breadthFirstSearchTree()
+    
+    graph.createMiniSpanTreeKruskal()
     graph.breadthFirstSearchTree()
     print()
 }
@@ -29,3 +33,4 @@ testGraph(graph: GraphAdjacencyMatrix())
 
 print("\n邻接链表:")
 testGraph(graph: GraphAdjacencyList())
+

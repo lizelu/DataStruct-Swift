@@ -25,6 +25,10 @@ class BFSQueue {
     func queueIsEmpty() -> Bool {
         return queue.isEmpty
     }
+    
+    func clearElement() {
+        queue.removeAll()
+    }
 }
 
 class GraphAdjacencyMatrix: GraphType {
@@ -99,8 +103,14 @@ class GraphAdjacencyMatrix: GraphType {
     
     func breadthFirstSearchTree() {
         print("邻接矩阵：树的广度搜索（BFS）:")
-        initVisited()
-        breadthFirstSearchTree(index: 0)
+        for index in 0..<miniTree.count {
+            let items = miniTree[index]
+            for i in 0..<items.count {
+                if items[i] != NO_RELATION{
+                    print("\(graphData[index]) --\(miniTree[index][i])-->\(graphData[i])")
+                }
+            }
+        }
         print("\n")
     }
 
@@ -164,6 +174,13 @@ class GraphAdjacencyMatrix: GraphType {
         }
     }
 
+    
+    /**
+     创建最小生成树: Prim
+     */
+    func createMiniSpanTreeKruskal(){
+    
+    }
 
     private func displayGraph(graph: MGraph) {
         for i in 0..<graph.count {
@@ -194,26 +211,6 @@ class GraphAdjacencyMatrix: GraphType {
         //递归遍历队列中的子图
         while !bfsQueue.queueIsEmpty() {
             breadthFirstSearch(index: bfsQueue.deQueue())
-        }
-    }
-    
-    
-    private func breadthFirstSearchTree(index: Int) {
-        
-        //遍历该节点所连的所有节点，并把遍历的节点入队列
-        let items = miniTree[index]
-        
-        for i in 0..<items.count {
-            if items[i] != NO_RELATION && visited[i] == false {
-                print("\(graphData[index]) --\(miniTree[index][i])-->\(graphData[i])")
-                visited[i] = true
-                bfsQueue.enQueue(item: i)
-            }
-        }
-        
-        //递归遍历队列中的子树
-        while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(index: bfsQueue.deQueue())
         }
     }
 

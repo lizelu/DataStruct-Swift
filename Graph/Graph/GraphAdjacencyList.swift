@@ -24,6 +24,7 @@ class GraphAdjacencyListNote {
 }
 
 class GraphAdjacencyList: GraphType {
+    fileprivate var relation: Array<(Any, Any, Any)>
     fileprivate var graph: Array<GraphAdjacencyListNote>
     fileprivate var miniTree: Array<GraphAdjacencyListNote>
     fileprivate var relationDic: Dictionary<String,Int>
@@ -34,10 +35,13 @@ class GraphAdjacencyList: GraphType {
         relationDic = [:]
         bfsQueue = BFSQueue()
         miniTree = []
+        relation = []
     }
     
     // MARK: - GraphType
     func createGraph(notes: Array<Any>, relation: Array<(Any, Any, Any)>){
+        self.relation = relation
+        
         for i in 0..<notes.count {
             let note = GraphAdjacencyListNote(data: notes[i] as AnyObject)
             graph.append(note)
@@ -95,21 +99,88 @@ class GraphAdjacencyList: GraphType {
     
     func breadthFirstSearchTree() {
         print("邻接链表：树的广度搜索（BFS）:")
-        initVisited()
-        breadthFirstSearchTree(index: 0)
+        for index in 0..<miniTree.count {
+            //遍历该节点所连的所有节点，并把遍历的节点入队列
+            var cousor = miniTree[index].next
+            while cousor != nil {
+                let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
+                print("\(miniTree[index].data)--\((cousor?.weightNumber)!)-->\(miniTree[nextIndex].data)")
+                cousor = cousor?.next
+            }
+        }
         print("\n")
     }
     
+    /**
+     创建最小生成树: Kruskal
+     */
+    func createMiniSpanTreeKruskal(){
+        configMiniTree()
+        
+        //对权值从小到大进行排序
+        let sortRelation = relation.sorted { (item1, item2) -> Bool in
+            return  Int(item1.2 as! NSNumber) < Int(item2.2 as! NSNumber)
+        }
+        
+        //记录节点的尾部节点，避免出现闭环
+        var parent = Array.init(repeating: -1, count: miniTree.count)
+        
+        for item in sortRelation {
+
+            let preNoteIndex = self.relationDic[item.0 as! String]!
+            let nextNoteIndex = self.relationDic[item.1 as! String]!
+            let weightNumber = item.2 as! Int
+            
+            let preEndIndex = findEndIndex(parent: parent, index: preNoteIndex)
+            let nextEndIndex = findEndIndex(parent: parent, index: nextNoteIndex)
+            
+//            print(item.2)
+//            print("\(preNoteIndex)-----\(preEndIndex)")
+//            print("\(nextNoteIndex)----\(nextEndIndex)")
+            
+            if preEndIndex != nextEndIndex {
+                parent[preEndIndex] = nextEndIndex
+            
+                insertNoteToMiniTree(preIndex: preNoteIndex, linkIndex: nextNoteIndex, weightNumber: weightNumber);
+            }
+        }
+        
+        print(parent)
+        
+        displayGraph(graph: miniTree)
+    }
     
+    private func insertNoteToMiniTree(preIndex: Int, linkIndex: Int, weightNumber: Int) {
+        let note = GraphAdjacencyListNote(data: linkIndex as AnyObject, weightNumber: weightNumber, preNoteIndex: preIndex)
+        note.next = miniTree[preIndex].next
+        miniTree[preIndex].next = note
+    }
+    
+    private func findEndIndex(parent: Array<Int>, index: Int) -> Int {
+        var endIndex = index
+        while parent[endIndex] > -1 {
+            endIndex = parent[endIndex]
+        }
+        return endIndex
+    }
+
+    
+    /**
+     创建最小生成树: Prim
+     */
     func createMiniSpanTreePrim() {
+        configMiniTree()
+        createMiniSpanTreePrim(index: 0, leafNotes: [], adjvex: [0])
+        displayGraph(graph: miniTree)
+    }
+    
+    private func configMiniTree() {
+        miniTree.removeAll()
         for i in 0..<graph.count {
             let note = GraphAdjacencyListNote(data: graph[i].data)
             miniTree.append(note)
         }
-        
-        createMiniSpanTreePrim(index: 0, leafNotes: [], adjvex: [0])
-        
-        displayGraph(graph: miniTree)
+
     }
     
     private func createMiniSpanTreePrim(index: Int, leafNotes: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
@@ -166,32 +237,6 @@ class GraphAdjacencyList: GraphType {
         }
     }
     
-    private func breadthFirstSearchTree(index: Int) {
-        
-//        //如果该节点未遍历，则输出该节点的值
-//        if graph[index].visited == false {
-//            graph[index].visited = true
-//            print(graph[index].data, separator: "", terminator: " ")
-//        }
-        
-        //遍历该节点所连的所有节点，并把遍历的节点入队列
-        var cousor = miniTree[index].next
-        while cousor != nil {
-            let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
-            if miniTree[nextIndex].visited == false {
-                miniTree[nextIndex].visited = true
-                print("\(miniTree[index].data)--\((cousor?.weightNumber)!)-->\(miniTree[nextIndex].data)")
-                bfsQueue.enQueue(item: nextIndex)
-            }
-            cousor = cousor?.next
-        }
-        
-        //递归遍历队列中的子图
-        while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearchTree(index: bfsQueue.deQueue())
-        }
-    }
-
     
     private func breadthFirstSearch(index: Int) {
         if graph[index].visited == false {      //如果该节点未遍历，则输出该节点的值

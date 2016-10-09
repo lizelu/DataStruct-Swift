@@ -31,10 +31,16 @@ protocol GraphType {
      输出图的物理存储结构
      */
     func displayGraph()
+    
     /**
-     创建最小生成树
+     创建最小生成树: Prim
      */
     func createMiniSpanTreePrim()
+    
+    /**
+     创建最小生成树: Prim
+     */
+    func createMiniSpanTreeKruskal()
     
     /**
      层次遍历最小生成树
