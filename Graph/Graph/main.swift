@@ -15,7 +15,6 @@ let relation: Array<(Any, Any, Any)> =
      ("G", "H", 19), ("G", "D", 24), ("H", "D", 16), ("H", "E", 7), ("D", "E", 20)];
 
 func testGraph(graph: GraphType) {
-    
     graph.createGraph(notes: allGraphNote, relation: relation)
     graph.displayGraph()
     graph.depthFirstSearch()

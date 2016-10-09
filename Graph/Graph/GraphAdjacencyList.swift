@@ -10,7 +10,7 @@ import Foundation
 
 class GraphAdjacencyListNote {
     var data: AnyObject
-    var weightNumber: Int   //最小生成树使用
+    var weightNumber: Int   //权值，最小生成树使用
     var preNoteIndex: Int   //最小生成树使用, 记录该节点挂在那个链上
     
     var next: GraphAdjacencyListNote?
@@ -194,35 +194,29 @@ class GraphAdjacencyList: GraphType {
 
     
     private func breadthFirstSearch(index: Int) {
-        
-        //如果该节点未遍历，则输出该节点的值
-        if graph[index].visited == false {
-            graph[index].visited = true
+        if graph[index].visited == false {      //如果该节点未遍历，则输出该节点的值
             print(graph[index].data, separator: "", terminator: " ")
-        }
-
-        //遍历该节点所连的所有节点，并把遍历的节点入队列
-        var cousor = graph[index].next
-        while cousor != nil {
-            let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
-            if graph[nextIndex].visited == false {
-                
-                graph[nextIndex].visited = true
-                print(graph[nextIndex].data, separator: "", terminator: " ")
-                bfsQueue.enQueue(item: nextIndex)
+            graph[index].visited = true
+            
+            //遍历完当前结点后，将与该结点相连接的并且未被遍历的结点进入队列
+            var cousor = graph[index].next
+            while cousor != nil {
+                let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
+                if graph[nextIndex].visited == false {
+                    bfsQueue.enQueue(item: nextIndex)
+                }
+                cousor = cousor?.next
             }
-            cousor = cousor?.next
-        }
-        
-        //递归遍历队列中的子图
-        while !bfsQueue.queueIsEmpty() {
-            breadthFirstSearch(index: bfsQueue.deQueue())
+            
+            //递归遍历队列中的子图
+            while !bfsQueue.queueIsEmpty() {
+                breadthFirstSearch(index: bfsQueue.deQueue())
+            }
         }
     }
 
     
     private func depthFirstSearch(index: Int) {
-        
         print(graph[index].data, separator: "", terminator: " ")
         graph[index].visited = true
         
@@ -230,7 +224,6 @@ class GraphAdjacencyList: GraphType {
         while cousor != nil {
             let nextIndex: Int = Int((cousor?.data)! as! NSNumber)
             if graph[nextIndex].visited == false {
-                
                 depthFirstSearch(index: Int((cousor?.data)! as! NSNumber))
             }
             cousor = cousor?.next
