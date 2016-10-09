@@ -102,7 +102,7 @@ class GraphAdjacencyMatrix: GraphType {
     }
     
     func breadthFirstSearchTree() {
-        print("邻接矩阵：树的广度搜索（BFS）:")
+        print("最小生成树边的遍历:")
         for index in 0..<miniTree.count {
             let items = miniTree[index]
             for i in 0..<items.count {

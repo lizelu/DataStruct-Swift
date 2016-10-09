@@ -98,7 +98,7 @@ class GraphAdjacencyList: GraphType {
     }
     
     func breadthFirstSearchTree() {
-        print("邻接链表：树的广度搜索（BFS）:")
+        print("最小生成树边的遍历:")
         for index in 0..<miniTree.count {
             //遍历该节点所连的所有节点，并把遍历的节点入队列
             var cousor = miniTree[index].next
@@ -115,8 +115,8 @@ class GraphAdjacencyList: GraphType {
      创建最小生成树: Kruskal
      */
     func createMiniSpanTreeKruskal(){
+        print("克鲁斯卡尔算法：")
         configMiniTree()
-        
         //对权值从小到大进行排序
         let sortRelation = relation.sorted { (item1, item2) -> Bool in
             return  Int(item1.2 as! NSNumber) < Int(item2.2 as! NSNumber)
@@ -126,26 +126,20 @@ class GraphAdjacencyList: GraphType {
         var parent = Array.init(repeating: -1, count: miniTree.count)
         
         for item in sortRelation {
-
-            let preNoteIndex = self.relationDic[item.0 as! String]!
-            let nextNoteIndex = self.relationDic[item.1 as! String]!
+            let beginNoteIndex = self.relationDic[item.0 as! String]!
+            let endNoteIndex = self.relationDic[item.1 as! String]!
             let weightNumber = item.2 as! Int
             
-            let preEndIndex = findEndIndex(parent: parent, index: preNoteIndex)
-            let nextEndIndex = findEndIndex(parent: parent, index: nextNoteIndex)
+            let preEndIndex = findEndIndex(parent: parent, index: beginNoteIndex)
+            let nextEndIndex = findEndIndex(parent: parent, index: endNoteIndex)
             
-//            print(item.2)
-//            print("\(preNoteIndex)-----\(preEndIndex)")
-//            print("\(nextNoteIndex)----\(nextEndIndex)")
             
             if preEndIndex != nextEndIndex {
                 parent[preEndIndex] = nextEndIndex
             
-                insertNoteToMiniTree(preIndex: preNoteIndex, linkIndex: nextNoteIndex, weightNumber: weightNumber);
+                insertNoteToMiniTree(preIndex: beginNoteIndex, linkIndex: endNoteIndex, weightNumber: weightNumber);
             }
         }
-        
-        print(parent)
         
         displayGraph(graph: miniTree)
     }
@@ -169,6 +163,7 @@ class GraphAdjacencyList: GraphType {
      创建最小生成树: Prim
      */
     func createMiniSpanTreePrim() {
+        print("prim算法: ")
         configMiniTree()
         createMiniSpanTreePrim(index: 0, leafNotes: [], adjvex: [0])
         displayGraph(graph: miniTree)
