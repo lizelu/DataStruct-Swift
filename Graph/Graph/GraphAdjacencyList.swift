@@ -133,10 +133,11 @@ class GraphAdjacencyList: GraphType {
             let preEndIndex = findEndIndex(parent: parent, index: beginNoteIndex)
             let nextEndIndex = findEndIndex(parent: parent, index: endNoteIndex)
             
+            print("\(beginNoteIndex)--\(weightNumber)-->\(endNoteIndex)")
             
             if preEndIndex != nextEndIndex {
-                parent[preEndIndex] = nextEndIndex
-            
+                
+                parent[preEndIndex] = nextEndIndex //更新尾部节点
                 insertNoteToMiniTree(preIndex: beginNoteIndex, linkIndex: endNoteIndex, weightNumber: weightNumber);
             }
         }
@@ -150,6 +151,13 @@ class GraphAdjacencyList: GraphType {
         miniTree[preIndex].next = note
     }
     
+    
+    /// 查找当前节点的尾部节点
+    ///
+    /// - parameter parent: 存储尾部节点的个个信息
+    /// - parameter index:  当前结点
+    ///
+    /// - returns: endIndex
     private func findEndIndex(parent: Array<Int>, index: Int) -> Int {
         var endIndex = index
         while parent[endIndex] > -1 {
@@ -175,12 +183,13 @@ class GraphAdjacencyList: GraphType {
             let note = GraphAdjacencyListNote(data: graph[i].data)
             miniTree.append(note)
         }
-
     }
     
-    private func createMiniSpanTreePrim(index: Int, leafNotes: Array<GraphAdjacencyListNote>, adjvex: Array<Int>)  {
+    private func createMiniSpanTreePrim(index: Int,
+                                        leafNotes: Array<GraphAdjacencyListNote>,
+                                        adjvex: Array<Int>)  {
+        
         if adjvex.count != graph.count {
-            
             var varLeafNotes = leafNotes
             
             //1、添加候选叶子节点
@@ -209,7 +218,9 @@ class GraphAdjacencyList: GraphType {
             let minLeafNode = varLeafNotes[minNoteIndex]
             let preIndex = minLeafNode.preNoteIndex
             
-            let newLeafNote1 = GraphAdjacencyListNote(data: minLeafNode.data, weightNumber: minLeafNode.weightNumber, preNoteIndex: preIndex)
+            let newLeafNote1 = GraphAdjacencyListNote(data: minLeafNode.data,
+                                                      weightNumber: minLeafNode.weightNumber,
+                                                      preNoteIndex: preIndex)
             newLeafNote1.next = miniTree[preIndex].next
             miniTree[preIndex].next = newLeafNote1
             
@@ -228,7 +239,9 @@ class GraphAdjacencyList: GraphType {
             tempAdjvex.append(minLeafNoteData)
             
             //6.递归下一个节点
-            createMiniSpanTreePrim(index: minLeafNoteData, leafNotes: varLeafNotes, adjvex: tempAdjvex)
+            createMiniSpanTreePrim(index: minLeafNoteData,
+                                   leafNotes: varLeafNotes,
+                                   adjvex: tempAdjvex)
         }
     }
     

@@ -34,3 +34,10 @@ testGraph(graph: GraphAdjacencyMatrix())
 print("\n邻接链表:")
 testGraph(graph: GraphAdjacencyList())
 
+
+//对权值从小到大进行排序
+let sortRelation = relation.sorted { (item1, item2) -> Bool in
+    return  Int(item1.2 as! NSNumber) < Int(item2.2 as! NSNumber)
+}
+
+print(sortRelation)
