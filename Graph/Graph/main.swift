@@ -40,4 +40,9 @@ let sortRelation = relation.sorted { (item1, item2) -> Bool in
     return  Int(item1.2 as! NSNumber) < Int(item2.2 as! NSNumber)
 }
 
-print(sortRelation)
+for item in sortRelation {
+    print("\(item.0) --\(item.2)--> \(item.1)")
+}
+
+//print(sortRelation)
+

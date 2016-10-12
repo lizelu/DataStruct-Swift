@@ -138,15 +138,22 @@ class GraphAdjacencyList: GraphType {
             if preEndIndex != nextEndIndex {
                 
                 parent[preEndIndex] = nextEndIndex //更新尾部节点
-                insertNoteToMiniTree(preIndex: beginNoteIndex, linkIndex: endNoteIndex, weightNumber: weightNumber);
+                insertNoteToMiniTree(preIndex: beginNoteIndex,
+                                     linkIndex: endNoteIndex,
+                                     weightNumber: weightNumber);
             }
         }
         
         displayGraph(graph: miniTree)
     }
     
-    private func insertNoteToMiniTree(preIndex: Int, linkIndex: Int, weightNumber: Int) {
-        let note = GraphAdjacencyListNote(data: linkIndex as AnyObject, weightNumber: weightNumber, preNoteIndex: preIndex)
+    ///将合适的节点插入到新的邻接链表中
+    private func insertNoteToMiniTree(preIndex: Int,
+                                      linkIndex: Int,
+                                      weightNumber: Int) {
+        let note = GraphAdjacencyListNote(data: linkIndex as AnyObject,
+                                          weightNumber: weightNumber,
+                                          preNoteIndex: preIndex)
         note.next = miniTree[preIndex].next
         miniTree[preIndex].next = note
     }
