@@ -46,4 +46,9 @@ protocol GraphType {
      层次遍历最小生成树
      */
     func breadthFirstSearchTree()
+    
+    /**
+     最短路径--迪杰斯特拉算法
+     */
+    func shortestPathDijkstra(beginIndex: Int, endIndex: Int)
 }

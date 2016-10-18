@@ -233,6 +233,11 @@ class GraphAdjacencyMatrix: GraphType {
             visited.append(false)
         }
     }
+    
+    /**
+     最短路径--迪杰斯特拉算法
+     */
+    func shortestPathDijkstra(beginIndex: Int, endIndex: Int){}
 }
 
 

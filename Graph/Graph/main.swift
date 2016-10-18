@@ -28,21 +28,22 @@ func testGraph(graph: GraphType) {
     print()
 }
 
-print("邻接矩阵:")
-testGraph(graph: GraphAdjacencyMatrix())
+//print("邻接矩阵:")
+//testGraph(graph: GraphAdjacencyMatrix())
+//
+//print("\n邻接链表:")
+//testGraph(graph: GraphAdjacencyList())
 
-print("\n邻接链表:")
-testGraph(graph: GraphAdjacencyList())
 
+let relationDirectedGraph: Array<(Any, Any, Any)> =
+    [("A", "B", 10), ("A", "F", 11), ("B", "C", 18), ("B", "I", 12), ("B", "G", 16),
+     ("F", "G", 17), ("F", "E", 26), ("C", "I", 8), ("C", "D", 22), ("I", "D", 21),
+     ("G", "H", 19), ("G", "D", 24), ("H", "D", 16), ("E", "H", 7), ("E", "D", 20)];
 
-//对权值从小到大进行排序
-let sortRelation = relation.sorted { (item1, item2) -> Bool in
-    return  Int(item1.2 as! NSNumber) < Int(item2.2 as! NSNumber)
-}
+let graph = GraphAdjacencyList(notes: allGraphNote,
+                               relations: relationDirectedGraph,
+                               isNotDirection: false)
+graph.displayGraph()
+graph.shortestPathDijkstra(beginIndex: 0, endIndex: 3)
 
-for item in sortRelation {
-    print("\(item.0) --\(item.2)--> \(item.1)")
-}
-
-//print(sortRelation)
 
