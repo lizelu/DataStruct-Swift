@@ -130,7 +130,6 @@ class GraphAdjacencyList {
     
     func topoLogicalSort() {
         let stack: Stack = Stack()
-        
         //将入度为0的结点入栈
         for item in graph {
             if item.weightNumber == 0 {
@@ -165,8 +164,6 @@ class GraphAdjacencyList {
         } else {
             print("图中存在环路，不存在topo序列")
         }
-        
-       
     }
     
     func displayGraph() {
