@@ -20,5 +20,7 @@ let graph = GraphAdjacencyList(notes: allGraphNote,
                                isNotDirection: false)
 graph.displayGraph()
 
+graph.topoLogicalSort()
+
 
 

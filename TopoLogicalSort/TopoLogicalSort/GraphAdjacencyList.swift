@@ -21,11 +21,63 @@ class GraphAdjacencyListNote {
     }
 }
 
+class Stack {
+    private var stack: Array<GraphAdjacencyListNote> = []
+    
+    func isEmpty() -> Bool {
+        return stack.isEmpty
+    }
+    
+    func push(note: GraphAdjacencyListNote) {
+        stack.append(note)
+    }
+    
+    func pop() -> GraphAdjacencyListNote? {
+        if !isEmpty() {
+           return stack.removeLast()
+        }
+        return nil
+    }
+}
+
+class Queue {
+    private var queue: Array<GraphAdjacencyListNote> = []
+    
+    func count() -> Int {
+        return queue.count
+    }
+    
+    func isEmpty() -> Bool {
+        return queue.isEmpty
+    }
+    
+    func enQueue(note: GraphAdjacencyListNote) {
+        queue.append(note)
+    }
+    
+    func deQueue() -> GraphAdjacencyListNote? {
+        if !isEmpty() {
+            return queue.removeFirst()
+        }
+        return nil
+    }
+    
+    func display() {
+        for item in queue {
+            print(item.data, separator: "", terminator: " ")
+        }
+        print()
+    }
+}
+
+
 
 class GraphAdjacencyList {
     fileprivate var relation: Array<(Any, Any, Any)>
     fileprivate var graph: Array<GraphAdjacencyListNote>
     fileprivate var relationDic: Dictionary<String,Int>
+    
+    fileprivate var topoLogicalNoteQueue: Queue = Queue()
     
     init() {
         graph = []
@@ -76,6 +128,46 @@ class GraphAdjacencyList {
         }
     }
     
+    func topoLogicalSort() {
+        let stack: Stack = Stack()
+        
+        //将入度为0的结点入栈
+        for item in graph {
+            if item.weightNumber == 0 {
+                stack.push(note: item)
+            }
+        }
+        
+        while !stack.isEmpty() {
+            guard let note = stack.pop() else {
+                return
+            }
+            topoLogicalNoteQueue.enQueue(note: note)
+            
+            var cursor = note.next
+            while cursor != nil {
+                //因为index对应的节点进入了Topo排序的队列，所以将该节点到达的结点的入度减一
+                let index = Int((cursor?.data)! as! NSNumber)
+                graph[index].weightNumber -= 1
+                
+                //减一后，如果入度为0，则进入栈
+                if graph[index].weightNumber == 0  {
+                    stack.push(note: graph[index])
+                }
+                cursor = cursor?.next
+            }
+        }
+        
+        if topoLogicalNoteQueue.count() == graph.count {
+            //输出topo排序的序列
+            print("拓扑排序的序列为：")
+            topoLogicalNoteQueue.display()
+        } else {
+            print("图中存在环路，不存在topo序列")
+        }
+        
+       
+    }
     
     func displayGraph() {
         print("有向图：AOV网")
