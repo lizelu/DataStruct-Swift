@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>TopoLigicalSort.xcscheme</key>
+		<key>TopoLogicalSort.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>F4BF7FAA1DB70AFC00665F67</key>
+		<key>F4BF7FE81DB7570F00665F67</key>
 		<dict>
 			<key>primary</key>
 			<true/>

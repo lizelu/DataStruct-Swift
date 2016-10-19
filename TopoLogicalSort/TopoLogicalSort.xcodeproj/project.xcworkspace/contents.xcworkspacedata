@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:TopoLigicalSort.xcodeproj">
+      location = "self:TopoLogicalSort.xcodeproj">
    </FileRef>
 </Workspace>

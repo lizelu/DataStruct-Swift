@@ -7,14 +7,14 @@
     "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : 9223372036854775807,
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C8E12F7C-5D61-4004-8ECE-328AD65C1E9C",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E1D89175-EB38-4F95-8DC9-D273EE813E08",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : "",
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : "DataStruct-Swift\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "TopoLigicalSort",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TopoLogicalSort",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TopoLigicalSort\/TopoLigicalSort.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TopoLogicalSort\/TopoLogicalSort.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/CollectionViewControllerDemo.git",

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4BF7FAA1DB70AFC00665F67"
-               BuildableName = "TopoLigicalSort"
-               BlueprintName = "TopoLigicalSort"
-               ReferencedContainer = "container:TopoLigicalSort.xcodeproj">
+               BlueprintIdentifier = "F4BF7FE81DB7570F00665F67"
+               BuildableName = "TopoLogicalSort"
+               BlueprintName = "TopoLogicalSort"
+               ReferencedContainer = "container:TopoLogicalSort.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FAA1DB70AFC00665F67"
-            BuildableName = "TopoLigicalSort"
-            BlueprintName = "TopoLigicalSort"
-            ReferencedContainer = "container:TopoLigicalSort.xcodeproj">
+            BlueprintIdentifier = "F4BF7FE81DB7570F00665F67"
+            BuildableName = "TopoLogicalSort"
+            BlueprintName = "TopoLogicalSort"
+            ReferencedContainer = "container:TopoLogicalSort.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FAA1DB70AFC00665F67"
-            BuildableName = "TopoLigicalSort"
-            BlueprintName = "TopoLigicalSort"
-            ReferencedContainer = "container:TopoLigicalSort.xcodeproj">
+            BlueprintIdentifier = "F4BF7FE81DB7570F00665F67"
+            BuildableName = "TopoLogicalSort"
+            BlueprintName = "TopoLogicalSort"
+            ReferencedContainer = "container:TopoLogicalSort.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FAA1DB70AFC00665F67"
-            BuildableName = "TopoLigicalSort"
-            BlueprintName = "TopoLigicalSort"
-            ReferencedContainer = "container:TopoLigicalSort.xcodeproj">
+            BlueprintIdentifier = "F4BF7FE81DB7570F00665F67"
+            BuildableName = "TopoLogicalSort"
+            BlueprintName = "TopoLogicalSort"
+            ReferencedContainer = "container:TopoLogicalSort.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

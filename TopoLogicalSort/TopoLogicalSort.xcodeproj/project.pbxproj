@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F4BF7FAF1DB70AFC00665F67 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF7FAE1DB70AFC00665F67 /* main.swift */; };
-		F4BF7FB61DB70B3B00665F67 /* GraphAdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF7FB51DB70B3B00665F67 /* GraphAdjacencyList.swift */; };
+		F4BF7FED1DB7570F00665F67 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF7FEC1DB7570F00665F67 /* main.swift */; };
+		F4BF7FF41DB7573600665F67 /* GraphAdjacencyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BF7FF31DB7573600665F67 /* GraphAdjacencyList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F4BF7FA91DB70AFC00665F67 /* CopyFiles */ = {
+		F4BF7FE71DB7570F00665F67 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -24,13 +24,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F4BF7FAB1DB70AFC00665F67 /* TopoLigicalSort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TopoLigicalSort; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4BF7FAE1DB70AFC00665F67 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F4BF7FB51DB70B3B00665F67 /* GraphAdjacencyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAdjacencyList.swift; sourceTree = "<group>"; };
+		F4BF7FE91DB7570F00665F67 /* TopoLogicalSort */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TopoLogicalSort; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4BF7FEC1DB7570F00665F67 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F4BF7FF31DB7573600665F67 /* GraphAdjacencyList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphAdjacencyList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		F4BF7FA81DB70AFC00665F67 /* Frameworks */ = {
+		F4BF7FE61DB7570F00665F67 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,98 +40,98 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F4BF7FA21DB70AFC00665F67 = {
+		F4BF7FE01DB7570F00665F67 = {
 			isa = PBXGroup;
 			children = (
-				F4BF7FAD1DB70AFC00665F67 /* TopoLigicalSort */,
-				F4BF7FAC1DB70AFC00665F67 /* Products */,
+				F4BF7FEB1DB7570F00665F67 /* TopoLogicalSort */,
+				F4BF7FEA1DB7570F00665F67 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		F4BF7FAC1DB70AFC00665F67 /* Products */ = {
+		F4BF7FEA1DB7570F00665F67 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F4BF7FAB1DB70AFC00665F67 /* TopoLigicalSort */,
+				F4BF7FE91DB7570F00665F67 /* TopoLogicalSort */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F4BF7FAD1DB70AFC00665F67 /* TopoLigicalSort */ = {
+		F4BF7FEB1DB7570F00665F67 /* TopoLogicalSort */ = {
 			isa = PBXGroup;
 			children = (
-				F4BF7FB51DB70B3B00665F67 /* GraphAdjacencyList.swift */,
-				F4BF7FAE1DB70AFC00665F67 /* main.swift */,
+				F4BF7FF31DB7573600665F67 /* GraphAdjacencyList.swift */,
+				F4BF7FEC1DB7570F00665F67 /* main.swift */,
 			);
-			path = TopoLigicalSort;
+			path = TopoLogicalSort;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F4BF7FAA1DB70AFC00665F67 /* TopoLigicalSort */ = {
+		F4BF7FE81DB7570F00665F67 /* TopoLogicalSort */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F4BF7FB21DB70AFC00665F67 /* Build configuration list for PBXNativeTarget "TopoLigicalSort" */;
+			buildConfigurationList = F4BF7FF01DB7570F00665F67 /* Build configuration list for PBXNativeTarget "TopoLogicalSort" */;
 			buildPhases = (
-				F4BF7FA71DB70AFC00665F67 /* Sources */,
-				F4BF7FA81DB70AFC00665F67 /* Frameworks */,
-				F4BF7FA91DB70AFC00665F67 /* CopyFiles */,
+				F4BF7FE51DB7570F00665F67 /* Sources */,
+				F4BF7FE61DB7570F00665F67 /* Frameworks */,
+				F4BF7FE71DB7570F00665F67 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = TopoLigicalSort;
-			productName = TopoLigicalSort;
-			productReference = F4BF7FAB1DB70AFC00665F67 /* TopoLigicalSort */;
+			name = TopoLogicalSort;
+			productName = TopoLogicalSort;
+			productReference = F4BF7FE91DB7570F00665F67 /* TopoLogicalSort */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F4BF7FA31DB70AFC00665F67 /* Project object */ = {
+		F4BF7FE11DB7570F00665F67 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = ZeluLi;
 				TargetAttributes = {
-					F4BF7FAA1DB70AFC00665F67 = {
+					F4BF7FE81DB7570F00665F67 = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = F4BF7FA61DB70AFC00665F67 /* Build configuration list for PBXProject "TopoLigicalSort" */;
+			buildConfigurationList = F4BF7FE41DB7570F00665F67 /* Build configuration list for PBXProject "TopoLogicalSort" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = F4BF7FA21DB70AFC00665F67;
-			productRefGroup = F4BF7FAC1DB70AFC00665F67 /* Products */;
+			mainGroup = F4BF7FE01DB7570F00665F67;
+			productRefGroup = F4BF7FEA1DB7570F00665F67 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F4BF7FAA1DB70AFC00665F67 /* TopoLigicalSort */,
+				F4BF7FE81DB7570F00665F67 /* TopoLogicalSort */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F4BF7FA71DB70AFC00665F67 /* Sources */ = {
+		F4BF7FE51DB7570F00665F67 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4BF7FAF1DB70AFC00665F67 /* main.swift in Sources */,
-				F4BF7FB61DB70B3B00665F67 /* GraphAdjacencyList.swift in Sources */,
+				F4BF7FED1DB7570F00665F67 /* main.swift in Sources */,
+				F4BF7FF41DB7573600665F67 /* GraphAdjacencyList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F4BF7FB01DB70AFC00665F67 /* Debug */ = {
+		F4BF7FEE1DB7570F00665F67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -179,7 +179,7 @@
 			};
 			name = Debug;
 		};
-		F4BF7FB11DB70AFC00665F67 /* Release */ = {
+		F4BF7FEF1DB7570F00665F67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -219,7 +219,7 @@
 			};
 			name = Release;
 		};
-		F4BF7FB31DB70AFC00665F67 /* Debug */ = {
+		F4BF7FF11DB7570F00665F67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -227,7 +227,7 @@
 			};
 			name = Debug;
 		};
-		F4BF7FB41DB70AFC00665F67 /* Release */ = {
+		F4BF7FF21DB7570F00665F67 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -238,24 +238,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F4BF7FA61DB70AFC00665F67 /* Build configuration list for PBXProject "TopoLigicalSort" */ = {
+		F4BF7FE41DB7570F00665F67 /* Build configuration list for PBXProject "TopoLogicalSort" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F4BF7FB01DB70AFC00665F67 /* Debug */,
-				F4BF7FB11DB70AFC00665F67 /* Release */,
+				F4BF7FEE1DB7570F00665F67 /* Debug */,
+				F4BF7FEF1DB7570F00665F67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F4BF7FB21DB70AFC00665F67 /* Build configuration list for PBXNativeTarget "TopoLigicalSort" */ = {
+		F4BF7FF01DB7570F00665F67 /* Build configuration list for PBXNativeTarget "TopoLogicalSort" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F4BF7FB31DB70AFC00665F67 /* Debug */,
-				F4BF7FB41DB70AFC00665F67 /* Release */,
+				F4BF7FF11DB7570F00665F67 /* Debug */,
+				F4BF7FF21DB7570F00665F67 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F4BF7FA31DB70AFC00665F67 /* Project object */;
+	rootObject = F4BF7FE11DB7570F00665F67 /* Project object */;
 }
