@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>KeyPath.xcscheme</key>
+		<key>CriticalPath.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,7 +12,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>F4BF7FFD1DB7831400665F67</key>
+		<key>F4BF80121DB8AA5B00665F67</key>
 		<dict>
 			<key>primary</key>
 			<true/>

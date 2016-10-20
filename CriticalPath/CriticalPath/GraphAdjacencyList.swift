@@ -11,12 +11,12 @@ import Foundation
 
 /// 链表上的节点
 class GraphAdjacencyListNote {
-    var data: AnyObject
+    var index: Int
     var weightNumber: Int   //权值或者入度
     var next: GraphAdjacencyListNote?
     
-    init(data: AnyObject = "" as AnyObject, weightNumber: Int = 0) {
-        self.data = data
+    init(index: Int, weightNumber: Int = 0) {
+        self.index = index
         self.weightNumber = weightNumber
     }
 }
@@ -30,6 +30,17 @@ class Stack {
     
     func push(note: GraphAdjacencyListNote) {
         stack.append(note)
+    }
+    
+    func top() -> GraphAdjacencyListNote? {
+        if !isEmpty() {
+            return stack.last
+        }
+        return nil
+    }
+
+    func popAllItem() {
+        stack.removeAll()
     }
     
     func pop() -> GraphAdjacencyListNote? {
@@ -64,7 +75,7 @@ class Queue {
     
     func display() {
         for item in queue {
-            print(item.data, separator: "", terminator: " ")
+            print(item.index, separator: "", terminator: " ")
         }
         print()
     }
@@ -76,14 +87,11 @@ class GraphAdjacencyList {
     fileprivate var relation: Array<(Any, Any, Any)>
     fileprivate var graph: Array<GraphAdjacencyListNote>
     fileprivate var relationDic: Dictionary<String,Int>
+    fileprivate var notes: Array<Any>
     
     fileprivate var topoLogicalNoteQueue: Queue = Queue()
     
-    init() {
-        graph = []
-        relationDic = [:]
-        relation = []
-    }
+    fileprivate var etv: Array<Int> = []
     
     
     /// 有向图
@@ -97,6 +105,7 @@ class GraphAdjacencyList {
         graph = []
         relationDic = [:]
         relation = []
+        self.notes = notes
         createGraph(notes: notes, relation: relations)
     }
 
@@ -106,7 +115,7 @@ class GraphAdjacencyList {
         self.relation = relation
         
         for i in 0..<notes.count {
-            let note = GraphAdjacencyListNote(data: notes[i] as AnyObject)
+            let note = GraphAdjacencyListNote(index: i)
             graph.append(note)
             relationDic[notes[i] as! String] = i
         }
@@ -120,7 +129,7 @@ class GraphAdjacencyList {
             let weightNumber: Int = Int(item.2 as! NSNumber)
             
             //将该节点挂在邻接链表上
-            let note = GraphAdjacencyListNote(data: j as AnyObject, weightNumber: weightNumber)
+            let note = GraphAdjacencyListNote(index: j, weightNumber: weightNumber)
             note.next = graph[i].next
             graph[i].next = note
         
@@ -128,8 +137,15 @@ class GraphAdjacencyList {
         }
     }
     
+    
+    
     func topoLogicalSort() {
         let stack: Stack = Stack()
+        
+        for _ in 0..<graph.count {
+            etv.append(0)
+        }
+        
         //将入度为0的结点入栈
         for item in graph {
             if item.weightNumber == 0 {
@@ -146,13 +162,20 @@ class GraphAdjacencyList {
             var cursor = note.next
             while cursor != nil {
                 //因为index对应的节点进入了Topo排序的队列，所以将该节点到达的结点的入度减一
-                let index = Int((cursor?.data)! as! NSNumber)
+                let index = (cursor?.index)!
                 graph[index].weightNumber -= 1
                 
                 //减一后，如果入度为0，则进入栈
                 if graph[index].weightNumber == 0  {
                     stack.push(note: graph[index])
                 }
+                
+                //求出每个事件的最早发生的时间
+                let updateDistance = etv[note.index] + (cursor?.weightNumber)!
+                if updateDistance > etv[(cursor?.index)!] {
+                    etv[(cursor?.index)!] = updateDistance
+                }
+                
                 cursor = cursor?.next
             }
         }
@@ -160,19 +183,86 @@ class GraphAdjacencyList {
         if topoLogicalNoteQueue.count() == graph.count {
             //输出topo排序的序列
             print("拓扑排序的序列为：")
-            topoLogicalNoteQueue.display()
+            displaytopoLogicalNoteQueue()
         } else {
             print("图中存在环路，不存在topo序列")
         }
+        
+        print(etv)
+    }
+
+    
+    
+    
+    
+    
+//    func keyPath() {
+//        let inDegreeZeroStack: Stack = Stack()  //暂存入度为0的结点
+//        let findMaxPathStack: Stack = Stack()   //从入度为0的结点中选择权值最大的那个进入关键路径
+//        //将入度为0的结点入栈
+//        for item in graph {
+//            if item.weightNumber == 0 {
+//                inDegreeZeroStack.push(note: item)
+//            }
+//        }
+//        
+//        while !inDegreeZeroStack.isEmpty() {
+//            
+//            //将入度为0的结点push到findMaxPathStack中，用来寻找用时长的结点
+//            while !inDegreeZeroStack.isEmpty() {
+//                guard let note = inDegreeZeroStack.pop() else {
+//                    return
+//                }
+//                findMaxPathStack.push(note: note)
+//            }
+//            
+//            
+//            //寻找当前入度为0的结点中，权值最大的那个结点
+//            var max = findMaxPathStack.top()
+//            
+//            while !findMaxPathStack.isEmpty() {
+//                guard let note = findMaxPathStack.pop() else {
+//                    return
+//                }
+//                if (max?.weightNumber)! < note.weightNumber {
+//                    max = note
+//                }
+//                
+//                
+//                var cursor = graph[note.index].next              //遍历该结点对应的链表
+//                while cursor != nil {
+//                    //因为index对应的节点进入了Topo排序的队列，所以将该节点到达的结点的入度减一
+//                    let index = (cursor?.index)!
+//                    graph[index].weightNumber -= 1
+//                    
+//                    //减一后，如果入度为0，则进入栈
+//                    if graph[index].weightNumber == 0  {
+//                        inDegreeZeroStack.push(note: cursor!)
+//                    }
+//                    cursor = cursor?.next
+//                }
+//            }
+//            topoLogicalNoteQueue.enQueue(note: max!)
+//        }
+//       displaytopoLogicalNoteQueue()
+//    }
+    
+    func displaytopoLogicalNoteQueue() {
+        while !topoLogicalNoteQueue.isEmpty() {
+            let note = topoLogicalNoteQueue.deQueue()
+            print(notes[(note?.index)!], separator: "", terminator: ", ")
+        }
+        print()
     }
     
     func displayGraph() {
         print("有向图：AOV网")
         for i in 0..<graph.count {
             print("(\(i))", separator: "", terminator: "")
-            var cursor: GraphAdjacencyListNote? = graph[i]
+            print("\(notes[i])(\(graph[i].weightNumber))", separator: "", terminator: "\t->  ")
+            var cursor: GraphAdjacencyListNote? = graph[i].next
             while cursor != nil {
-                print("\(cursor!.data)(\(cursor!.weightNumber))", separator: "", terminator: "\t->  ")
+                print("\(cursor!.index)(\(cursor!.weightNumber))", separator: "", terminator: "\t->  ")
                 cursor = cursor?.next
             }
             print("nil")

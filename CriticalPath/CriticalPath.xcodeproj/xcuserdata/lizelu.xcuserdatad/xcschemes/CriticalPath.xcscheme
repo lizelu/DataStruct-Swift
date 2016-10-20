@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F4BF7FFD1DB7831400665F67"
-               BuildableName = "KeyPath"
-               BlueprintName = "KeyPath"
-               ReferencedContainer = "container:KeyPath.xcodeproj">
+               BlueprintIdentifier = "F4BF80121DB8AA5B00665F67"
+               BuildableName = "CriticalPath"
+               BlueprintName = "CriticalPath"
+               ReferencedContainer = "container:CriticalPath.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FFD1DB7831400665F67"
-            BuildableName = "KeyPath"
-            BlueprintName = "KeyPath"
-            ReferencedContainer = "container:KeyPath.xcodeproj">
+            BlueprintIdentifier = "F4BF80121DB8AA5B00665F67"
+            BuildableName = "CriticalPath"
+            BlueprintName = "CriticalPath"
+            ReferencedContainer = "container:CriticalPath.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +55,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FFD1DB7831400665F67"
-            BuildableName = "KeyPath"
-            BlueprintName = "KeyPath"
-            ReferencedContainer = "container:KeyPath.xcodeproj">
+            BlueprintIdentifier = "F4BF80121DB8AA5B00665F67"
+            BuildableName = "CriticalPath"
+            BlueprintName = "CriticalPath"
+            ReferencedContainer = "container:CriticalPath.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +74,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F4BF7FFD1DB7831400665F67"
-            BuildableName = "KeyPath"
-            BlueprintName = "KeyPath"
-            ReferencedContainer = "container:KeyPath.xcodeproj">
+            BlueprintIdentifier = "F4BF80121DB8AA5B00665F67"
+            BuildableName = "CriticalPath"
+            BlueprintName = "CriticalPath"
+            ReferencedContainer = "container:CriticalPath.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

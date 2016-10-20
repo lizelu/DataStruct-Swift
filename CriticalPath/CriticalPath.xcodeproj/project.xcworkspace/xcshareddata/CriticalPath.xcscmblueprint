@@ -7,14 +7,14 @@
     "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : 9223372036854775807,
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : 9223372036854775807
   },
-  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "98D2D77A-BD7C-427A-883D-F183BCDD0FE5",
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "A3CE263B-6C01-4A5F-8DE7-131D2B353E08",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "59B0DD3A0DC0B86D2A06DD4B68CBD1C997876614" : "",
     "E7A756F2ADE94DB0438E6A23DD265E5524A99FEE" : "DataStruct-Swift\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "KeyPath",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CriticalPath",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "KeyPath\/KeyPath.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CriticalPath\/CriticalPath.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lizelu\/CollectionViewControllerDemo.git",
