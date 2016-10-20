@@ -179,15 +179,7 @@ class GraphAdjacencyList {
                 cursor = cursor?.next
             }
         }
-        
-        if topoLogicalNoteQueue.count() == graph.count {
-            //输出topo排序的序列
-            print("拓扑排序的序列为：")
-            displaytopoLogicalNoteQueue()
-        } else {
-            print("图中存在环路，不存在topo序列")
-        }
-        
+    
         print(etv)
     }
 
@@ -248,11 +240,18 @@ class GraphAdjacencyList {
 //    }
     
     func displaytopoLogicalNoteQueue() {
-        while !topoLogicalNoteQueue.isEmpty() {
-            let note = topoLogicalNoteQueue.deQueue()
-            print(notes[(note?.index)!], separator: "", terminator: ", ")
+        
+        if topoLogicalNoteQueue.count() == graph.count {
+            //输出topo排序的序列
+            print("拓扑排序的序列为：")
+            while !topoLogicalNoteQueue.isEmpty() {
+                let note = topoLogicalNoteQueue.deQueue()
+                print(notes[(note?.index)!], separator: "", terminator: ", ")
+            }
+            print()
+        } else {
+            print("图中存在环路，不存在topo序列")
         }
-        print()
     }
     
     func displayGraph() {
