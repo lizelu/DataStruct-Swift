@@ -225,10 +225,9 @@ class GraphAdjacencyList {
                     let weightNumber = cursor?.weightNumber else {
                     return
                 }
-                let ete = etv[i]
-                let lte = ltv[index] - weightNumber
-               // print("\(ete, ltv[index], weightNumber, lte)")
-                if ete == lte {
+                
+                //如果最小时间与最大时间相等，那么该结点就是关键点
+                if etv[i] == ltv[index] - weightNumber {
                     print("\(notes[graph[i].index])--\(weightNumber)-->\(notes[index])")
                     sum += weightNumber
                 }
