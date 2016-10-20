@@ -79,6 +79,10 @@ class Queue {
         }
         print()
     }
+    
+    func getQueueArray() -> Array<GraphAdjacencyListNote> {
+        return queue;
+    }
 }
 
 
@@ -179,74 +183,73 @@ class GraphAdjacencyList {
                 cursor = cursor?.next
             }
         }
-    
+        displaytopoLogicalNoteQueue()
+        print("\n事件最小时间序列为：")
         print(etv)
+        
     }
 
     
+    func criticalPath() {
+        let topoLogicalNoteStack: Stack = Stack()
+        for note in topoLogicalNoteQueue.getQueueArray() {
+            topoLogicalNoteStack.push(note: note)
+        }
+        
+        var ltv: Array<Int> = []
+        for _ in 0..<graph.count {
+            ltv.append(etv[(topoLogicalNoteStack.top()?.index)!])
+        }
+        
+        
+        while !topoLogicalNoteStack.isEmpty() {
+            let note = topoLogicalNoteStack.pop()
+            var cursor = note?.next
+            while cursor != nil {
+                let updateDistance = ltv[(cursor?.index)!] - (cursor?.weightNumber)!
+                if updateDistance < ltv[(note?.index)!]{
+                    ltv[(note?.index)!] = updateDistance
+                }
+                cursor = cursor?.next
+            }
+        }
+        print("\n事件最大时间序列为：")
+        print(ltv)
+        
+        print("\n关键路径为：")
+        var sum = 0
+        for i in 0..<graph.count {
+            var cursor = graph[i].next
+            while cursor != nil {
+                guard let index = cursor?.index,
+                    let weightNumber = cursor?.weightNumber else {
+                    return
+                }
+                let ete = etv[i]
+                let lte = ltv[index] - weightNumber
+               // print("\(ete, ltv[index], weightNumber, lte)")
+                if ete == lte {
+                    print("\(notes[graph[i].index])--\(weightNumber)-->\(notes[index])")
+                    sum += weightNumber
+                }
+                cursor = cursor?.next
+            }
+        }
+        
+        print("\n所需总时间为：")
+        print(sum)
+
+    }
     
     
-    
-    
-//    func keyPath() {
-//        let inDegreeZeroStack: Stack = Stack()  //暂存入度为0的结点
-//        let findMaxPathStack: Stack = Stack()   //从入度为0的结点中选择权值最大的那个进入关键路径
-//        //将入度为0的结点入栈
-//        for item in graph {
-//            if item.weightNumber == 0 {
-//                inDegreeZeroStack.push(note: item)
-//            }
-//        }
-//        
-//        while !inDegreeZeroStack.isEmpty() {
-//            
-//            //将入度为0的结点push到findMaxPathStack中，用来寻找用时长的结点
-//            while !inDegreeZeroStack.isEmpty() {
-//                guard let note = inDegreeZeroStack.pop() else {
-//                    return
-//                }
-//                findMaxPathStack.push(note: note)
-//            }
-//            
-//            
-//            //寻找当前入度为0的结点中，权值最大的那个结点
-//            var max = findMaxPathStack.top()
-//            
-//            while !findMaxPathStack.isEmpty() {
-//                guard let note = findMaxPathStack.pop() else {
-//                    return
-//                }
-//                if (max?.weightNumber)! < note.weightNumber {
-//                    max = note
-//                }
-//                
-//                
-//                var cursor = graph[note.index].next              //遍历该结点对应的链表
-//                while cursor != nil {
-//                    //因为index对应的节点进入了Topo排序的队列，所以将该节点到达的结点的入度减一
-//                    let index = (cursor?.index)!
-//                    graph[index].weightNumber -= 1
-//                    
-//                    //减一后，如果入度为0，则进入栈
-//                    if graph[index].weightNumber == 0  {
-//                        inDegreeZeroStack.push(note: cursor!)
-//                    }
-//                    cursor = cursor?.next
-//                }
-//            }
-//            topoLogicalNoteQueue.enQueue(note: max!)
-//        }
-//       displaytopoLogicalNoteQueue()
-//    }
     
     func displaytopoLogicalNoteQueue() {
         
         if topoLogicalNoteQueue.count() == graph.count {
             //输出topo排序的序列
             print("拓扑排序的序列为：")
-            while !topoLogicalNoteQueue.isEmpty() {
-                let note = topoLogicalNoteQueue.deQueue()
-                print(notes[(note?.index)!], separator: "", terminator: ", ")
+            for note in topoLogicalNoteQueue.getQueueArray() {
+                print(notes[note.index], separator: "", terminator: ", ")
             }
             print()
         } else {
