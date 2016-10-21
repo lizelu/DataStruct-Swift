@@ -11,16 +11,12 @@ import Foundation
 let items: Array<String> = ["A", "B", "D", "", "", "E", "", "", "C", "","F", "", ""]
 let generalBinaryTree: GeneralBinaryTree = GeneralBinaryTree(items: items)
 
+//二叉树的遍历
 generalBinaryTree.preOrderTraverse()
 generalBinaryTree.inOrderTraverse()
 generalBinaryTree.afterOrderTraverse()
 
-func testGeneralBinaryTree() {
-    
-    
-}
-
-
+//二叉树的线索化
 func testThreadTree() {
     let binaryThreadTree = BinaryThreadTree(items: items)
     binaryThreadTree.inThread()
@@ -28,5 +24,4 @@ func testThreadTree() {
     binaryThreadTree.preOrderTraverse()
     
 }
-testGeneralBinaryTree()
 testThreadTree()

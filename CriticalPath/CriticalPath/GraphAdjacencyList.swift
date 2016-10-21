@@ -95,7 +95,8 @@ class GraphAdjacencyList {
     
     fileprivate var topoLogicalNoteQueue: Queue = Queue()
     
-    fileprivate var etv: Array<Int> = []
+    fileprivate var earliestTimeOfVertex: Array<Int> = []   //事件最早发生时间
+    fileprivate var latestTimeOfVertex: Array<Int> = []     //事件最迟发生时间
     
     
     /// 有向图
@@ -144,13 +145,12 @@ class GraphAdjacencyList {
     
     
     func topoLogicalSort() {
-        let stack: Stack = Stack()
-        
         for _ in 0..<graph.count {
-            etv.append(0)
+            earliestTimeOfVertex.append(0)
         }
         
         //将入度为0的结点入栈
+        let stack: Stack = Stack()
         for item in graph {
             if item.weightNumber == 0 {
                 stack.push(note: item)
@@ -175,9 +175,9 @@ class GraphAdjacencyList {
                 }
                 
                 //求出每个事件的最早发生的时间
-                let updateDistance = etv[note.index] + (cursor?.weightNumber)!
-                if updateDistance > etv[(cursor?.index)!] {
-                    etv[(cursor?.index)!] = updateDistance
+                let updateDistance = earliestTimeOfVertex[note.index] + (cursor?.weightNumber)!
+                if updateDistance > earliestTimeOfVertex[(cursor?.index)!] {
+                    earliestTimeOfVertex[(cursor?.index)!] = updateDistance
                 }
                 
                 cursor = cursor?.next
@@ -185,37 +185,39 @@ class GraphAdjacencyList {
         }
         displaytopoLogicalNoteQueue()
         print("\n事件最小时间序列为：")
-        print(etv)
-        
+        print(earliestTimeOfVertex)
     }
 
-    
-    func criticalPath() {
+    func countLatestTimeOfVertex() {
+        //将拓扑序按着从头到尾push到栈中
         let topoLogicalNoteStack: Stack = Stack()
         for note in topoLogicalNoteQueue.getQueueArray() {
             topoLogicalNoteStack.push(note: note)
         }
         
-        var ltv: Array<Int> = []
+        //初始化latestTimeOfVertex
         for _ in 0..<graph.count {
-            ltv.append(etv[(topoLogicalNoteStack.top()?.index)!])
+            latestTimeOfVertex.append(earliestTimeOfVertex[(topoLogicalNoteStack.top()?.index)!])
         }
-        
-        
+        //从后往前计算每个事件最迟发生的事件
         while !topoLogicalNoteStack.isEmpty() {
             let note = topoLogicalNoteStack.pop()
             var cursor = note?.next
             while cursor != nil {
-                let updateDistance = ltv[(cursor?.index)!] - (cursor?.weightNumber)!
-                if updateDistance < ltv[(note?.index)!]{
-                    ltv[(note?.index)!] = updateDistance
+                let updateDistance = latestTimeOfVertex[(cursor?.index)!] - (cursor?.weightNumber)!
+                if updateDistance < latestTimeOfVertex[(note?.index)!]{
+                    latestTimeOfVertex[(note?.index)!] = updateDistance
                 }
                 cursor = cursor?.next
             }
         }
-        print("\n事件最大时间序列为：")
-        print(ltv)
         
+        print("\n事件最迟时间序列为：")
+        print(latestTimeOfVertex)
+    }
+    
+    func criticalPath() {
+
         print("\n关键路径为：")
         var sum = 0
         for i in 0..<graph.count {
@@ -227,7 +229,7 @@ class GraphAdjacencyList {
                 }
                 
                 //如果最小时间与最大时间相等，那么该结点就是关键点
-                if etv[i] == ltv[index] - weightNumber {
+                if earliestTimeOfVertex[i] == latestTimeOfVertex[index] - weightNumber {
                     print("\(notes[graph[i].index])--\(weightNumber)-->\(notes[index])")
                     sum += weightNumber
                 }
@@ -235,9 +237,8 @@ class GraphAdjacencyList {
             }
         }
         
-        print("\n所需总时间为：")
+        print("\n关键路径总长度为：")
         print(sum)
-
     }
     
     
