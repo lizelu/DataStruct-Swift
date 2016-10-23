@@ -217,7 +217,6 @@ class GraphAdjacencyList {
     }
     
     func criticalPath() {
-
         print("\n关键路径为：")
         var sum = 0
         for i in 0..<graph.count {
