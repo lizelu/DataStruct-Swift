@@ -8,7 +8,7 @@
 
 import Foundation
 class BinarySearch {
-    /// 从头到尾顺序匹配
+    /// 二分查找
     ///
     /// - parameter itmes: 存储数据的数组
     /// - parameter item:  关键字
