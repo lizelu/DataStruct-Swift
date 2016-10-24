@@ -18,3 +18,4 @@ func testSearch(searchObject: SearchType) {
 testSearch(searchObject: SequentialSearch())
 testSearch(searchObject: BinarySearch())
 testSearch(searchObject: InterpolationSearch())
+testSearch(searchObject: FibonacciSearch())
