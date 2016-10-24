@@ -20,3 +20,12 @@ func testSequentialSearch() {
 }
 
 testSequentialSearch()
+
+
+func testBinarySearch() {
+    let items = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    let searchResult = BinarySearch.search(itmes: items,
+                                               item: "F")
+    print("F的索引为：\(searchResult)")
+}
+testBinarySearch()
