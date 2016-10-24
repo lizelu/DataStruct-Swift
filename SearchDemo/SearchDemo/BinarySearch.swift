@@ -18,13 +18,13 @@ class BinarySearch {
         var low = 0
         var high = itmes.count - 1
         
-        while low < high {
+        while low <= high {
             let middle = (low + high) / 2   //计算本轮循环中间的位置
             
             if item  > itmes[middle] {
-                low = middle                //查找后半边，更新low的值
+                low = middle + 1               //查找后半边，更新low的值
             } else if item < itmes[middle] {
-                high = middle               //查找前半边，更新high的值
+                high = middle - 1               //查找前半边，更新high的值
             } else {
                 return middle + 1           //返回值得索引
             }
