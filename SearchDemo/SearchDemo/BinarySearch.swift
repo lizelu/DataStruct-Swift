@@ -7,14 +7,14 @@
 //
 
 import Foundation
-class BinarySearch {
+class BinarySearch: SearchType {
     /// 二分查找
     ///
     /// - parameter itmes: 存储数据的数组
     /// - parameter item:  关键字
     ///
     /// - returns: 该关键字对应订的索引，返回0时说明没有找到该值
-    static func search(itmes: Array<String>, item: String) -> Int {
+    func search(items itmes: Array<Int>, item: Int) -> Int {
         var low = 0
         var high = itmes.count - 1
         

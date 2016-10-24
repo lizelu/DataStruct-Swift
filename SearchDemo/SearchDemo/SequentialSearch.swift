@@ -9,7 +9,7 @@
 
 import Foundation
 
-class SequentialSearch {
+class SequentialSearch: SearchType {
     
     
     /// 从头到尾顺序匹配
@@ -18,9 +18,9 @@ class SequentialSearch {
     /// - parameter item:  关键字
     ///
     /// - returns: 该关键字对应订的索引，返回0时说明没有找到该值
-    static func search(itmes: Array<AnyObject>, item: AnyObject) -> Int {
-        for i in 0..<itmes.count {
-            if item.isEqual(itmes[i]){
+    func search(items: Array<Int>, item: Int) -> Int {
+        for i in 0..<items.count {
+            if item == items[i]{
                 return i + 1
             }
         }
@@ -33,12 +33,12 @@ class SequentialSearch {
     /// - parameter item:  关键字
     ///
     /// - returns: 该关键字对应订的索引，返回0时说明没有找到该值
-    static func searchWithSentry(items: Array<AnyObject>, item: AnyObject) -> Int {
+    func searchWithSentry(items: Array<Int>, item: Int) -> Int {
         var itemsWithSentry = items
         itemsWithSentry.insert(item, at: 0) //将关键字设置成哨兵
         
         var i = itemsWithSentry.count - 1
-        while !item.isEqual(itemsWithSentry[i]) {
+        while item != itemsWithSentry[i] {
             i -= 1
         }
         

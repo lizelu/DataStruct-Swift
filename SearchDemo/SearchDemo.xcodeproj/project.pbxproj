@@ -11,6 +11,8 @@
 		F43A19481DBDB86800BA6390 /* BinarySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F43A19471DBDB86800BA6390 /* BinarySearch.swift */; };
 		F45069C81DBCF2F500B4CB7C /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45069C71DBCF2F500B4CB7C /* main.swift */; };
 		F4A58BE11DBDF24200CBDD98 /* InterpolationSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A58BE01DBDF24200CBDD98 /* InterpolationSearch.swift */; };
+		F4A58BE31DBE130F00CBDD98 /* FibonacciSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A58BE21DBE130F00CBDD98 /* FibonacciSearch.swift */; };
+		F4A58BE51DBE133800CBDD98 /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A58BE41DBE133800CBDD98 /* SearchType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,8 @@
 		F45069C41DBCF2F500B4CB7C /* SearchDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SearchDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45069C71DBCF2F500B4CB7C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		F4A58BE01DBDF24200CBDD98 /* InterpolationSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterpolationSearch.swift; sourceTree = "<group>"; };
+		F4A58BE21DBE130F00CBDD98 /* FibonacciSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FibonacciSearch.swift; sourceTree = "<group>"; };
+		F4A58BE41DBE133800CBDD98 /* SearchType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				F45069C71DBCF2F500B4CB7C /* main.swift */,
+				F4A58BE41DBE133800CBDD98 /* SearchType.swift */,
 				F43A19451DBDAA4400BA6390 /* SequentialSearch.swift */,
 				F43A19471DBDB86800BA6390 /* BinarySearch.swift */,
 				F4A58BE01DBDF24200CBDD98 /* InterpolationSearch.swift */,
+				F4A58BE21DBE130F00CBDD98 /* FibonacciSearch.swift */,
 			);
 			path = SearchDemo;
 			sourceTree = "<group>";
@@ -131,8 +137,10 @@
 			files = (
 				F43A19461DBDAA4400BA6390 /* SequentialSearch.swift in Sources */,
 				F45069C81DBCF2F500B4CB7C /* main.swift in Sources */,
+				F4A58BE31DBE130F00CBDD98 /* FibonacciSearch.swift in Sources */,
 				F4A58BE11DBDF24200CBDD98 /* InterpolationSearch.swift in Sources */,
 				F43A19481DBDB86800BA6390 /* BinarySearch.swift in Sources */,
+				F4A58BE51DBE133800CBDD98 /* SearchType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

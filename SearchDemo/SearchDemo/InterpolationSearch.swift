@@ -7,14 +7,14 @@
 //
 
 import Foundation
-class InterpolationSearch {
+class InterpolationSearch: SearchType {
     /// 二分查找
     ///
     /// - parameter itmes: 存储数据的数组
     /// - parameter item:  关键字
     ///
     /// - returns: 该关键字对应订的索引，返回0时说明没有找到该值
-    static func search(items: Array<Int>, item: Int) -> Int {
+    func search(items: Array<Int>, item: Int) -> Int {
         var low = 0
         var high = items.count - 1
         
@@ -27,9 +27,9 @@ class InterpolationSearch {
             //let middle = low + 1/2 * (high - low)    //二分查找的权值为1/2
             
             if item  > items[middle] {
-                low = middle + 1               //low的值得是middle的值加一，因为上面的计算结果有可能是low = middle
+                low = middle + 1
             } else if item < items[middle] {
-                high = middle - 1              //height的值得是middle的值减一，因为上面的计算结果有可能是low = middle
+                high = middle - 1
             } else {
                 return middle + 1           //返回值得索引
             }
