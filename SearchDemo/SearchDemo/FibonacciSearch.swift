@@ -5,15 +5,13 @@
 //  Created by Mr.LuDashi on 16/10/24.
 //  Copyright © 2016年 zeluli. All rights reserved.
 //
-
 import Foundation
 class FibonacciSearch: SearchType {
+    var fibonacciSequence: Array<Int> = []
     
-    let fibonacciSequence: Array<Int>
     init() {
         self.fibonacciSequence = createFibonacciSequence()
     }
-    
     
     /// 创建Fibonacci数列，F(n) = F(n-1) + F(n-2)，（n >= 2）
     ///
