@@ -5,12 +5,10 @@
 //  Created by Mr.LuDashi on 16/10/24.
 //  Copyright © 2016年 zeluli. All rights reserved.
 //
-//顺var查找
 
 import Foundation
 
 class SequentialSearch: SearchType {
-    
     
     /// 从头到尾顺序匹配
     ///
@@ -35,13 +33,16 @@ class SequentialSearch: SearchType {
     /// - returns: 该关键字对应订的索引，返回0时说明没有找到该值
     func searchWithSentry(items: Array<Int>, item: Int) -> Int {
         var itemsWithSentry = items
-        itemsWithSentry.insert(item, at: 0) //将关键字设置成哨兵
+        itemsWithSentry.append(item)
         
-        var i = itemsWithSentry.count - 1
+        var i = 0
         while item != itemsWithSentry[i] {
-            i -= 1
+            i += 1
         }
-        
+        //如果i匹配的是我们设置的哨兵，则匹配失败，返回0
+        if i == itemsWithSentry.count - 1 {
+            return 0
+        }
         return i
     }
     
