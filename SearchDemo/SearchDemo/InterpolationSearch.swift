@@ -17,8 +17,6 @@ class InterpolationSearch: SearchType {
     func search(items: Array<Int>, item: Int) -> Int {
         var low = 0
         var high = items.count - 1
-        
-        
         while low <= high {
             let difference = items[high] - items[low]
             let weight = Float(item - items[low]) / Float(difference)   //计算插值使用的权值

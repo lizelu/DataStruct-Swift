@@ -25,7 +25,7 @@ class SequentialSearch: SearchType {
         return 0;
     }
     
-    /// 将关键字设置成哨兵，从后往前进行查找
+    /// 将关键字设置成哨兵，从前往后进行查找
     ///
     /// - parameter itmes: 存储数据的数组
     /// - parameter item:  关键字
