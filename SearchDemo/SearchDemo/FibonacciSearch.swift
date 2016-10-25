@@ -20,8 +20,46 @@ class FibonacciSearch: SearchType {
         return fibonacciSequence
     }
     func search(items: Array<Int>, item: Int) -> Int {
+        
+        //寻找元素的个数在Fibonacci数列中对应区间的位置
         let fibonacciSequence = createFibonacciSequence()
-        print(fibonacciSequence)
+        var key = 0
+        while items.count >= fibonacciSequence[key] {
+            key += 1
+        }
+        
+        //将数组元素补齐，也就是让searchItems.count = fibonacciSequence[key]
+        var searchItems = items
+        for _ in 0..<(fibonacciSequence[key]-items.count) {
+            searchItems.append(items.last!)
+        }
+        
+        //查找数据
+        var low = 0
+        var high = items.count - 1
+        while low <= high {
+            //由Fibonacci数列求出mid的位置
+            //前半部分元素的个数为F(key - 1)
+            //那么后半部分元素的个数自然就为F(key - 2)
+            let mid = low + fibonacciSequence[key - 1] - 1
+            
+//            print("mid(\(mid + 1)) = \(searchItems[mid])")
+            
+            if item < searchItems[mid] {
+                high = mid - 1      //改变high的位置，查找范围的个数为F(key - 1)：前半部分的个数
+                key = key - 1       //因为查找范围的个数为F(key - 1)，所以更新key的值为key-1
+            } else if (item > searchItems[mid]) {
+                low = mid + 1       //更新low的位置，此刻查找范围的元素个数为F(key - 2):后半部分的个数
+                key = key - 2       //更新key的值
+            } else {
+                if mid < items.count {
+                    return mid + 1
+                } else {
+                    return items.count
+                }
+            }
+        }
         return 0
     }
+    
 }
