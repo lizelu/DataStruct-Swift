@@ -11,14 +11,17 @@ import Foundation
 let searchTable: Array<Int> = [62, 88, 58, 47, 62, 35, 73, 51, 99, 37, 93]
 let binarySearchTree = BinarySearchTree(items: searchTable)
 
-binarySearchTree.deleteNote(key: 99)
-binarySearchTree.inOrderTraverse()
+//binarySearchTree.deleteNote(key: 99)
+//binarySearchTree.inOrderTraverse()
+//
+//
+//binarySearchTree.deleteNote(key: 35)
+//binarySearchTree.inOrderTraverse()
+//
+//binarySearchTree.deleteNote(key: 37)
+//binarySearchTree.inOrderTraverse()
 
-
-binarySearchTree.deleteNote(key: 35)
-binarySearchTree.inOrderTraverse()
-
-binarySearchTree.deleteNote(key: 37)
+binarySearchTree.deleteNote(key: 62)
 binarySearchTree.inOrderTraverse()
 
 

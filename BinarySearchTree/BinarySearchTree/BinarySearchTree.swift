@@ -47,7 +47,6 @@ class BinarySearchTree {
         createBinarySearchTree()
     }
     
-    
     /// 根据提供的数据创建二叉排序树
     func createBinarySearchTree() {
         for key in items {
@@ -61,8 +60,6 @@ class BinarySearchTree {
         }
         inOrderTraverse()
     }
-    
-    
     
     /// 查找二叉排序树
     ///
@@ -90,12 +87,15 @@ class BinarySearchTree {
         }
         
         if key < (currentRoot?.data)! {
-            return searchBST(currentRoot: currentRoot?.leftChild, faterNote: currentRoot, key: key)
+            return searchBST(currentRoot: currentRoot?.leftChild,   //递归左子树
+                             faterNote: currentRoot,
+                             key: key)
         } else {
-            return searchBST(currentRoot: currentRoot?.rightChild, faterNote: currentRoot, key: key)
+            return searchBST(currentRoot: currentRoot?.rightChild,  //递归右子树
+                             faterNote: currentRoot,
+                             key: key)
         }
     }
-    
     
     /// 往二叉排序树上插入节点
     ///
@@ -103,7 +103,6 @@ class BinarySearchTree {
     /// - parameter key: 插入的数据
     func insertNote(faterNote: BinaryTreeNote?, key: Int) {
         let note = BinaryTreeNote(data: key)
-        
         if faterNote == nil { //创建根节点
             rootNote = note
             return
@@ -118,85 +117,9 @@ class BinarySearchTree {
     
     func deleteNote(key: Int) {
         let searchResult = searchBST(currentRoot: rootNote, faterNote: nil, key: key)
-        guard let searchNote = searchResult.searchNote else {
-            print("没有要删除的值")
-            return
-        }
-        
-        //叶子节点
-        if searchNote.leftChild == nil && searchNote.rightChild == nil {
-            deleteNoChildNote(searchResult: searchResult)
-            return
-        }
-        
-        //只有左子树
-        if searchNote.leftChild == nil && searchNote.rightChild != nil {
-            deleteNoteOnlyHaveRightChild(searchResult: searchResult)
-            return
-        }
-        
-        //只有右子树
-        if searchNote.leftChild != nil && searchNote.rightChild == nil {
-            deleteNoteOnlyHaveLeftChild(searchResult: searchResult)
-            return
-        }
-        
-        //既有左子树也有右子树
-        if searchNote.leftChild != nil && searchNote.rightChild != nil {
-//            deleteNoteOnlyHaveLeftChild(searchResult: searchResult)
-            return
-        }
-        
+        deleteNote(searchResult: searchResult)
     }
     
-    
-    /// 删除叶子节点
-    ///
-    /// - parameter searchResult: 查找结果
-    func deleteNoChildNote(searchResult: SearchResult) {
-        deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
-                                           subNote: nil)
-    }
-    
-    /// 要删除的节点只有左子树的情况
-    ///
-    /// - parameter searchResult: 查找结果
-    func deleteNoteOnlyHaveLeftChild(searchResult: SearchResult) {
-        deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
-                                           subNote: (searchResult.searchNote?.leftChild)!)
-    }
-    
-    /// 要删除的节点只有右子树的情况
-    ///
-    /// - parameter searchResult: 查找结果
-    func deleteNoteOnlyHaveRightChild(searchResult: SearchResult) {
-        deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
-                                           subNote: (searchResult.searchNote?.rightChild)!)
-    }
-    
-    /// 要删除的节点是叶子节点，有一个子节点的情况
-    ///
-    /// - parameter searchResult: 查找结果
-    func deleteNoteHaveZeroOrOneChild(searchResult: SearchResult, subNote: BinaryTreeNote?) {
-        guard let fatherNote = searchResult.fatherNote else {
-            //删除的节点为根节点
-            self.rootNote = subNote
-            searchResult.searchNote?.rightChild = nil
-            searchResult.searchNote?.leftChild = nil
-            return
-        }
-        
-        if (searchResult.searchNote?.data)! < fatherNote.data {
-            fatherNote.leftChild = subNote
-        } else {
-            fatherNote.rightChild = subNote
-        }
-        
-        searchResult.searchNote?.rightChild = nil
-        searchResult.searchNote?.leftChild = nil
-    }
-
-
     
     /**
      中序遍历
@@ -207,9 +130,107 @@ class BinarySearchTree {
         print("\n")
     }
     
+    private func deleteNote(searchResult: SearchResult) {
+        guard let searchNote = searchResult.searchNote else {
+            print("没有要删除的值")
+            return
+        }
+        
+        //叶子节点
+        if searchNote.leftChild == nil && searchNote.rightChild == nil {
+            deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
+                                         subNote: nil)
+            return
+        }
+        
+        //只有左子树的结点
+        if searchNote.leftChild != nil && searchNote.rightChild == nil {
+            deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
+                                         subNote: searchNote.leftChild)
+            return
+        }
+        
+        //只有右子树结点
+        if searchNote.leftChild == nil && searchNote.rightChild != nil {
+            deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
+                                         subNote: searchNote.rightChild)
+            return
+        }
+        
+        //既有左子树也有右子树结点
+        if searchNote.leftChild != nil && searchNote.rightChild != nil {
+           deleteNoteHaveTowChild(searchResult: searchResult)
+            return
+        }
+
+    }
+    
+    /// 删除叶子节点
+    ///
+    /// - parameter searchResult: 查找结果
+    private func deleteNoChildNote(searchResult: SearchResult) {
+        
+    }
+    
+    /// 要删除的节点只有左子树的情况
+    ///
+    /// - parameter searchResult: 查找结果
+    private func deleteNoteOnlyHaveLeftChild(searchResult: SearchResult) {
+        
+    }
+    
+    /// 要删除的节点只有右子树的情况
+    ///
+    /// - parameter searchResult: 查找结果
+    private func deleteNoteOnlyHaveRightChild(searchResult: SearchResult) {
+        deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
+                                           subNote: (searchResult.searchNote?.rightChild)!)
+    }
+    
+    
+    /// 要删除的结点既有左子树也有右子树
+    ///
+    /// - parameter searchResult: 查找结果对象
+    private func deleteNoteHaveTowChild(searchResult: SearchResult) {
+        //寻找删除结点右子树最左边的结点
+        let cursorSearchResult = SearchResult()
+        cursorSearchResult.fatherNote = searchResult.searchNote
+        cursorSearchResult.searchNote = searchResult.searchNote?.rightChild
+        cursorSearchResult.isFound = true
+        
+        while cursorSearchResult.searchNote?.leftChild != nil {
+            cursorSearchResult.fatherNote = cursorSearchResult.searchNote
+            cursorSearchResult.searchNote = cursorSearchResult.searchNote?.leftChild
+        }
+        
+        searchResult.searchNote?.data = (cursorSearchResult.searchNote?.data)!
+        deleteNote(searchResult: cursorSearchResult)
+    }
+    
+    /// 要删除的节点是叶子节点，有一个子节点的情况
+    ///
+    /// - parameter searchResult: 查找结果
+    private func deleteNoteHaveZeroOrOneChild(searchResult: SearchResult, subNote: BinaryTreeNote?) {
+        setNilForNote(note: searchResult.searchNote!)   //将要即将删除的结点的左右孩子的指针置空
+        guard let fatherNote = searchResult.fatherNote else {
+            self.rootNote = subNote //更新根节点
+            return
+        }
+        
+        if (searchResult.searchNote?.data)! < fatherNote.data {
+            fatherNote.leftChild = subNote  //要删除的结点是父节点的左孩子
+        } else {
+            fatherNote.rightChild = subNote //要删除的结点是父节点的右孩子
+        }
+    }
+    
+    private func setNilForNote(note: BinaryTreeNote) {
+        note.leftChild = nil
+        note.rightChild = nil
+    }
+    
     private func inOrderTraverse (note: BinaryTreeNote!) {
         guard let note = note else {
-//            print("空", separator: "", terminator: " ")
             return
         }
         inOrderTraverse(note: note.leftChild)
