@@ -123,21 +123,25 @@ class BinarySearchTree {
             return
         }
         
+        //叶子节点
         if searchNote.leftChild == nil && searchNote.rightChild == nil {
             deleteNoChildNote(searchResult: searchResult)
             return
         }
         
+        //只有左子树
         if searchNote.leftChild == nil && searchNote.rightChild != nil {
             deleteNoteOnlyHaveRightChild(searchResult: searchResult)
             return
         }
         
+        //只有右子树
         if searchNote.leftChild != nil && searchNote.rightChild == nil {
             deleteNoteOnlyHaveLeftChild(searchResult: searchResult)
             return
         }
         
+        //既有左子树也有右子树
         if searchNote.leftChild != nil && searchNote.rightChild != nil {
 //            deleteNoteOnlyHaveLeftChild(searchResult: searchResult)
             return
