@@ -10,9 +10,8 @@ import Foundation
 
 class BinaryTreeNote {
     var data: Int
-    
-    var leftChild: BinaryTreeNote!    //左节点
-    var rightChild: BinaryTreeNote!   //右节点
+    var leftChild: BinaryTreeNote!    //左节点指针
+    var rightChild: BinaryTreeNote!   //右节点指针
     
     init(data: Int) {
         self.data = data
@@ -68,7 +67,8 @@ class BinarySearchTree {
     /// - parameter key: 查找的关键字
     ///
     /// - returns:返回查找的结果对象
-    func searchBST(currentRoot: BinaryTreeNote?, faterNote: BinaryTreeNote?, key: Int) -> SearchResult {
+    func searchBST(currentRoot: BinaryTreeNote?,
+                   faterNote: BinaryTreeNote?, key: Int) -> SearchResult {
         let searchResult = SearchResult()
         
         //查找失败, 返回该节点的父类节点
