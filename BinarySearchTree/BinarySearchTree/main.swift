@@ -14,7 +14,6 @@ let binarySearchTree = BinarySearchTree(items: searchTable)
 binarySearchTree.deleteNote(key: 99)
 binarySearchTree.inOrderTraverse()
 
-
 binarySearchTree.deleteNote(key: 35)
 binarySearchTree.inOrderTraverse()
 
