@@ -162,31 +162,7 @@ class BinarySearchTree {
            deleteNoteHaveTowChild(searchResult: searchResult)
             return
         }
-
     }
-    
-    /// 删除叶子节点
-    ///
-    /// - parameter searchResult: 查找结果
-    private func deleteNoChildNote(searchResult: SearchResult) {
-        
-    }
-    
-    /// 要删除的节点只有左子树的情况
-    ///
-    /// - parameter searchResult: 查找结果
-    private func deleteNoteOnlyHaveLeftChild(searchResult: SearchResult) {
-        
-    }
-    
-    /// 要删除的节点只有右子树的情况
-    ///
-    /// - parameter searchResult: 查找结果
-    private func deleteNoteOnlyHaveRightChild(searchResult: SearchResult) {
-        deleteNoteHaveZeroOrOneChild(searchResult: searchResult,
-                                           subNote: (searchResult.searchNote?.rightChild)!)
-    }
-    
     
     /// 要删除的结点既有左子树也有右子树
     ///
@@ -224,11 +200,17 @@ class BinarySearchTree {
         }
     }
     
+    /// 将节点的左右子节点指针置为空
+    ///
+    /// - parameter note: <#note description#>
     private func setNilForNote(note: BinaryTreeNote) {
         note.leftChild = nil
         note.rightChild = nil
     }
     
+    /// 中序遍历二叉排序树
+    ///
+    /// - parameter note:
     private func inOrderTraverse (note: BinaryTreeNote!) {
         guard let note = note else {
             return
