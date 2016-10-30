@@ -153,7 +153,187 @@ class AVLTree {
         } else {
             faterNote?.rightChild = note
         }
+        
+        guard let noBalanceNote = findNoBalanceNote(currentNote: note) else {
+            return
+        }
+        print("不平衡点：值为\(noBalanceNote.data), 深度为\(noBalanceNote.depth), 平衡因子为\(noBalanceNote.balanceFactor)")
+        adjustBalance(noBalanceNote: noBalanceNote)
     }
+    
+    
+    /// 寻找不平衡子树的根节点
+    ///
+    /// - parameter currentNote: 返回该不平衡的结点
+    ///
+    /// - returns:
+    private func findNoBalanceNote(currentNote: AVLTreeNote) -> AVLTreeNote? {
+        var cursor = currentNote.fatherNote
+        while cursor != nil {
+            let banlaceFactor = (cursor?.balanceFactor)!
+            
+            if banlaceFactor < -1 || banlaceFactor > 1 {
+                return cursor
+            }
+            cursor = cursor?.fatherNote
+        }
+        return nil
+    }
+
+    enum NoBalanceType {
+        case LL //左左
+        case LR //左右
+        case RR //右右
+        case RL //右左
+    }
+
+    func adjustBalance(noBalanceNote: AVLTreeNote) {
+        guard let noBalanceType = fixNoBalanceType(noBalanceNote: noBalanceNote) else {
+            return
+        }
+        switch noBalanceType {
+        case .LL:
+            print("左左")
+            adjustBalanceLL(noBalanceNote: noBalanceNote)
+            inOrderTraverse()
+        case .LR:
+            adjustBalanceLR(noBalanceNote: noBalanceNote)
+            print("左右")
+        case .RR:
+            adjustBalanceRR(noBalanceNote: noBalanceNote)
+            print("右右")
+        case .RL:
+            print("右左")
+            adjustBalanceRL(noBalanceNote: noBalanceNote)
+        }
+    }
+    
+    
+    /// 调整左左的情况
+    ///
+    /// - parameter noBalanceNote: 要调整的结点
+    func adjustBalanceLL(noBalanceNote: AVLTreeNote) {
+        let currentLeftChild = noBalanceNote.leftChild
+        noBalanceNote.leftChild = currentLeftChild?.rightChild
+        currentLeftChild?.rightChild = noBalanceNote
+        
+        //获取要调整结点的父节点
+        guard let fatherNote = noBalanceNote.fatherNote else {
+            self.rootNote = currentLeftChild
+            noBalanceNote.fatherNote = currentLeftChild //更新父结点
+            currentLeftChild?.fatherNote = nil
+            return
+        }
+        
+        if (currentLeftChild?.data)! > fatherNote.data {
+            fatherNote.rightChild = currentLeftChild
+        } else {
+            fatherNote.leftChild = currentLeftChild
+        }
+        
+        //更新父结点
+        noBalanceNote.fatherNote = currentLeftChild
+        currentLeftChild?.fatherNote = fatherNote
+    }
+    
+    /// 调整左右的情况
+    ///
+    /// - parameter noBalanceNote: 要调整的结点
+    func adjustBalanceLR(noBalanceNote: AVLTreeNote) {
+        let currentLeftChild = noBalanceNote.leftChild
+        noBalanceNote.leftChild = currentLeftChild?.rightChild
+        currentLeftChild?.rightChild = currentLeftChild?.rightChild.leftChild
+        noBalanceNote.leftChild.leftChild = currentLeftChild
+        
+        //更新父节点
+        currentLeftChild?.fatherNote = noBalanceNote.leftChild
+        currentLeftChild?.rightChild?.fatherNote = currentLeftChild
+        noBalanceNote.leftChild.fatherNote = noBalanceNote
+        adjustBalanceLL(noBalanceNote: noBalanceNote)
+    }
+
+    
+    /// 调整右右的情况
+    ///
+    /// - parameter noBalanceNote: 要调整的结点
+    func adjustBalanceRR(noBalanceNote: AVLTreeNote) {
+        let currentRightChild = noBalanceNote.rightChild
+        noBalanceNote.rightChild = currentRightChild?.leftChild
+        currentRightChild?.leftChild = noBalanceNote
+        
+        guard let fatherNote = noBalanceNote.fatherNote else {
+            self.rootNote = currentRightChild
+            noBalanceNote.fatherNote = currentRightChild //更新父结点
+            currentRightChild?.fatherNote = nil
+            return
+        }
+        
+        if (currentRightChild?.data)! > fatherNote.data {
+            fatherNote.rightChild = currentRightChild
+        } else {
+            fatherNote.leftChild = currentRightChild
+        }
+        
+        //更新父结点
+        noBalanceNote.fatherNote = currentRightChild
+        currentRightChild?.fatherNote = fatherNote
+    }
+    
+    /// 调整右左的情况
+    ///
+    /// - parameter noBalanceNote: 要调整的结点
+    func adjustBalanceRL(noBalanceNote: AVLTreeNote) {
+        let currentRightChild = noBalanceNote.rightChild
+        noBalanceNote.rightChild = currentRightChild?.leftChild
+        currentRightChild?.leftChild = currentRightChild?.leftChild.rightChild
+        noBalanceNote.rightChild.rightChild = currentRightChild
+        
+        //更新父节点
+        currentRightChild?.fatherNote = noBalanceNote.rightChild
+        currentRightChild?.leftChild?.fatherNote = currentRightChild
+        noBalanceNote.rightChild.fatherNote = noBalanceNote
+        adjustBalanceRR(noBalanceNote: noBalanceNote)
+    }
+
+
+    
+    /// 确定不平衡的类型
+    ///
+    /// - parameter noBalanceNote: 不平衡子树的根节点
+    ///
+    /// - returns: 不平衡类型
+    func fixNoBalanceType(noBalanceNote: AVLTreeNote) -> NoBalanceType? {
+        let noBalanceFactor = noBalanceNote.balanceFactor
+        if noBalanceFactor == 2 {   //LL或者LR的情况
+            let leftChildBalanceFactor = noBalanceNote.leftChild.balanceFactor
+            if leftChildBalanceFactor == 1 {
+                return NoBalanceType.LL
+            }
+            
+            if leftChildBalanceFactor == 1 {
+                return NoBalanceType.LR
+            }
+        }
+        
+        if noBalanceFactor == -2 {  //RR或者RL的情况
+            let leftChildBalanceFactor = noBalanceNote.rightChild.balanceFactor
+            if leftChildBalanceFactor == -1 {
+                return NoBalanceType.RR
+            }
+            
+            if leftChildBalanceFactor == 1 {
+                return NoBalanceType.RL
+            }
+        }
+        
+        return nil
+    }
+    
+    
+    
+    
+    
+    
     
     func deleteNote(key: Int) {
         print("要删除的值为：\(key)")
