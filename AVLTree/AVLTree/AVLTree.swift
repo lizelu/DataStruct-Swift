@@ -55,7 +55,7 @@ class AVLTreeNote {
     }
     
     deinit {
-        print("\(self.data)释放")
+        print("\(self.data)被释放掉")
     }
 }
 
@@ -309,6 +309,8 @@ class AVLTree {
             if leftChildBalanceFactor == 1 {
                 return NoBalanceType.LR
             }
+            
+            return NoBalanceType.LL //删除结点时使用
         }
         
         if noBalanceFactor == -2 {  //RR或者RL的情况
@@ -320,6 +322,8 @@ class AVLTree {
             if leftChildBalanceFactor == 1 {
                 return NoBalanceType.RL
             }
+            
+            return NoBalanceType.RR     //删除结点时使用
         }
         
         return nil
@@ -424,7 +428,7 @@ class AVLTree {
         }
         subNote?.fatherNote = fatherNote
         
-//        findNoBalanceNote(currentNote: fatherNote)
+        findNoBalanceNote(currentNote: fatherNote)
     }
     
     /// 将节点的左右子节点指针置为空
