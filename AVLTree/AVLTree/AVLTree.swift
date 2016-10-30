@@ -92,10 +92,9 @@ class AVLTree {
             //如果查找失败，则插入到二叉排序树上
             if !searchResult.isFound {
                 insertNote(faterNote: searchResult.fatherNote, key: key)
-                inOrderTraverse()
             }
         }
-//        inOrderTraverse()
+        inOrderTraverse()
     }
     
     /// 查找二叉排序树
@@ -154,11 +153,7 @@ class AVLTree {
             faterNote?.rightChild = note
         }
         
-        guard let noBalanceNote = findNoBalanceNote(currentNote: note) else {
-            return
-        }
-        print("不平衡点：值为\(noBalanceNote.data), 深度为\(noBalanceNote.depth), 平衡因子为\(noBalanceNote.balanceFactor)")
-        adjustBalance(noBalanceNote: noBalanceNote)
+        findNoBalanceNote(currentNote: note)
     }
     
     
@@ -167,17 +162,18 @@ class AVLTree {
     /// - parameter currentNote: 返回该不平衡的结点
     ///
     /// - returns:
-    private func findNoBalanceNote(currentNote: AVLTreeNote) -> AVLTreeNote? {
+    private func findNoBalanceNote(currentNote: AVLTreeNote) {
         var cursor = currentNote.fatherNote
         while cursor != nil {
             let banlaceFactor = (cursor?.balanceFactor)!
             
             if banlaceFactor < -1 || banlaceFactor > 1 {
-                return cursor
+                print("不平衡点：值为\(cursor?.data), 深度为\(cursor?.depth), 平衡因子为\(cursor?.balanceFactor)")
+                adjustBalance(noBalanceNote: cursor!)
+                return
             }
             cursor = cursor?.fatherNote
         }
-        return nil
     }
 
     enum NoBalanceType {
@@ -193,9 +189,9 @@ class AVLTree {
         }
         switch noBalanceType {
         case .LL:
-            print("左左")
             adjustBalanceLL(noBalanceNote: noBalanceNote)
-            inOrderTraverse()
+            print("左左")
+           
         case .LR:
             adjustBalanceLR(noBalanceNote: noBalanceNote)
             print("左右")
@@ -427,6 +423,8 @@ class AVLTree {
             fatherNote.rightChild = subNote //要删除的结点是父节点的右孩子
         }
         subNote?.fatherNote = fatherNote
+        
+//        findNoBalanceNote(currentNote: fatherNote)
     }
     
     /// 将节点的左右子节点指针置为空
