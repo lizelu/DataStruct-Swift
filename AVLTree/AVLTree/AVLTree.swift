@@ -44,8 +44,11 @@ class AVLTreeNote {
         }
     }
     var data: Int                  //结点的值
+    var fatherNote: AVLTreeNote?
+    
     var leftChild: AVLTreeNote!    //左节点指针
     var rightChild: AVLTreeNote!   //右节点指针
+    
     
     init(data: Int) {
         self.data = data
@@ -138,6 +141,8 @@ class AVLTree {
     /// - parameter key: 插入的数据
     func insertNote(faterNote: AVLTreeNote?, key: Int) {
         let note = AVLTreeNote(data: key)
+        note.fatherNote = faterNote
+        
         if faterNote == nil { //创建根节点
             rootNote = note
             return
@@ -232,6 +237,7 @@ class AVLTree {
         setNilForNote(note: searchResult.searchNote!)   //将要即将删除的结点的左右孩子的指针置空
         guard let fatherNote = searchResult.fatherNote else {
             self.rootNote = subNote //更新根节点
+            subNote?.fatherNote = self.rootNote
             return
         }
         
@@ -240,6 +246,7 @@ class AVLTree {
         } else {
             fatherNote.rightChild = subNote //要删除的结点是父节点的右孩子
         }
+        subNote?.fatherNote = fatherNote
     }
     
     /// 将节点的左右子节点指针置为空
@@ -248,6 +255,7 @@ class AVLTree {
     private func setNilForNote(note: AVLTreeNote) {
         note.leftChild = nil
         note.rightChild = nil
+        note.fatherNote = nil
     }
     
     /// 中序遍历二叉排序树

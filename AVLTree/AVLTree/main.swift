@@ -9,5 +9,7 @@
 import Foundation
 
 let searchTable: Array<Int> = [3, 2, 1, 4, 5, 6, 7, 10, 9, 8]
-let binarySearchTree = AVLTree(items: searchTable)
+let avlTree = AVLTree(items: searchTable)
+avlTree.deleteNote(key: 1)
+avlTree.inOrderTraverse()
 
