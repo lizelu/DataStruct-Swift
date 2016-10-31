@@ -27,7 +27,6 @@ class AVLTreeNote {
             return 0
         }
     }
-    
     //结点的平衡因子为（平衡二叉树中的平衡因子为-1, 0, 1）
     var balanceFactor: Int {
         get {
@@ -45,11 +44,9 @@ class AVLTreeNote {
     }
     var data: Int                  //结点的值
     var fatherNote: AVLTreeNote?
-    
     var leftChild: AVLTreeNote!    //左节点指针
     var rightChild: AVLTreeNote!   //右节点指针
-    
-    
+
     init(data: Int) {
         self.data = data
     }
@@ -191,7 +188,6 @@ class AVLTree {
         case .LL:
             adjustBalanceLL(noBalanceNote: noBalanceNote)
             print("左左")
-           
         case .LR:
             adjustBalanceLR(noBalanceNote: noBalanceNote)
             print("左右")
