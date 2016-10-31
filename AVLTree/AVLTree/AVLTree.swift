@@ -203,6 +203,7 @@ class AVLTree {
             print("右左")
             adjustBalanceRL(noBalanceNote: noBalanceNote)
         }
+        print()
     }
     
     
