@@ -27,6 +27,7 @@ class AVLTreeNote {
             return 0
         }
     }
+    
     //结点的平衡因子为（平衡二叉树中的平衡因子为-1, 0, 1）
     var balanceFactor: Int {
         get {
@@ -42,11 +43,12 @@ class AVLTreeNote {
             return 0
         }
     }
+    
     var data: Int                  //结点的值
-    var fatherNote: AVLTreeNote?
+    var fatherNote: AVLTreeNote?   //指向父节点的指针
     var leftChild: AVLTreeNote!    //左节点指针
     var rightChild: AVLTreeNote!   //右节点指针
-
+    
     init(data: Int) {
         self.data = data
     }
@@ -186,14 +188,17 @@ class AVLTree {
         }
         switch noBalanceType {
         case .LL:
-            adjustBalanceLL(noBalanceNote: noBalanceNote)
             print("左左")
+            adjustBalanceLL(noBalanceNote: noBalanceNote)
+           
         case .LR:
-            adjustBalanceLR(noBalanceNote: noBalanceNote)
             print("左右")
+            adjustBalanceLR(noBalanceNote: noBalanceNote)
+            
         case .RR:
-            adjustBalanceRR(noBalanceNote: noBalanceNote)
             print("右右")
+            adjustBalanceRR(noBalanceNote: noBalanceNote)
+            
         case .RL:
             print("右左")
             adjustBalanceRL(noBalanceNote: noBalanceNote)
@@ -205,6 +210,7 @@ class AVLTree {
     ///
     /// - parameter noBalanceNote: 要调整的结点
     func adjustBalanceLL(noBalanceNote: AVLTreeNote) {
+        
         let currentLeftChild = noBalanceNote.leftChild
         noBalanceNote.leftChild = currentLeftChild?.rightChild
         currentLeftChild?.rightChild = noBalanceNote
@@ -232,6 +238,7 @@ class AVLTree {
     ///
     /// - parameter noBalanceNote: 要调整的结点
     func adjustBalanceLR(noBalanceNote: AVLTreeNote) {
+        
         let currentLeftChild = noBalanceNote.leftChild
         noBalanceNote.leftChild = currentLeftChild?.rightChild
         currentLeftChild?.rightChild = currentLeftChild?.rightChild.leftChild
@@ -241,6 +248,7 @@ class AVLTree {
         currentLeftChild?.fatherNote = noBalanceNote.leftChild
         currentLeftChild?.rightChild?.fatherNote = currentLeftChild
         noBalanceNote.leftChild.fatherNote = noBalanceNote
+        
         adjustBalanceLL(noBalanceNote: noBalanceNote)
     }
 
@@ -302,10 +310,9 @@ class AVLTree {
                 return NoBalanceType.LL
             }
             
-            if leftChildBalanceFactor == 1 {
+            if leftChildBalanceFactor == -1 {
                 return NoBalanceType.LR
             }
-            
             return NoBalanceType.LL //删除结点时使用
         }
         
@@ -321,7 +328,6 @@ class AVLTree {
             
             return NoBalanceType.RR     //删除结点时使用
         }
-        
         return nil
     }
     
