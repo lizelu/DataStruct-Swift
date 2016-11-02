@@ -10,7 +10,8 @@ import Foundation
 class HashTable {
     private var hashTable:Dictionary<Int, Int> = [:]
     private var list: Array<Int> = []
-    private var count: Int {
+    
+    var count: Int {
         get {
             return list.count
         }
@@ -19,6 +20,26 @@ class HashTable {
     init(list: Array<Int>) {
         self.list = list
         createHashTable()
+    }
+    
+    
+    /// 查找value的对应的位置
+    ///
+    /// - parameter value: 查找找Value的值
+    ///
+    /// - returns: 返回该Value对应的key
+    func search(value: Int) -> Int {
+        var key = hashFunction(value: value)
+        while hashTable[key] != value{
+            key = conflictMethod(value: key)
+        }
+        return key
+    }
+    
+    func displayHashTable()  {
+        for key in hashTable.keys {
+            print("key:\(key)--value:\(hashTable[key]!)")
+        }
     }
     
     
@@ -60,13 +81,13 @@ class HashTable {
         var key = value
         var cursor = hashTable[key]
         while cursor != nil {
-            key = conflictHandling(value: key)     //处理冲突
+            key = conflictMethod(value: key)     //处理冲突
             cursor = hashTable[key]
         }
         return key
     }
     
-    /// 散列函数
+    /// 散列函数, 默认是除留取余法
     ///
     /// - parameter value: 散列函数的参数
     ///
@@ -75,13 +96,36 @@ class HashTable {
         return value % count
     }
 
+    
+    /// 处理冲突的函数：默认是线性探测
+    ///
+    /// - parameter value: 要处理冲突的值
+    ///
+    /// - returns: 不冲突的key
     private func conflictMethod(value: Int) -> Int {
         return (value + 1) % count
     }
-    
-    
 }
 
-class HashTableSearch {
+class HashTableWithMod: HashTable {
+    /// 散列函数： 除留取余法
+    ///
+    /// - parameter value: 散列函数的参数
+    ///
+    /// - returns: 返回散列函数创建的值
+    private func hashFunction(value: Int) -> Int {
+        return value % self.count
+    }
     
+    
+    /// 处理冲突的函数：线性探测
+    ///
+    /// - parameter value: 要处理冲突的值
+    ///
+    /// - returns: 不冲突的key
+    private func conflictMethod(value: Int) -> Int {
+        return (value + 1) % self.count
+    }
 }
+
+
