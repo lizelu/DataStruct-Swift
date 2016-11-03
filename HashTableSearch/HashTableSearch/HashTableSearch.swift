@@ -10,7 +10,6 @@ import Foundation
 class HashTable {
     private var hashTable:Dictionary<Int, Int> = [:]
     private var list: Array<Int> = []
-    
     var count: Int {
         get {
             return list.count
@@ -21,7 +20,6 @@ class HashTable {
         self.list = list
         createHashTable()
     }
-    
     
     /// 查找value的对应的位置
     ///
@@ -36,12 +34,12 @@ class HashTable {
         return key
     }
     
+    /// 输出散列表中的元素
     func displayHashTable()  {
         for key in hashTable.keys {
             print("key:\(key)--value:\(hashTable[key]!)")
         }
     }
-    
     
     /// 创建散列表
     private func createHashTable() {
@@ -54,8 +52,10 @@ class HashTable {
     ///
     /// - parameter value: 需要添加到散列表中的数据
     private func add(value: Int) {
+        print("往hash表中插入\(value):")
         let key = createHashKey(value: value)
         hashTable[key] = value
+        print("插入完毕\n")
     }
     
     /// 生成hashKey
@@ -71,7 +71,6 @@ class HashTable {
         return key
     }
     
-    
     /// 处理冲突
     ///
     /// - parameter value: 冲突的key
@@ -81,28 +80,28 @@ class HashTable {
         var key = value
         var cursor = hashTable[key]
         while cursor != nil {
+            print("key:\(key)与value:\(cursor!)的key冲突，进行冲突处理key+=1")
             key = conflictMethod(value: key)     //处理冲突
             cursor = hashTable[key]
         }
         return key
     }
     
-    /// 散列函数, 默认是除留取余法
+    /// 散列函数, 由子类提供
     ///
     /// - parameter value: 散列函数的参数
     ///
     /// - returns: 返回散列函数创建的值
-    private func hashFunction(value: Int) -> Int {
+    func hashFunction(value: Int) -> Int {
         return value % count
     }
-
     
-    /// 处理冲突的函数：默认是线性探测
+    /// 处理冲突的函数：由子类提供
     ///
     /// - parameter value: 要处理冲突的值
     ///
     /// - returns: 不冲突的key
-    private func conflictMethod(value: Int) -> Int {
+    func conflictMethod(value: Int) -> Int {
         return (value + 1) % count
     }
 }
@@ -113,7 +112,7 @@ class HashTableWithMod: HashTable {
     /// - parameter value: 散列函数的参数
     ///
     /// - returns: 返回散列函数创建的值
-    private func hashFunction(value: Int) -> Int {
+    override func hashFunction(value: Int) -> Int {
         return value % self.count
     }
     
@@ -123,9 +122,34 @@ class HashTableWithMod: HashTable {
     /// - parameter value: 要处理冲突的值
     ///
     /// - returns: 不冲突的key
-    private func conflictMethod(value: Int) -> Int {
+    override func conflictMethod(value: Int) -> Int {
         return (value + 1) % self.count
     }
+}
+
+
+/// 直接定址法+随机数探测法
+class HashTableDirectDddressing: HashTable {
+    /// 散列函数：直接定址法
+    ///
+    /// - parameter value: 散列函数的参数
+    ///
+    /// - returns: 返回散列函数创建的值
+    override func hashFunction(value: Int) -> Int {
+        return value / self.count  //a * key + b
+    }
+    
+    
+    /// 处理冲突的函数：随机数探测法
+    ///
+    /// - parameter value: 要处理冲突的值
+    ///
+    /// - returns: 不冲突的key
+    override func conflictMethod(value: Int) -> Int {
+        let randomDisplacement = Int(arc4random_uniform(50))
+        return (value + randomDisplacement) % self.count
+    }
+
 }
 
 
