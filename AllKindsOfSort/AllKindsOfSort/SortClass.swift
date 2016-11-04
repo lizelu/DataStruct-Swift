@@ -16,7 +16,7 @@ class BubbleSort: SortType {
             print("第\(i + 1)轮冒泡：")
             var j = list.count - 1
             while j > i {
-                if list[j - 1] > list[j]  {
+                if list[j - 1] > list[j]  { //前边的大于后边的则进行交换
                     print("\(list[j - 1]) > \(list[j]): 进行交换")
                     let temp = list[j]
                     list[j] = list[j - 1]
@@ -42,6 +42,7 @@ class InsertSort: SortType{
             print("第\(i)轮插入：")
             print("要选择插入的值为：\(list[i])")
             
+            //寻找在有序表中相应插入的位置
             var insertIndex = -1
             for j in 0..<i {
                 if list[i] < list[j] {
@@ -51,14 +52,18 @@ class InsertSort: SortType{
             }
             print("要插入的位置为：\(insertIndex)")
             print("将", separator: "", terminator: " ")
+            
+            //后移并插入
             if insertIndex != -1 {
                 let insertValue = list[i]
                 var k = i
+                //将插入位置后方的元素平移动，腾出插入的位置
                 while k > insertIndex {
                     list[k] = list[k - 1]
                     k = k - 1
                     print("\(list[k])", separator: "", terminator: " ")
                 }
+                //插入值
                 list[insertIndex] = insertValue
                 print("依次右移", separator: "", terminator: "\n")
             }
@@ -80,6 +85,7 @@ class SimpleSelectionSort: SortType {
             var minValue = list[i]
             var minIndex = i
             
+            //寻找无序部分中的最小值
             while j < list.count {
                 if minValue > list[j] {
                     minValue = list[j]
@@ -88,6 +94,7 @@ class SimpleSelectionSort: SortType {
                 j = j + 1
             }
             print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
+            //与无序表中的第一个值交换，让其成为有序表中的最后一个值
             if minIndex != i {
                 print("\(minValue)与\(list[i])交换")
                 let temp = list[i]
