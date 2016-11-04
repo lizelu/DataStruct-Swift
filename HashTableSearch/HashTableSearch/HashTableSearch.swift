@@ -55,7 +55,7 @@ class HashTable {
         print("往hash表中插入\(value):")
         let key = createHashKey(value: value)
         hashTable[key] = value
-        print("插入完毕\n")
+        print("\(value)插入完毕，key为\(key)\n")
     }
     
     /// 生成hashKey
