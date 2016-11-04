@@ -34,7 +34,7 @@ class BubbleSort: SortType {
 }
 
 
-/// 插入排序
+/// 插入排序-O(n^2)
 class InsertSort: SortType{
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
@@ -70,7 +70,7 @@ class InsertSort: SortType{
 }
 
 
-/// 简单选择排序
+/// 简单选择排序－O(n^2)
 class SimpleSelectionSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
