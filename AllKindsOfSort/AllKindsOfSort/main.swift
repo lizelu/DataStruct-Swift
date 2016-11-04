@@ -15,4 +15,6 @@ func testSort(sortObject: SortType) {
     print(sortList)
 }
 
-testSort(sortObject: BubbleSort())
+//testSort(sortObject: BubbleSort())
+//testSort(sortObject: InsertSort())
+testSort(sortObject: SimpleSelectionSort())
