@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+/// 冒泡排序：时间复杂度----O(n^2)
 class BubbleSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
@@ -30,3 +32,15 @@ class BubbleSort: SortType {
         return list
     }
 }
+
+
+
+/// 简单选择排序
+class SimpleSelectionSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        var list = items
+        return list
+    }
+}
+
+
