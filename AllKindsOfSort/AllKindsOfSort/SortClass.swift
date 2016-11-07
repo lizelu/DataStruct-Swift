@@ -70,6 +70,18 @@ class SimpleSelectionSort: SortType {
 }
 
 
+
+/// 堆排序
+class HeapSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        print("简单选择排序")
+        var list = items
+        return list
+    }
+}
+
+
+
 /// 插入排序-O(n^2)
 class InsertSort: SortType{
     func sort(items: Array<Int>) -> Array<Int> {
