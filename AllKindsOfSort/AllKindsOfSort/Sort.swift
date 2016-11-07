@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol SortType {
     func sort(items: Array<Int>) -> Array<Int>
 }

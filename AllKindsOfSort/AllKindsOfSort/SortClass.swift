@@ -27,8 +27,8 @@ class BubbleSort: SortType {
                 }
                 j = j - 1
             }
-            print("第\(i + 1)轮冒泡结束")
-            print("当前结果为：\n\(list)\n")
+            print("第\(i + 1)轮冒泡结束，当前结果为：")
+            print("\(list)\n")
         }
         return list
     }
