@@ -34,47 +34,6 @@ class BubbleSort: SortType {
 }
 
 
-/// 插入排序-O(n^2)
-class InsertSort: SortType{
-    func sort(items: Array<Int>) -> Array<Int> {
-        var list = items
-        for i in 1..<list.count {
-            print("第\(i)轮插入：")
-            print("要选择插入的值为：\(list[i])")
-            
-            //寻找在有序表中相应插入的位置
-            var insertIndex = -1
-            for j in 0..<i {
-                if list[i] < list[j] {
-                    insertIndex = j
-                    break
-                }
-            }
-            print("要插入的位置为：\(insertIndex)")
-            print("将", separator: "", terminator: " ")
-            
-            //后移并插入
-            if insertIndex != -1 {
-                let insertValue = list[i]
-                var k = i
-                //将插入位置后方的元素平移动，腾出插入的位置
-                while k > insertIndex {
-                    list[k] = list[k - 1]
-                    k = k - 1
-                    print("\(list[k])", separator: "", terminator: " ")
-                }
-                //插入值
-                list[insertIndex] = insertValue
-                print("依次右移", separator: "", terminator: "\n")
-            }
-            print("本轮插入完毕, 插入结果为：\n\(list)\n")
-        }
-        return list
-        
-    }
-}
-
-
 /// 简单选择排序－O(n^2)
 class SimpleSelectionSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
@@ -104,7 +63,36 @@ class SimpleSelectionSort: SortType {
             print("本轮结果为：\(list)\n")
         }
         return list
+        
+    }
+}
 
+
+/// 插入排序-O(n^2)
+class InsertSort: SortType{
+    func sort(items: Array<Int>) -> Array<Int> {
+        print(items)
+        var list = items
+        for i in 1..<list.count {
+            print("第\(i)轮插入：")
+            print("要选择插入的值为：\(list[i])")
+            var j = i
+            while j > 0 {
+                if list[j] < list[j - 1]  {
+                    
+                    let temp = list[j]
+                    list[j] = list[j-1]
+                    list[j-1] = temp
+                    
+                    j = j - 1
+                } else {
+                    break
+                }
+            }
+            print("插入的位置为：\(j)")
+            print("本轮插入完毕, 插入结果为：\n\(list)\n")
+        }
+        return list
     }
 }
 

@@ -16,5 +16,5 @@ func testSort(sortObject: SortType) {
 }
 
 //testSort(sortObject: BubbleSort())
-//testSort(sortObject: InsertSort())
-testSort(sortObject: SimpleSelectionSort())
+testSort(sortObject: InsertSort())
+//testSort(sortObject: SimpleSelectionSort())
