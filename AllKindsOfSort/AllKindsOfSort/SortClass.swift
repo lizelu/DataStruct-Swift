@@ -63,6 +63,7 @@ class InsertSort: SortType{
     }
 }
 
+//希尔排序：时间复杂度----O(n^(3/2))
 class ShellSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         print("希尔排序")
@@ -70,7 +71,6 @@ class ShellSort: SortType {
         var step: Int = list.count / 2
         while step > 0 {
             print("步长为\(step)的插入排序开始：")
-    
             for i in 0..<list.count {
                 var j = i + step
                 while j >= step && j < list.count {
@@ -84,7 +84,6 @@ class ShellSort: SortType {
                     }
                 }
             }
-            
             print("步长为\(step)的插入排序结束")
             print("本轮排序结果为：\(list)\n")
             step = step / 2     //缩小步长
