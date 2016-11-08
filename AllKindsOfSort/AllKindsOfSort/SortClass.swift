@@ -35,63 +35,16 @@ class BubbleSort: SortType {
 }
 
 
-/// 简单选择排序－O(n^2)
-class SimpleSelectionSort: SortType {
-    func sort(items: Array<Int>) -> Array<Int> {
-        print("简单选择排序")
-        var list = items
-        for i in 0..<list.count {
-            print("第\(i+1)轮选择，选择下标的范围为\(i)----\(list.count)")
-            var j = i + 1
-            var minValue = list[i]
-            var minIndex = i
-            
-            //寻找无序部分中的最小值
-            while j < list.count {
-                if minValue > list[j] {
-                    minValue = list[j]
-                    minIndex = j
-                }
-                j = j + 1
-            }
-            print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
-            //与无序表中的第一个值交换，让其成为有序表中的最后一个值
-            if minIndex != i {
-                print("\(minValue)与\(list[i])交换")
-                let temp = list[i]
-                list[i] = list[minIndex]
-                list[minIndex] = temp
-            }
-            print("本轮结果为：\(list)\n")
-        }
-        return list
-        
-    }
-}
-
-
-
-/// 堆排序
-class HeapSort: SortType {
-    func sort(items: Array<Int>) -> Array<Int> {
-        print("简单选择排序")
-        var list = items
-        return list
-    }
-}
-
-
-
 /// 插入排序-O(n^2)
 class InsertSort: SortType{
     func sort(items: Array<Int>) -> Array<Int> {
         print("插入排序")
         var list = items
-        for i in 1..<list.count {
+        for i in 1..<list.count {   //循环无序数列
             print("第\(i)轮插入：")
             print("要选择插入的值为：\(list[i])")
             var j = i
-            while j > 0 {
+            while j > 0 {           //循环有序数列，插入相应的值
                 if list[j] < list[j - 1]  {
                     
                     let temp = list[j]
@@ -139,5 +92,51 @@ class ShellSort: SortType {
         return list
     }
 }
+
+/// 简单选择排序－O(n^2)
+class SimpleSelectionSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        print("简单选择排序")
+        var list = items
+        for i in 0..<list.count {
+            print("第\(i+1)轮选择，选择下标的范围为\(i)----\(list.count)")
+            var j = i + 1
+            var minValue = list[i]
+            var minIndex = i
+            
+            //寻找无序部分中的最小值
+            while j < list.count {
+                if minValue > list[j] {
+                    minValue = list[j]
+                    minIndex = j
+                }
+                j = j + 1
+            }
+            print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
+            //与无序表中的第一个值交换，让其成为有序表中的最后一个值
+            if minIndex != i {
+                print("\(minValue)与\(list[i])交换")
+                let temp = list[i]
+                list[i] = list[minIndex]
+                list[minIndex] = temp
+            }
+            print("本轮结果为：\(list)\n")
+        }
+        return list
+        
+    }
+}
+
+
+
+/// 堆排序
+class HeapSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        print("简单选择排序")
+        var list = items
+        return list
+    }
+}
+
 
 
