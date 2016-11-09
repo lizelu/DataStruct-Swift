@@ -130,11 +130,70 @@ class SimpleSelectionSort: SortType {
 
 /// 堆排序
 class HeapSort: SortType {
+    
     func sort(items: Array<Int>) -> Array<Int> {
-        print("简单选择排序")
+        print("堆排序：")
         var list = items
+        var endIndex = items.count - 1
+        
+        //创建大顶堆，其实就是将list转换成大顶堆层次的遍历结果
+        heapCreate(items: &list, endIndex: endIndex)
+
+        while endIndex > 0 {
+            //将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
+            let temp = list[0]
+            list[0] = list[endIndex]
+            list[endIndex] = temp
+            
+            endIndex -= 1   //缩小大顶堆的范围
+            
+            //对交换后的大顶堆进行调整，使其重新成为大顶堆
+            heapAdjast(items: &list, endIndex: endIndex + 1)
+        }
         return list
     }
+    
+    
+    /// 构建大顶堆的层次遍历序列（f(i) > f(2i), f(i) > f(2i+1) i > 0）
+    ///
+    /// - parameter items:    构建大顶堆的序列
+    /// - parameter endIndex: 大顶堆的尾结点
+    func heapCreate(items: inout Array<Int>, endIndex: Int) {
+        var cursorIndex = endIndex + 1
+        while cursorIndex > 0 {
+            //调整当前索引所有父节点，使其符合大顶堆的特点
+            heapAdjast(items: &items, endIndex: cursorIndex)
+            cursorIndex -= 2
+        }
+    }
+    
+    
+    /// 对大顶堆的局部进行调整，使其该节点的所有父类符合大顶堆的特点
+    ///
+    /// - parameter items:    list
+    /// - parameter endIndex: 当前要调整的节点
+    func heapAdjast(items: inout Array<Int>, endIndex: Int) {
+        var maxChildIndex = endIndex
+        while maxChildIndex / 2 > 0 {
+            let fatherIndex = maxChildIndex / 2 //求出当前节点的父节点
+            
+            //找出两个子节点中较大的那个节点的下标
+            if items[maxChildIndex - 1] < items[maxChildIndex - 2] {
+                maxChildIndex = maxChildIndex - 1
+            }
+            
+            //将该节点与父节点进行交换
+            if items[maxChildIndex - 1] > items[fatherIndex - 1] {
+                let temp = items[maxChildIndex - 1]
+                items[maxChildIndex - 1] = items[fatherIndex - 1]
+                items[fatherIndex - 1] = temp
+            }
+            
+            //将结果往上传递
+            maxChildIndex = fatherIndex
+        }
+    }
+
 }
 
 

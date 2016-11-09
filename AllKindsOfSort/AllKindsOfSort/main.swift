@@ -16,7 +16,8 @@ func testSort(sortObject: SortType) {
     print("\n\n\n\n")
 }
 
-testSort(sortObject: BubbleSort())
-testSort(sortObject: InsertSort())
-testSort(sortObject: SimpleSelectionSort())
-testSort(sortObject: ShellSort())
+//testSort(sortObject: BubbleSort())
+//testSort(sortObject: InsertSort())
+//testSort(sortObject: SimpleSelectionSort())
+//testSort(sortObject: ShellSort())
+testSort(sortObject: HeapSort())
