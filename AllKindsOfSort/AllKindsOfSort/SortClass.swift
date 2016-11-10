@@ -224,5 +224,50 @@ class HeapSort: SortType {
 
 }
 
+class MergingSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        let list = items
+        let first = [1,4,6,7,8]
+        let second = [3,4,5,6,7,9]
+        print(mergeArray(firstList: first, secondList: second))
+        
+        return list
+    }
+    
+    
+    /// 归并排序中的“并”--合并：将两个有序数组进行合并
+    ///
+    /// - parameter firstList:  第一个有序数组
+    /// - parameter secondList: 第二个有序数组
+    ///
+    /// - returns: <#return value description#>
+    func mergeArray(firstList: Array<Int>, secondList: Array<Int>) -> Array<Int> {
+        var resultList: Array<Int> = []
+        var firstIndex = 0
+        var secondIndex = 0
+        
+        while firstIndex < firstList.count && secondIndex < secondList.count {
+            if firstList[firstIndex] < secondList[secondIndex] {
+                resultList.append(firstList[firstIndex])
+                firstIndex += 1
+            } else {
+                resultList.append(secondList[secondIndex])
+                secondIndex += 1
+            }
+        }
+        
+        while firstIndex < firstList.count {
+            resultList.append(firstList[firstIndex])
+            firstIndex += 1
+        }
+        
+        while secondIndex < secondList.count {
+            resultList.append(secondList[firstIndex])
+            secondIndex += 1
+        }
+        
+        return resultList
+    }
+}
 
 

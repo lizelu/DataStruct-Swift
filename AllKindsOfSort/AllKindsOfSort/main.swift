@@ -20,4 +20,5 @@ func testSort(sortObject: SortType) {
 //testSort(sortObject: InsertSort())
 //testSort(sortObject: SimpleSelectionSort())
 //testSort(sortObject: ShellSort())
-testSort(sortObject: HeapSort())
+//testSort(sortObject: HeapSort())
+testSort(sortObject: MergingSort())
