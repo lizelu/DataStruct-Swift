@@ -139,9 +139,10 @@ class HeapSort: SortType {
         //创建大顶堆，其实就是将list转换成大顶堆层次的遍历结果
         heapCreate(items: &list)
 
-        print("堆排开始：")
+        print("原始堆：\(list)")
         while endIndex > 0 {
             //将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
+            print("将list[0]:\(list[0])与list[\(endIndex)]:\(list[endIndex])交换")
             let temp = list[0]
             list[0] = list[endIndex]
             list[endIndex] = temp
@@ -149,10 +150,8 @@ class HeapSort: SortType {
             endIndex -= 1   //缩小大顶堆的范围
             
             //对交换后的大顶堆进行调整，使其重新成为大顶堆
-            print("重新调整")
             heapAdjast(items: &list, endIndex: endIndex + 1)
-            print("调整后的结果如下")
-            print("\(list)\n")
+            print("调整后:\(list)\n")
         }
         return list
     }
