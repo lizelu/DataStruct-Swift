@@ -128,7 +128,7 @@ class SimpleSelectionSort: SortType {
 
 
 
-/// 堆排序
+/// 堆排序 (O(nlogn))
 class HeapSort: SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
@@ -224,6 +224,9 @@ class HeapSort: SortType {
 
 }
 
+
+
+/// 归并排序O(nlogn)
 class MergingSort: SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
@@ -287,5 +290,14 @@ class MergingSort: SortType {
         return resultList
     }
 }
+
+
+/// 快速排序
+class QuickSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        return items
+    }
+}
+
 
 
