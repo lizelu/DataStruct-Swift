@@ -225,13 +225,31 @@ class HeapSort: SortType {
 }
 
 class MergingSort: SortType {
+    
     func sort(items: Array<Int>) -> Array<Int> {
-        let list = items
-        let first = [1,4,6,7,8]
-        let second = [3,4,5,6,7,9]
-        print(mergeArray(firstList: first, secondList: second))
         
-        return list
+        //将数组中的每一个元素放入一个数组中
+        var tempArray: Array<Array<Int>> = []
+        for item in items {
+            var subArray: Array<Int> = []
+            subArray.append(item)
+            tempArray.append(subArray)
+        }
+        
+        //对这个数组中的数组进行合并，直到合并完毕为止
+        while tempArray.count != 1 {
+            print(tempArray)
+            var i = 0
+            while i < tempArray.count - 1 {
+                print("将\(tempArray[i])与\(tempArray[i+1])合并")
+                tempArray[i] = mergeArray(firstList: tempArray[i], secondList: tempArray[i + 1])
+                print("合并结果为：\(tempArray[i])\n")
+                tempArray.remove(at: i + 1)
+                i = i + 1
+            }
+        }
+
+        return tempArray.first!
     }
     
     
@@ -240,7 +258,7 @@ class MergingSort: SortType {
     /// - parameter firstList:  第一个有序数组
     /// - parameter secondList: 第二个有序数组
     ///
-    /// - returns: <#return value description#>
+    /// - returns: 返回排序好的数组
     func mergeArray(firstList: Array<Int>, secondList: Array<Int>) -> Array<Int> {
         var resultList: Array<Int> = []
         var firstIndex = 0
@@ -262,7 +280,7 @@ class MergingSort: SortType {
         }
         
         while secondIndex < secondList.count {
-            resultList.append(secondList[firstIndex])
+            resultList.append(secondList[secondIndex])
             secondIndex += 1
         }
         
