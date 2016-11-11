@@ -292,10 +292,57 @@ class MergingSort: SortType {
 }
 
 
-/// 快速排序
+/// 快速排序O(nlogn)
 class QuickSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
-        return items
+        var list = items
+        print("快速排序开始：")
+        quickSort(list: &list, low: 0, high: list.count-1)
+        print("快速排序结束！")
+        return list
+    }
+    
+    
+    /// 快速排序
+    ///
+    /// - parameter list: 要排序的数组
+    /// - parameter low: 数组的上界
+    /// - parameter high: <#high description#>
+    private func quickSort(list: inout Array<Int>, low: Int, high: Int) {
+        if low < high {
+            let mid = partition(list: &list, low: low, high: high)
+            quickSort(list: &list, low: low, high: mid - 1)   //递归前半部分
+            quickSort(list: &list, low: mid + 1, high: high)  //递归后半部分
+        }
+    }
+    
+    /// 将数组以第一个值为准分成两部分，前半部分比该值要小，后半部分比该值要大
+    ///
+    /// - parameter list: 要二分的数组
+    /// - parameter low:  数组的下界
+    /// - parameter high: 数组的上界
+    ///
+    /// - returns: 分界点
+
+    private func partition(list: inout Array<Int>, low: Int, high: Int) -> Int {
+        var low = low
+        var high = high
+        let temp = list[low]
+        while low < high {
+            
+            while low < high && list[high] >= temp {
+                high -= 1
+            }
+            list[low] = list[high]
+            
+            while low < high && list[low] <= temp {
+                low += 1
+            }
+            list[high] = list[low]
+        }
+        list[low] = temp
+        print(list)
+        return low
     }
 }
 
