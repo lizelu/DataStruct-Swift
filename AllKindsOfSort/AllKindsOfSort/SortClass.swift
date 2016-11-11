@@ -328,6 +328,7 @@ class QuickSort: SortType {
         var low = low
         var high = high
         let temp = list[low]
+        print("low[\(low)]:\(list[low]), high[\(high)]:\(list[high])")
         while low < high {
             
             while low < high && list[high] >= temp {
@@ -341,7 +342,8 @@ class QuickSort: SortType {
             list[high] = list[low]
         }
         list[low] = temp
-        print(list)
+        print("mid[\(low)]:\(list[low])")
+        print("\(list)\n")
         return low
     }
 }
