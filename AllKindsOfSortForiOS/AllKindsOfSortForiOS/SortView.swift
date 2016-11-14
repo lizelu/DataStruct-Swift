@@ -18,14 +18,13 @@ class SortView: UIView {
     }
     
     override func layoutSubviews() {
-        let y: CGFloat = frame.origin.y + ((self.superview?.frame.height)! - frame.height)
+        let y: CGFloat = (self.superview?.frame.height)! - frame.height
         self.frame = frame
         self.frame.origin.y = y
     }
     
     func updateHeight(height: CGFloat) {
         self.frame.size.height = height
-        self.frame.origin.y = 0
     }
     
     required init?(coder aDecoder: NSCoder) {

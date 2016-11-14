@@ -82,7 +82,7 @@ class ViewController: UIViewController {
     
     private func updateSortViewHeight(index: Int, value: CGFloat) {
         
-        UIView.animate(withDuration: 0.005) {
+        UIView.animate(withDuration:0) {
             self.sortViews[index].updateHeight(height: value)
             let weight = value / self.displayViewHeight
             let color = UIColor(hue: weight, saturation: 1, brightness: 1, alpha: 1)

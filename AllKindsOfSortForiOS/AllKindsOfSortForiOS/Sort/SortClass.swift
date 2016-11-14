@@ -155,7 +155,7 @@ class SimpleSelectionSort: SortBaseClass, SortType {
 class HeapSort: SortBaseClass, SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
-        print("堆排序：")
+        print("堆排序：\(items)")
         var list = items
         var endIndex = items.count - 1
         
@@ -163,7 +163,7 @@ class HeapSort: SortBaseClass, SortType {
         heapCreate(items: &list)
 
         print("原始堆：\(list)")
-        while endIndex > 0 {
+        while endIndex >= 0 {
             //将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
             print("将list[0]:\(list[0])与list[\(endIndex)]:\(list[endIndex])交换")
             let temp = list[0]
@@ -176,7 +176,7 @@ class HeapSort: SortBaseClass, SortType {
             endIndex -= 1   //缩小大顶堆的范围
             
             //对交换后的大顶堆进行调整，使其重新成为大顶堆
-            heapAdjast(items: &list, endIndex: endIndex + 1)
+            heapAdjast(items: &list, startIndex: 0,endIndex: endIndex + 1)
             print("调整后:\(list)\n")
         }
         return list
@@ -187,70 +187,39 @@ class HeapSort: SortBaseClass, SortType {
     ///
     /// - parameter items:    构建大顶堆的序列
     func heapCreate(items: inout Array<Int>) {
-        var cursorIndex = items.count
-        while cursorIndex > 0 {
-            
-            //调整当前索引所有父节点，使其符合大顶堆的特点
-            var maxChildIndex = cursorIndex
-            while maxChildIndex / 2 > 0 {
-                let fatherIndex = maxChildIndex / 2 //求出当前节点的父节点
-                //找出两个子节点中较大的那个节点的下标
-                if items[maxChildIndex - 1] < items[maxChildIndex - 2] {
-                    maxChildIndex = maxChildIndex - 1
-                }
-                
-                //将该节点与父节点进行交换
-                if items[maxChildIndex - 1] > items[fatherIndex - 1] {
-                    print("将list[\(maxChildIndex-1)]=\(items[maxChildIndex - 1])与"
-                        , separator:"", terminator:"")
-                    print("父节点list[\(fatherIndex-1)]=\(items[fatherIndex - 1])进行交换")
-                    let temp = items[maxChildIndex - 1]
-                    items[maxChildIndex - 1] = items[fatherIndex - 1]
-                    items[fatherIndex - 1] = temp
-                    
-                    displayResult(index: maxChildIndex - 1, value: items[maxChildIndex - 1])
-                    displayResult(index: fatherIndex - 1 , value: items[fatherIndex - 1])
-                }
-                
-                //将结果往上传递
-                maxChildIndex = fatherIndex
-            }
-
-            cursorIndex -= 2
-            print("本轮调整结果如下：")
-            print("\(items)\n")
+        var i = items.count
+        while i > 0 {
+            heapAdjast(items: &items, startIndex: i - 1, endIndex:items.count )
+            i -= 1
         }
-        print("大顶堆构层次遍历序列建完毕\n\n")
     }
     
     /// 对大顶堆的局部进行调整，使其该节点的所有父类符合大顶堆的特点
     ///
     /// - parameter items:    list
     /// - parameter endIndex: 当前要调整的节点
-    func heapAdjast(items: inout Array<Int>, endIndex: Int) {
-        var fatherIndex = 1                 //父节点下标
+    func heapAdjast(items: inout Array<Int>, startIndex: Int, endIndex: Int) {
+        let temp = items[startIndex]
+        var fatherIndex = startIndex + 1                 //父节点下标
         var maxChildIndex = 2 * fatherIndex //左孩子下标
-        while maxChildIndex < endIndex {
-            
+        while maxChildIndex <= endIndex {
             //比较左右孩子并找出比较大的下标
             if maxChildIndex < endIndex && items[maxChildIndex-1] < items[maxChildIndex] {
                 maxChildIndex = maxChildIndex + 1
             }
             
             //如果较大的那个子节点比根节点大，就将该节点的值赋给父节点
-            if items[fatherIndex-1] < items[maxChildIndex-1] {
-                
-                let temp = items[fatherIndex-1]
+            if temp < items[maxChildIndex-1] {
                 items[fatherIndex-1] = items[maxChildIndex-1]
-                items[maxChildIndex-1] = temp
-                
                 displayResult(index: fatherIndex-1, value: items[fatherIndex-1])
-                displayResult(index: maxChildIndex-1, value: items[maxChildIndex-1])
-                
+            } else {
+                break
             }
             fatherIndex = maxChildIndex
             maxChildIndex = 2 * fatherIndex
         }
+        items[fatherIndex-1] = temp
+        displayResult(index: fatherIndex-1, value: items[fatherIndex-1])
     }
 
 }
