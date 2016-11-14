@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var numberCountTextField: UITextField!
     var sortViews: Array<SortView> = []
     var sortViewHight: Array<Int> = []
-    var sort: SortType = BubbleSort()
+    var sort: SortType! = BubbleSort()
     
     var numberCount: Int = 200
     var displayViewHeight: CGFloat {
@@ -70,10 +70,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func updateSortViewHeight(index: Int, value: CGFloat) {
-        
-        UIView.animate(withDuration:0) {
-            self.sortViews[index].updateHeight(height: value)
-        }
+        self.sortViews[index].updateHeight(height: value)
     }
     
     override func didReceiveMemoryWarning() {
