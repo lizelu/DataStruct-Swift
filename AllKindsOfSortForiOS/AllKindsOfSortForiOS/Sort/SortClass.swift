@@ -169,6 +169,7 @@ class SimpleSelectionSort: SortBaseClass, SortType {
                     minValue = list[j]
                     minIndex = j
                 }
+                displayResult(index: j, value: list[j])
                 j = j + 1
             }
             //print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
