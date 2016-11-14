@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AllKindsOfSortForiOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JKJ-Xz-J8l">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="hFa-vq-Iy6"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="冒泡"/>
+                                    <segment title="选择"/>
+                                    <segment title="插入"/>
+                                    <segment title="希尔"/>
+                                    <segment title="堆排"/>
+                                    <segment title="归并"/>
+                                    <segment title="快排"/>
+                                </segments>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="tapSegmentContol:" destination="BYZ-38-t0r" eventType="valueChanged" id="a5R-eQ-eGF"/>
+                                </connections>
+                            </segmentedControl>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Kn-yc-Rs2">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="By2-pZ-ynA">
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="122" id="A8U-bf-IkW"/>
+                                </constraints>
+                                <state key="normal" title="排序">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tapSortButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBL-dj-cNu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8Kn-yc-Rs2" secondAttribute="trailing" constant="5" id="4n1-JC-0pO"/>
+                            <constraint firstItem="8Kn-yc-Rs2" firstAttribute="top" secondItem="JKJ-Xz-J8l" secondAttribute="bottom" constant="30" id="7xL-VY-Bja"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Kn-yc-Rs2" secondAttribute="bottom" constant="30" id="A2o-IQ-pko"/>
+                            <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Nhj-ya-9Pd"/>
+                            <constraint firstItem="By2-pZ-ynA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="SYJ-0a-OfR"/>
+                            <constraint firstItem="JKJ-Xz-J8l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="WA3-2d-bwY"/>
+                            <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="By2-pZ-ynA" secondAttribute="bottom" constant="8" id="bCS-Eg-wuM"/>
+                            <constraint firstAttribute="trailing" secondItem="By2-pZ-ynA" secondAttribute="trailing" constant="5" id="gOW-Qf-H9a"/>
+                            <constraint firstItem="8Kn-yc-Rs2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="h10-S4-qqt"/>
+                            <constraint firstAttribute="trailing" secondItem="JKJ-Xz-J8l" secondAttribute="trailing" constant="5" id="zLu-yd-rDL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="displayView" destination="8Kn-yc-Rs2" id="UFx-a9-xXT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178.40000000000001" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
