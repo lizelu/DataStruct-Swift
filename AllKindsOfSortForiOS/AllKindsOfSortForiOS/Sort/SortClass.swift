@@ -7,6 +7,46 @@
 //
 
 import Foundation
+
+
+enum SortTypeEnum: Int {
+    case BubbleSort = 0
+    case SelectSort
+    case InsertSort
+    case ShellSort
+    case HeapSort
+    case MergeSort
+    case QuickSort
+}
+
+class SortFactory {
+    static func create(type: SortTypeEnum) -> SortType {
+        switch type {
+        case .BubbleSort:
+            return BubbleSort()
+            
+        case .SelectSort:
+            return SimpleSelectionSort()
+            
+        case .InsertSort:
+            return InsertSort()
+            
+        case .ShellSort:
+            return ShellSort()
+            
+        case .HeapSort:
+            return HeapSort()
+            
+        case .MergeSort:
+            return MergingSort()
+            
+        case .QuickSort:
+            return QuickSort()
+        }
+    }
+}
+
+
 typealias SortResultClosure = (_ index: Int, _ value: Int) -> Void
 class SortBaseClass {
     var closure: SortResultClosure!
@@ -14,7 +54,7 @@ class SortBaseClass {
     func displayResult(index: Int, value: Int) {
         if closure != nil {
             closure(index, value)
-            Thread.sleep(forTimeInterval: 0.005)
+            Thread.sleep(forTimeInterval: 0.001)
         }
         
     }
@@ -26,7 +66,7 @@ class SortBaseClass {
 /// 冒泡排序：时间复杂度----O(n^2)
 class BubbleSort: SortBaseClass, SortType {
     func sort(items: Array<Int>) -> Array<Int> {
-        print("冒泡排序：")
+        //print("冒泡排序：")
         var list = items
         for i in 0..<list.count {
             var j = list.count - 1
@@ -51,11 +91,11 @@ class BubbleSort: SortBaseClass, SortType {
 /// 插入排序-O(n^2)
 class InsertSort: SortBaseClass, SortType{
     func sort(items: Array<Int>) -> Array<Int> {
-        print("插入排序")
+        //print("插入排序")
         var list = items
         for i in 1..<list.count {   //循环无序数列
-            print("第\(i)轮插入：")
-            print("要选择插入的值为：\(list[i])")
+            //print("第\(i)轮插入：")
+            //print("要选择插入的值为：\(list[i])")
             var j = i
             while j > 0 {           //循环有序数列，插入相应的值
                 if list[j] < list[j - 1]  {
@@ -72,8 +112,8 @@ class InsertSort: SortBaseClass, SortType{
                     break
                 }
             }
-            print("插入的位置为：\(j)")
-            print("本轮插入完毕, 插入结果为：\n\(list)\n")
+            //print("插入的位置为：\(j)")
+            //print("本轮插入完毕, 插入结果为：\n\(list)\n")
         }
         return list
     }
@@ -82,11 +122,11 @@ class InsertSort: SortBaseClass, SortType{
 //希尔排序：时间复杂度----O(n^(3/2))
 class ShellSort: SortBaseClass, SortType {
     func sort(items: Array<Int>) -> Array<Int> {
-        print("希尔排序")
+        //print("希尔排序")
         var list = items
         var step: Int = list.count / 2
         while step > 0 {
-            print("步长为\(step)的插入排序开始：")
+            //print("步长为\(step)的插入排序开始：")
             for i in 0..<list.count {
                 var j = i + step
                 while j >= step && j < list.count {
@@ -104,8 +144,8 @@ class ShellSort: SortBaseClass, SortType {
                     }
                 }
             }
-            print("步长为\(step)的插入排序结束")
-            print("本轮排序结果为：\(list)\n")
+            //print("步长为\(step)的插入排序结束")
+            //print("本轮排序结果为：\(list)\n")
             step = step / 2     //缩小步长
         }
         return list
@@ -115,10 +155,10 @@ class ShellSort: SortBaseClass, SortType {
 /// 简单选择排序－O(n^2)
 class SimpleSelectionSort: SortBaseClass, SortType {
     func sort(items: Array<Int>) -> Array<Int> {
-        print("简单选择排序")
+        //print("简单选择排序")
         var list = items
         for i in 0..<list.count {
-            print("第\(i+1)轮选择，选择下标的范围为\(i)----\(list.count)")
+            //print("第\(i+1)轮选择，选择下标的范围为\(i)----\(list.count)")
             var j = i + 1
             var minValue = list[i]
             var minIndex = i
@@ -131,10 +171,10 @@ class SimpleSelectionSort: SortBaseClass, SortType {
                 }
                 j = j + 1
             }
-            print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
+            //print("在后半部分乱序数列中，最小值为：\(minValue), 下标为：\(minIndex)")
             //与无序表中的第一个值交换，让其成为有序表中的最后一个值
             if minIndex != i {
-                print("\(minValue)与\(list[i])交换")
+                //print("\(minValue)与\(list[i])交换")
                 let temp = list[i]
                 list[i] = list[minIndex]
                 list[minIndex] = temp
@@ -142,7 +182,7 @@ class SimpleSelectionSort: SortBaseClass, SortType {
                 displayResult(index: i, value: list[i])
                 displayResult(index: minIndex, value: list[minIndex])
             }
-            print("本轮结果为：\(list)\n")
+            //print("本轮结果为：\(list)\n")
         }
         return list
         
@@ -155,17 +195,17 @@ class SimpleSelectionSort: SortBaseClass, SortType {
 class HeapSort: SortBaseClass, SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
-        print("堆排序：\(items)")
+        //print("堆排序：\(items)")
         var list = items
         var endIndex = items.count - 1
         
         //创建大顶堆，其实就是将list转换成大顶堆层次的遍历结果
         heapCreate(items: &list)
 
-        print("原始堆：\(list)")
+        //print("原始堆：\(list)")
         while endIndex >= 0 {
             //将大顶堆的顶点（最大的那个值）与大顶堆的最后一个值进行交换
-            print("将list[0]:\(list[0])与list[\(endIndex)]:\(list[endIndex])交换")
+            //print("将list[0]:\(list[0])与list[\(endIndex)]:\(list[endIndex])交换")
             let temp = list[0]
             list[0] = list[endIndex]
             list[endIndex] = temp
@@ -177,7 +217,7 @@ class HeapSort: SortBaseClass, SortType {
             
             //对交换后的大顶堆进行调整，使其重新成为大顶堆
             heapAdjast(items: &list, startIndex: 0,endIndex: endIndex + 1)
-            print("调整后:\(list)\n")
+            //print("调整后:\(list)\n")
         }
         return list
     }
@@ -241,12 +281,12 @@ class MergingSort: SortBaseClass, SortType {
         
         //对这个数组中的数组进行合并，直到合并完毕为止
         while tempArray.count != 1 {
-            print(tempArray)
+            //print(tempArray)
             var i = 0
             while i < tempArray.count - 1 {
-                print("将\(tempArray[i])与\(tempArray[i+1])合并")
+                //print("将\(tempArray[i])与\(tempArray[i+1])合并")
                 tempArray[i] = mergeArray(firstList: tempArray[i], secondList: tempArray[i + 1])
-                print("合并结果为：\(tempArray[i])\n")
+                //print("合并结果为：\(tempArray[i])\n")
                 tempArray.remove(at: i + 1)
                 i = i + 1
             }
@@ -299,9 +339,9 @@ class MergingSort: SortBaseClass, SortType {
 class QuickSort: SortBaseClass, SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
-        print("快速排序开始：")
+        //print("快速排序开始：")
         quickSort(list: &list, low: 0, high: list.count-1)
-        print("快速排序结束！")
+        //print("快速排序结束！")
         return list
     }
     
@@ -331,7 +371,7 @@ class QuickSort: SortBaseClass, SortType {
         var low = low
         var high = high
         let temp = list[low]
-        print("low[\(low)]:\(list[low]), high[\(high)]:\(list[high])")
+        //print("low[\(low)]:\(list[low]), high[\(high)]:\(list[high])")
         while low < high {
             
             while low < high && list[high] >= temp {
@@ -347,8 +387,9 @@ class QuickSort: SortBaseClass, SortType {
             displayResult(index: high, value: list[high])
         }
         list[low] = temp
-        print("mid[\(low)]:\(list[low])")
-        print("\(list)\n")
+        displayResult(index: low, value: list[low])
+        //print("mid[\(low)]:\(list[low])")
+        //print("\(list)\n")
         return low
     }
 }

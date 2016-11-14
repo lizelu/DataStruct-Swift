@@ -52,28 +52,51 @@
                                     <action selector="tapSortButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBL-dj-cNu"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="元素个数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9B-kZ-wOj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="20K-nB-By6"/>
+                                    <constraint firstAttribute="height" constant="21" id="vIC-jo-iTG"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJx-g4-YPK">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="63B-IB-tP6"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="By2-pZ-ynA" firstAttribute="leading" secondItem="sJx-g4-YPK" secondAttribute="trailing" constant="14" id="3Ec-Ps-uy9"/>
                             <constraint firstAttribute="trailing" secondItem="8Kn-yc-Rs2" secondAttribute="trailing" constant="5" id="4n1-JC-0pO"/>
+                            <constraint firstItem="G9B-kZ-wOj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6" id="5sy-ap-cXX"/>
                             <constraint firstItem="8Kn-yc-Rs2" firstAttribute="top" secondItem="JKJ-Xz-J8l" secondAttribute="bottom" constant="30" id="7xL-VY-Bja"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Kn-yc-Rs2" secondAttribute="bottom" constant="30" id="A2o-IQ-pko"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Nhj-ya-9Pd"/>
+                            <constraint firstItem="G9B-kZ-wOj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="17" id="R6v-sw-sIi"/>
                             <constraint firstItem="By2-pZ-ynA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="SYJ-0a-OfR"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="WA3-2d-bwY"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="By2-pZ-ynA" secondAttribute="bottom" constant="8" id="bCS-Eg-wuM"/>
+                            <constraint firstItem="sJx-g4-YPK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="fJ7-aU-8ib"/>
                             <constraint firstAttribute="trailing" secondItem="By2-pZ-ynA" secondAttribute="trailing" constant="5" id="gOW-Qf-H9a"/>
                             <constraint firstItem="8Kn-yc-Rs2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="h10-S4-qqt"/>
+                            <constraint firstItem="sJx-g4-YPK" firstAttribute="leading" secondItem="G9B-kZ-wOj" secondAttribute="trailing" constant="8" id="xso-9g-Tj2"/>
                             <constraint firstAttribute="trailing" secondItem="JKJ-Xz-J8l" secondAttribute="trailing" constant="5" id="zLu-yd-rDL"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="displayView" destination="8Kn-yc-Rs2" id="UFx-a9-xXT"/>
+                        <outlet property="numberCountTextField" destination="sJx-g4-YPK" id="S1l-0Z-qTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-178.40000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="-423" y="151"/>
         </scene>
     </scenes>
 </document>

@@ -8,25 +8,15 @@
 
 import UIKit
 
-enum SortTypeEnum: Int {
-    case BubbleSort = 0
-    case SelectSort
-    case InsertSort
-    case ShellSort
-    case HeapSort
-    case MergeSort
-    case QuickSort
-}
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var displayView: UIView!
+    @IBOutlet var numberCountTextField: UITextField!
     var sortViews: Array<SortView> = []
     var sortViewHight: Array<Int> = []
     var sort: SortType = BubbleSort()
     
-    let numberCount: Int = 50
-    
+    var numberCount: Int = 200
     var displayViewHeight: CGFloat {
         get {
             return displayView.frame.height
@@ -52,9 +42,8 @@ class ViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print(sortViewWidth)
-        print(displayViewWidth)
-        print(displayViewHeight)
+        self.numberCountTextField.delegate = self
+        self.numberCountTextField.text = "\(numberCount)"
         if sortViews.isEmpty {
             self.configSortViewHeight()
             self.addSortViews()
@@ -84,9 +73,6 @@ class ViewController: UIViewController {
         
         UIView.animate(withDuration:0) {
             self.sortViews[index].updateHeight(height: value)
-            let weight = value / self.displayViewHeight
-            let color = UIColor(hue: weight, saturation: 1, brightness: 1, alpha: 1)
-            self.sortViews[index].backgroundColor = color
         }
     }
     
@@ -102,30 +88,10 @@ class ViewController: UIViewController {
            self.updateSortViewHeight(index: i, value: CGFloat(sortViewHight[i]))
         }
         
-        let selectIndex: SortTypeEnum = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
-        switch selectIndex {
-        case .BubbleSort:
-            self.sort = BubbleSort()
-            
-        case .SelectSort:
-            self.sort = SimpleSelectionSort()
-            
-        case .InsertSort:
-            self.sort = InsertSort()
-            
-        case .ShellSort:
-            self.sort = ShellSort()
-            
-        case .HeapSort:
-            self.sort = HeapSort()
-        
-        case .MergeSort:
-            self.sort = MergingSort()
-        
-        case .QuickSort:
-            self.sort = QuickSort()
-        }
+        let sortType = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
+        self.sort = SortFactory.create(type: sortType)
     }
+    
     @IBAction func tapSortButton(_ sender: AnyObject) {
         sort.setSortResultClosure { (index, value) in
             let mainQueue: DispatchQueue = DispatchQueue.main
@@ -136,8 +102,29 @@ class ViewController: UIViewController {
         let queue: DispatchQueue = DispatchQueue.global()
         queue.async {
             self.sortViewHight = self.sort.sort(items: self.sortViewHight)
-            print(self.sortViewHight)
         }
+    }
+    
+    //MARK: -- UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let text = textField.text
+        guard let number: Int = Int(text!) else {
+            return true
+        }
+        numberCount = number
+        self.resetSubViews()
+        return true
+    }
+    
+    func resetSubViews()  {
+        for subView in self.sortViews  {
+            subView.removeFromSuperview()
+        }
+        self.sortViews.removeAll()
+        self.sortViewHight.removeAll()
+        self.configSortViewHeight()
+        self.addSortViews()
     }
 }
 
