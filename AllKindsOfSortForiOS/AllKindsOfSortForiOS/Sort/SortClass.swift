@@ -268,11 +268,10 @@ class HeapSort: SortBaseClass, SortType {
 
 /// 归并排序O(nlogn)
 class MergingSort: SortBaseClass, SortType {
-    
+    var tempArray: Array<Array<Int>> = []
     func sort(items: Array<Int>) -> Array<Int> {
-        
+        tempArray.removeAll()
         //将数组中的每一个元素放入一个数组中
-        var tempArray: Array<Array<Int>> = []
         for item in items {
             var subArray: Array<Int> = []
             subArray.append(item)
@@ -281,13 +280,16 @@ class MergingSort: SortBaseClass, SortType {
         
         //对这个数组中的数组进行合并，直到合并完毕为止
         while tempArray.count != 1 {
-            //print(tempArray)
             var i = 0
             while i < tempArray.count - 1 {
                 //print("将\(tempArray[i])与\(tempArray[i+1])合并")
                 tempArray[i] = mergeArray(firstList: tempArray[i], secondList: tempArray[i + 1])
-                //print("合并结果为：\(tempArray[i])\n")
                 tempArray.remove(at: i + 1)
+                for subIndex in 0..<tempArray[i].count{
+                   let index = self.countSubItemIndex(endIndex: i, subItemIndex: subIndex)
+                   self.displayResult(index: index, value: tempArray[i][subIndex])
+                    
+                }
                 i = i + 1
             }
         }
@@ -310,9 +312,6 @@ class MergingSort: SortBaseClass, SortType {
         while firstIndex < firstList.count && secondIndex < secondList.count {
             if firstList[firstIndex] < secondList[secondIndex] {
                 resultList.append(firstList[firstIndex])
-                
-//                displayResult(index: fatherIndex-1, value: items[fatherIndex-1])
-                
                 firstIndex += 1
             } else {
                 resultList.append(secondList[secondIndex])
@@ -331,6 +330,15 @@ class MergingSort: SortBaseClass, SortType {
         }
         
         return resultList
+    }
+    
+    func countSubItemIndex(endIndex: Int, subItemIndex: Int) -> Int {
+        var sum = 0
+        for i in 0..<endIndex {
+            sum += tempArray[i].count
+        }
+        
+        return sum + subItemIndex
     }
 }
 
