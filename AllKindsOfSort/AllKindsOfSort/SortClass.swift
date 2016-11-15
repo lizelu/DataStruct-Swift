@@ -128,7 +128,7 @@ class SimpleSelectionSort: SortType {
 
 
 
-/// 堆排序 (O(nlogn))
+/// 堆排序 ()
 class HeapSort: SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
@@ -199,7 +199,7 @@ class HeapSort: SortType {
 
 
 
-/// 归并排序O(nlogn)
+/// 归并排序
 class MergingSort: SortType {
     
     func sort(items: Array<Int>) -> Array<Int> {
@@ -265,7 +265,7 @@ class MergingSort: SortType {
 }
 
 
-/// 快速排序O(nlogn)
+/// 快速排序
 class QuickSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
@@ -318,6 +318,19 @@ class QuickSort: SortType {
         print("mid[\(low)]:\(list[low])")
         print("\(list)\n")
         return low
+    }
+}
+
+//基数排序
+class RadixSort: SortType {
+    func sort(items: Array<Int>) -> Array<Int> {
+        var list = items
+        radixSort(list: &list)
+        return list
+    }
+    
+    func radixSort(list: inout Array<Int>) {
+    
     }
 }
 
