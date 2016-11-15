@@ -48,6 +48,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.configSortViewHeight()
             self.addSortViews()
         }
+        weak var weak_self = self
+        sort.setEveryStepClosure(everyStepClosure: { (index, value) in
+            DispatchQueue.main.async {
+                weak_self?.updateSortViewHeight(index: index, value: CGFloat(value))
+            }
+        }) { (list) in
+            DispatchQueue.main.async {
+                weak_self?.modeMaskView.isHidden = true
+            }
+        }
+        
     }
     
     
@@ -92,16 +103,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         weak var weak_self = self
         sort.setEveryStepClosure(everyStepClosure: { (index, value) in  
-                let mainQueue: DispatchQueue = DispatchQueue.main
-                mainQueue.async {
+                DispatchQueue.main.async {
                     weak_self?.updateSortViewHeight(index: index, value: CGFloat(value))
                 }
             }) { (list) in
-                let mainQueue: DispatchQueue = DispatchQueue.main
-                mainQueue.async {
+                DispatchQueue.main.async {
                     weak_self?.modeMaskView.isHidden = true
                 }
-                print(list)     //排序成功后的回调
         }
     }
     
