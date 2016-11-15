@@ -91,12 +91,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sort = SortFactory.create(type: sortType)
         
         weak var weak_self = self
-        sort.setEveryStepClosure(everyStepClosure: { (index, value) in
-                DispatchQueue.main.async {
+        sort.setEveryStepClosure(everyStepClosure: { (index, value) in  
+                let mainQueue: DispatchQueue = DispatchQueue.main
+                mainQueue.async {
                     weak_self?.updateSortViewHeight(index: index, value: CGFloat(value))
                 }
             }) { (list) in
-                DispatchQueue.main.async {
+                let mainQueue: DispatchQueue = DispatchQueue.main
+                mainQueue.async {
                     weak_self?.modeMaskView.isHidden = true
                 }
                 print(list)     //排序成功后的回调
@@ -105,7 +107,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func tapSortButton(_ sender: AnyObject) {
         self.modeMaskView.isHidden = false
-        DispatchQueue(label: "Serial").async {
+        DispatchQueue.global().async {
             self.sortViewHight = self.sort.sort(items: self.sortViewHight)
         }
     }
