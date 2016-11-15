@@ -69,18 +69,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
+                            <view hidden="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drA-Pm-gkM">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="drA-Pm-gkM" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="6" id="2Ak-XZ-SPP"/>
                             <constraint firstItem="By2-pZ-ynA" firstAttribute="leading" secondItem="sJx-g4-YPK" secondAttribute="trailing" constant="14" id="3Ec-Ps-uy9"/>
                             <constraint firstAttribute="trailing" secondItem="8Kn-yc-Rs2" secondAttribute="trailing" constant="5" id="4n1-JC-0pO"/>
                             <constraint firstItem="G9B-kZ-wOj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="6" id="5sy-ap-cXX"/>
                             <constraint firstItem="8Kn-yc-Rs2" firstAttribute="top" secondItem="JKJ-Xz-J8l" secondAttribute="bottom" constant="30" id="7xL-VY-Bja"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8Kn-yc-Rs2" secondAttribute="bottom" constant="30" id="A2o-IQ-pko"/>
+                            <constraint firstItem="drA-Pm-gkM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="Crx-ES-9Hy"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Nhj-ya-9Pd"/>
                             <constraint firstItem="G9B-kZ-wOj" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="17" id="R6v-sw-sIi"/>
                             <constraint firstItem="By2-pZ-ynA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="SYJ-0a-OfR"/>
+                            <constraint firstItem="8Kn-yc-Rs2" firstAttribute="top" secondItem="drA-Pm-gkM" secondAttribute="bottom" constant="8" id="TS0-IC-u52"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="5" id="WA3-2d-bwY"/>
+                            <constraint firstAttribute="trailing" secondItem="drA-Pm-gkM" secondAttribute="trailing" constant="5" id="Z99-FG-dhw"/>
                             <constraint firstItem="JKJ-Xz-J8l" firstAttribute="top" secondItem="By2-pZ-ynA" secondAttribute="bottom" constant="8" id="bCS-Eg-wuM"/>
                             <constraint firstItem="sJx-g4-YPK" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="fJ7-aU-8ib"/>
                             <constraint firstAttribute="trailing" secondItem="By2-pZ-ynA" secondAttribute="trailing" constant="5" id="gOW-Qf-H9a"/>
@@ -91,12 +98,13 @@
                     </view>
                     <connections>
                         <outlet property="displayView" destination="8Kn-yc-Rs2" id="UFx-a9-xXT"/>
+                        <outlet property="modeMaskView" destination="drA-Pm-gkM" id="O4K-5a-ayr"/>
                         <outlet property="numberCountTextField" destination="sJx-g4-YPK" id="S1l-0Z-qTl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-423" y="151"/>
+            <point key="canvasLocation" x="-423.19999999999999" y="150.67466266866569"/>
         </scene>
     </scenes>
 </document>

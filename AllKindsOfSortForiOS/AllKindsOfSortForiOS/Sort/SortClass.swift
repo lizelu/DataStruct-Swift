@@ -10,15 +10,16 @@ import Foundation
 
 
 enum SortTypeEnum: Int {
-    case BubbleSort = 0
-    case SelectSort
-    case InsertSort
-    case ShellSort
-    case HeapSort
-    case MergeSort
-    case QuickSort
+    case BubbleSort = 0     //冒泡排序
+    case SelectSort         //选择排序
+    case InsertSort         //插入排序
+    case ShellSort          //希尔排序
+    case HeapSort           //堆排序
+    case MergeSort          //归并排序
+    case QuickSort          //快速排序
 }
 
+/// 排序类的简单工厂
 class SortFactory {
     static func create(type: SortTypeEnum) -> SortType {
         switch type {
@@ -48,18 +49,29 @@ class SortFactory {
 
 
 typealias SortResultClosure = (_ index: Int, _ value: Int) -> Void
+typealias SortSuccessClosure = (Array<Int>) -> Void
 class SortBaseClass {
-    var closure: SortResultClosure!
+    var everyStepClosure: SortResultClosure!
+    var sortSuccessClosure: SortSuccessClosure!
     
     func displayResult(index: Int, value: Int) {
-        if closure != nil {
-            closure(index, value)
+        if everyStepClosure != nil {
+            everyStepClosure(index, value)
             Thread.sleep(forTimeInterval: 0.001)
         }
         
     }
-    func setSortResultClosure(closure: @escaping SortResultClosure) -> Void {
-        self.closure = closure
+    
+    func successSort(sortList:Array<Int>) -> Void {
+        if self.sortSuccessClosure != nil {
+            self.sortSuccessClosure(sortList)
+        }
+    }
+    
+    func setEveryStepClosure(everyStepClosure: @escaping SortResultClosure,
+                             sortSuccessClosure: @escaping SortSuccessClosure) -> Void {
+        self.everyStepClosure = everyStepClosure
+        self.sortSuccessClosure = sortSuccessClosure
     }
 }
 
@@ -83,6 +95,7 @@ class BubbleSort: SortBaseClass, SortType {
                 j = j - 1
             }
         }
+        self.successSort(sortList: list)
         return list
     }
 }
@@ -115,6 +128,7 @@ class InsertSort: SortBaseClass, SortType{
             //print("插入的位置为：\(j)")
             //print("本轮插入完毕, 插入结果为：\n\(list)\n")
         }
+        self.successSort(sortList: list)
         return list
     }
 }
@@ -148,6 +162,7 @@ class ShellSort: SortBaseClass, SortType {
             //print("本轮排序结果为：\(list)\n")
             step = step / 2     //缩小步长
         }
+        self.successSort(sortList: list)
         return list
     }
 }
@@ -185,6 +200,7 @@ class SimpleSelectionSort: SortBaseClass, SortType {
             }
             //print("本轮结果为：\(list)\n")
         }
+        self.successSort(sortList: list)
         return list
         
     }
@@ -220,6 +236,7 @@ class HeapSort: SortBaseClass, SortType {
             heapAdjast(items: &list, startIndex: 0,endIndex: endIndex + 1)
             //print("调整后:\(list)\n")
         }
+        self.successSort(sortList: list)
         return list
     }
     
@@ -294,7 +311,7 @@ class MergingSort: SortBaseClass, SortType {
                 i = i + 1
             }
         }
-
+        self.successSort(sortList: tempArray.first!)
         return tempArray.first!
     }
     
@@ -351,6 +368,7 @@ class QuickSort: SortBaseClass, SortType {
         //print("快速排序开始：")
         quickSort(list: &list, low: 0, high: list.count-1)
         //print("快速排序结束！")
+        self.successSort(sortList: list)
         return list
     }
     

@@ -10,5 +10,6 @@ import Foundation
 
 protocol SortType {
     func sort(items: Array<Int>) -> Array<Int>
-    func setSortResultClosure(closure: @escaping SortResultClosure) -> Void
+    func setEveryStepClosure(everyStepClosure: @escaping SortResultClosure,
+                             sortSuccessClosure: @escaping SortSuccessClosure) -> Void
 }

@@ -12,6 +12,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var displayView: UIView!
     @IBOutlet var numberCountTextField: UITextField!
+    @IBOutlet var modeMaskView: UIView!
     var sortViews: Array<SortView> = []
     var sortViewHight: Array<Int> = []
     var sort: SortType! = BubbleSort()
@@ -37,7 +38,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     override func viewDidLayoutSubviews() {
@@ -50,6 +50,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    
+    /// 随机生成sortView的高度
     private func configSortViewHeight() {
         if !sortViewHight.isEmpty {
             sortViewHight.removeAll()
@@ -87,17 +89,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let sortType = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
         self.sort = SortFactory.create(type: sortType)
+        
+        weak var weak_self = self
+        sort.setEveryStepClosure(everyStepClosure: { (index, value) in
+                DispatchQueue.main.async {
+                    weak_self?.updateSortViewHeight(index: index, value: CGFloat(value))
+                }
+            }) { (list) in
+                DispatchQueue.main.async {
+                    weak_self?.modeMaskView.isHidden = true
+                }
+                print(list)     //排序成功后的回调
+        }
     }
     
     @IBAction func tapSortButton(_ sender: AnyObject) {
-        sort.setSortResultClosure { (index, value) in
-            let mainQueue: DispatchQueue = DispatchQueue.main
-            mainQueue.async {
-                self.updateSortViewHeight(index: index, value: CGFloat(value))
-            }
-        }
-        let queue: DispatchQueue = DispatchQueue.global()
-        queue.async {
+        self.modeMaskView.isHidden = false
+        DispatchQueue(label: "Serial").async {
             self.sortViewHight = self.sort.sort(items: self.sortViewHight)
         }
     }
