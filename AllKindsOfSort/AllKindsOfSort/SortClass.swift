@@ -330,6 +330,11 @@ class RadixSort: SortType {
     }
     
     func radixSort(list: inout Array<Int>) {
+        //初始化桶子
+        var bucket: Array<Array<Int>> = []
+        for _ in 0..<10 {
+            bucket.append([])
+        }
     
     }
 }
