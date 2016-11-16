@@ -31,6 +31,7 @@
                                     <segment title="堆排"/>
                                     <segment title="归并"/>
                                     <segment title="快排"/>
+                                    <segment title="基数"/>
                                 </segments>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

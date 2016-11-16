@@ -325,18 +325,92 @@ class QuickSort: SortType {
 class RadixSort: SortType {
     func sort(items: Array<Int>) -> Array<Int> {
         var list = items
-        radixSort(list: &list)
+        if list.count > 0 {
+            radixSort(list: &list)
+        }
         return list
     }
     
-    func radixSort(list: inout Array<Int>) {
-        //初始化桶子
+    
+    private func radixSort(list: inout Array<Int>) {
+        var bucket = createBucket()
+        let maxNumber = listMaxItem(list: list)
+        let maxLength = numberLength(number: maxNumber)
+        
+        for digit in 1...maxLength {
+            for item in list {
+                let baseNumber = fetchBaseNumber(number: item, digit: digit)
+                bucket[baseNumber].append(item) //根据基数入桶
+            }
+            
+            print(bucket)
+            
+            //出桶子
+            var index = 0
+            for i in 0..<bucket.count {
+                while !bucket[i].isEmpty {
+                    list[index] = bucket[i].remove(at: 0)
+                    index += 1
+                }
+            }
+        }
+    }
+    
+    /// 创建桶子
+    ///
+    /// - returns: 返回创建好的桶子
+    private func createBucket() -> Array<Array<Int>> {
         var bucket: Array<Array<Int>> = []
         for _ in 0..<10 {
             bucket.append([])
         }
-    
+        return bucket
     }
+    
+    
+    /// 计算序列中最大的那个数
+    ///
+    /// - parameter list: 数列
+    ///
+    /// - returns: 返回该数列中最大的值
+    private func listMaxItem(list: Array<Int>) -> Int {
+        var maxNumber = list[0]
+        for item in list {
+            if maxNumber < item {
+                maxNumber = item
+            }
+        }
+        return maxNumber
+    }
+
+    
+    /// 获取数字的长度
+    ///
+    /// - parameter number: 该数字
+    ///
+    /// - returns: 返回该数字的长度
+    func numberLength(number: Int) -> Int {
+        return "\(number)".characters.count
+    }
+    
+    
+    /// 获取相应位置的数字
+    ///
+    /// - parameter number: 操作的数字
+    /// - parameter digit:  位数
+    ///
+    /// - returns: 返回该位数上的数字
+    func fetchBaseNumber(number: Int, digit: Int) -> Int{
+        if digit > 0 && digit <= numberLength(number: number) {
+            var numbersArray: Array<Int> = []
+            for char in "\(number)".characters {
+                numbersArray.append(Int("\(char)")!)
+            }
+            return numbersArray[numbersArray.count - digit]
+        }
+        return 0
+    }
+
 }
 
 
