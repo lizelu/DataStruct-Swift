@@ -338,14 +338,13 @@ class RadixSort: SortType {
         let maxLength = numberLength(number: maxNumber)
         
         for digit in 1...maxLength {
+            //如桶
             for item in list {
                 let baseNumber = fetchBaseNumber(number: item, digit: digit)
-                bucket[baseNumber].append(item) //根据基数入桶
+                bucket[baseNumber].append(item) //根据基数进入相应的桶中
             }
             
-            print(bucket)
-            
-            //出桶子
+            //出桶
             var index = 0
             for i in 0..<bucket.count {
                 while !bucket[i].isEmpty {
@@ -356,7 +355,7 @@ class RadixSort: SortType {
         }
     }
     
-    /// 创建桶子
+    /// 创建10个桶
     ///
     /// - returns: 返回创建好的桶子
     private func createBucket() -> Array<Array<Int>> {
