@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var displayView: UIView!
     @IBOutlet var numberCountTextField: UITextField!
     @IBOutlet var modeMaskView: UIView!
+    
     var sortViews: Array<SortView> = []
     var sortViewHight: Array<Int> = []
     var sort: SortType! = BubbleSort()
