@@ -57,6 +57,40 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // MARK: - Response Event
+    @IBAction func tapSegmentContol(_ sender: UISegmentedControl) {
+        self.configSortViewHeight()
+        for i in 0..<self.sortViews.count {
+            self.updateSortViewHeight(index: i, value: CGFloat(sortViewHight[i]))
+        }
+        
+        let sortType = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
+        self.sort = SortFactory.create(type: sortType)
+        self.setSortClosure()
+    }
+    
+    @IBAction func tapSortButton(_ sender: AnyObject) {
+        self.modeMaskView.isHidden = false
+        DispatchQueue.global().async {
+            self.sortViewHight = self.sort.sort(items: self.sortViewHight)
+        }
+    }
+    
+    //MARK: -- UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let text = textField.text
+        guard let number: Int = Int(text!) else {
+            return true
+        }
+        numberCount = number
+        self.resetSubViews()
+        return true
+    }
+
+
+    //MARK: - Private Method
+    /// 设置排序对象相关的回调
     private func setSortClosure() {
         weak var weak_self = self
         sort.setEveryStepClosure(everyStepClosure: { (index, value) in
@@ -93,39 +127,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private func updateSortViewHeight(index: Int, value: CGFloat) {
         self.sortViews[index].updateHeight(height: value)
     }
-
-
-    @IBAction func tapSegmentContol(_ sender: UISegmentedControl) {
-        self.configSortViewHeight()
-        for i in 0..<self.sortViews.count {
-           self.updateSortViewHeight(index: i, value: CGFloat(sortViewHight[i]))
-        }
-        
-        let sortType = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
-        self.sort = SortFactory.create(type: sortType)
-        self.setSortClosure()
-    }
     
-    @IBAction func tapSortButton(_ sender: AnyObject) {
-        self.modeMaskView.isHidden = false
-        DispatchQueue.global().async {
-            self.sortViewHight = self.sort.sort(items: self.sortViewHight)
-        }
-    }
-    
-    //MARK: -- UITextFieldDelegate
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        let text = textField.text
-        guard let number: Int = Int(text!) else {
-            return true
-        }
-        numberCount = number
-        self.resetSubViews()
-        return true
-    }
-    
-    func resetSubViews()  {
+    private func resetSubViews()  {
         for subView in self.sortViews  {
             subView.removeFromSuperview()
         }
@@ -134,5 +137,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.configSortViewHeight()
         self.addSortViews()
     }
+    
 }
 
