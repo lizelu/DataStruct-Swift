@@ -39,6 +39,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setSortClosure()
     }
 
     override func viewDidLayoutSubviews() {
@@ -49,6 +50,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.configSortViewHeight()
             self.addSortViews()
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    private func setSortClosure() {
         weak var weak_self = self
         sort.setEveryStepClosure(everyStepClosure: { (index, value) in
             DispatchQueue.main.async {
@@ -59,9 +68,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 weak_self?.modeMaskView.isHidden = true
             }
         }
-        
     }
-    
     
     /// 随机生成sortView的高度
     private func configSortViewHeight() {
@@ -86,11 +93,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
     private func updateSortViewHeight(index: Int, value: CGFloat) {
         self.sortViews[index].updateHeight(height: value)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
 
     @IBAction func tapSegmentContol(_ sender: UISegmentedControl) {
@@ -101,17 +103,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         let sortType = SortTypeEnum(rawValue: sender.selectedSegmentIndex)!
         self.sort = SortFactory.create(type: sortType)
-        
-        weak var weak_self = self
-        sort.setEveryStepClosure(everyStepClosure: { (index, value) in  
-                DispatchQueue.main.async {
-                    weak_self?.updateSortViewHeight(index: index, value: CGFloat(value))
-                }
-            }) { (list) in
-                DispatchQueue.main.async {
-                    weak_self?.modeMaskView.isHidden = true
-                }
-        }
+        self.setSortClosure()
     }
     
     @IBAction func tapSortButton(_ sender: AnyObject) {
