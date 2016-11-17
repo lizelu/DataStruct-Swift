@@ -338,7 +338,7 @@ class RadixSort: SortType {
         let maxLength = numberLength(number: maxNumber)
         
         for digit in 1...maxLength {
-            //如桶
+            //入桶
             for item in list {
                 let baseNumber = fetchBaseNumber(number: item, digit: digit)
                 bucket[baseNumber].append(item) //根据基数进入相应的桶中
