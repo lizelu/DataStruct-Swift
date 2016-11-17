@@ -343,7 +343,9 @@ class RadixSort: SortType {
                 let baseNumber = fetchBaseNumber(number: item, digit: digit)
                 bucket[baseNumber].append(item) //根据基数进入相应的桶中
             }
-            
+            print("第\(digit)轮入桶结果")
+            print("\(bucket)")
+
             //出桶
             var index = 0
             for i in 0..<bucket.count {
@@ -352,6 +354,8 @@ class RadixSort: SortType {
                     index += 1
                 }
             }
+            print("第\(digit)轮出桶结果")
+            print("\(list)\n")
         }
     }
     
@@ -367,7 +371,7 @@ class RadixSort: SortType {
     }
     
     
-    /// 计算序列中最大的那个数
+    /// 计算无序序列中最大的那个数
     ///
     /// - parameter list: 数列
     ///
