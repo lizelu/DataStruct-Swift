@@ -16,13 +16,13 @@ func testSort(sortObject: SortType) {
     print("\n\n\n\n")
 }
 
-//testSort(sortObject: BubbleSort())
-//testSort(sortObject: InsertSort())
-//testSort(sortObject: SimpleSelectionSort())
-//testSort(sortObject: ShellSort())
-//testSort(sortObject: HeapSort())
-//testSort(sortObject: MergingSort())
-//testSort(sortObject: QuickSort())
+testSort(sortObject: BubbleSort())
+testSort(sortObject: InsertSort())
+testSort(sortObject: SimpleSelectionSort())
+testSort(sortObject: ShellSort())
+testSort(sortObject: HeapSort())
+testSort(sortObject: MergingSort())
+testSort(sortObject: QuickSort())
 testSort(sortObject: RadixSort())
 
 

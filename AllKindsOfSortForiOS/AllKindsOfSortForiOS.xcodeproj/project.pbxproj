@@ -15,7 +15,6 @@
 		F4698FC81DD9527500D4C8B8 /* SortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4698FC71DD9527500D4C8B8 /* SortView.swift */; };
 		F4698FCC1DD9562E00D4C8B8 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4698FCA1DD9562E00D4C8B8 /* Sort.swift */; };
 		F4698FCD1DD9562E00D4C8B8 /* SortClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4698FCB1DD9562E00D4C8B8 /* SortClass.swift */; };
-		F4EEC5E11DDC45D40004C4EC /* DisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4EEC5E01DDC45D40004C4EC /* DisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		F4698FC71DD9527500D4C8B8 /* SortView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortView.swift; sourceTree = "<group>"; };
 		F4698FCA1DD9562E00D4C8B8 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		F4698FCB1DD9562E00D4C8B8 /* SortClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortClass.swift; sourceTree = "<group>"; };
-		F4EEC5E01DDC45D40004C4EC /* DisplayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +64,6 @@
 				F4698FB51DD94BCC00D4C8B8 /* AppDelegate.swift */,
 				F4698FC71DD9527500D4C8B8 /* SortView.swift */,
 				F4698FB71DD94BCC00D4C8B8 /* ViewController.swift */,
-				F4EEC5E01DDC45D40004C4EC /* DisplayView.swift */,
 				F4698FB91DD94BCC00D4C8B8 /* Main.storyboard */,
 				F4698FBC1DD94BCC00D4C8B8 /* Assets.xcassets */,
 				F4698FBE1DD94BCC00D4C8B8 /* LaunchScreen.storyboard */,
@@ -160,7 +157,6 @@
 				F4698FC81DD9527500D4C8B8 /* SortView.swift in Sources */,
 				F4698FCC1DD9562E00D4C8B8 /* Sort.swift in Sources */,
 				F4698FCD1DD9562E00D4C8B8 /* SortClass.swift in Sources */,
-				F4EEC5E11DDC45D40004C4EC /* DisplayView.swift in Sources */,
 				F4698FB81DD94BCC00D4C8B8 /* ViewController.swift in Sources */,
 				F4698FB61DD94BCC00D4C8B8 /* AppDelegate.swift in Sources */,
 			);
