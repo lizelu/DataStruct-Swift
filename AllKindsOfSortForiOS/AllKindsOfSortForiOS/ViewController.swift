@@ -121,6 +121,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let sortView = SortView(frame: CGRect(origin: origin, size: size))
             self.displayView.addSubview(sortView)
             self.sortViews.append(sortView)
+            CGRect(origin: CGPoint.zero, size: CGSize())
         }
     }
     
