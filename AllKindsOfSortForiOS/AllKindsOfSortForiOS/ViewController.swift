@@ -14,6 +14,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var numberCountTextField: UITextField!
     @IBOutlet var modeMaskView: UIView!
     
+    var isTyping = false    // 是否正在编辑，键盘是否正在使用
+    var isSorted = false    // 是否已经排序完成
+    
     var sortViews: Array<SortView> = []
     var sortViewHight: Array<Int> = []
     var sort: SortType! = BubbleSort()
@@ -39,22 +42,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.numberCountTextField.delegate = self
+        self.numberCountTextField.text = "\(numberCount)"
         self.setSortClosure()
+        self.addObserver()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.numberCountTextField.delegate = self
-        self.numberCountTextField.text = "\(numberCount)"
         if sortViews.isEmpty {
             self.configSortViewHeight()
             self.addSortViews()
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard isTyping else {
+            return
+        }
+        _ = self.textFieldShouldReturn(numberCountTextField)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    deinit {
+        removeObserver()
     }
     
     // MARK: - Response Event
@@ -70,6 +85,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func tapSortButton(_ sender: AnyObject) {
+        if numberCountTextField.text != "\(numberCount)" {
+            _ = textFieldShouldReturn(numberCountTextField)
+        }
+        
+        guard !isSorted else {
+            return
+        }
+        
         self.modeMaskView.isHidden = false
         DispatchQueue.global().async {
             self.sortViewHight = self.sort.sort(items: self.sortViewHight)
@@ -79,6 +102,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //MARK: -- UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        guard textField.text != "\(numberCount)" else {
+            return true
+        }
         let text = textField.text
         guard let number: Int = Int(text!) else {
             return true
@@ -100,6 +126,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }) { (list) in
             DispatchQueue.main.async {
                 weak_self?.modeMaskView.isHidden = true
+                self.isSorted = true
             }
         }
     }
@@ -121,7 +148,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let sortView = SortView(frame: CGRect(origin: origin, size: size))
             self.displayView.addSubview(sortView)
             self.sortViews.append(sortView)
-            CGRect(origin: CGPoint.zero, size: CGSize())
         }
     }
     
@@ -137,7 +163,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.sortViewHight.removeAll()
         self.configSortViewHeight()
         self.addSortViews()
+        isSorted = false
     }
     
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardShow), name: Notification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDismiss), name: Notification.Name.UIKeyboardDidHide, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.UIKeyboardDidHide, object: nil)
+    }
+    
+    @objc private func keyboardShow() {
+        isTyping = true
+    }
+    
+    @objc private func keyboardDismiss() {
+        isTyping = false
+    }
 }
 
